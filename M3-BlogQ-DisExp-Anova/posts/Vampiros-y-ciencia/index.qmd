@@ -2,6 +2,7 @@
 title: "Clase 2 - Vampiros y ciencia"
 author: "Miguel Equihua"
 date: "2023-01-21"
+lang: es
 categories: [clase]
 ---
 
@@ -9,7 +10,7 @@ categories: [clase]
 
 ![](images/vampiro-dracula.png){width="300"}
 
-El ejemplo de la prueba de sangre que viene en el libro de McElreath (2020) propone que hay un análisis de sangre que detecta correctamente el vampirismo el 95% de las veces. En notación matemática:
+McElreath (2020) presenta en este libro el hipotético ejemplo de *la prueba de sangre para vampirismo*. Propone que hay un análisis de sangre que detecta correctamente 95% de las veces, la afiliación de un individuo al linage de los inmortales vampiros. En notación matemática:
 
 $$
 {Pr(resultado~ positivo~de~la~prueba|vampiro) = 0.95}

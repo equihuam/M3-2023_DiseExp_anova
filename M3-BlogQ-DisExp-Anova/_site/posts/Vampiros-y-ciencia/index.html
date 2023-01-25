@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.2.269">
@@ -7,7 +7,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Miguel Equihua">
-<meta name="dcterms.date" content="2023-01-21">
 
 <title>Curso de Estadística - Clase 2 - Vampiros y ciencia</title>
 <style>
@@ -113,15 +112,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   "type": "overlay",
   "limit": 20,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar"
   }
 }</script>
 
@@ -176,16 +175,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <div class="quarto-title-meta">
 
       <div>
-      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-heading">Autor/a</div>
       <div class="quarto-title-meta-contents">
                <p>Miguel Equihua </p>
             </div>
     </div>
       
       <div>
-      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-heading">Fecha de publicación</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">January 21, 2023</p>
+        <p class="date">21 de enero de 2023</p>
       </div>
     </div>
     
@@ -206,7 +205,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="un-cuento-de-vampiros-y-ciencia" class="level1">
 <h1>Un cuento de Vampiros y Ciencia</h1>
 <p><img src="images/vampiro-dracula.png" class="img-fluid" width="300"></p>
-<p>El ejemplo de la prueba de sangre que viene en el libro de McElreath (2020) propone que hay un análisis de sangre que detecta correctamente el vampirismo el 95% de las veces. En notación matemática:</p>
+<p>McElreath (2020) presenta en este libro el hipotético ejemplo de <em>la prueba de sangre para vampirismo</em>. Propone que hay un análisis de sangre que detecta correctamente 95% de las veces, la afiliación de un individuo al linage de los inmortales vampiros. En notación matemática:</p>
 <p><span class="math display">\[
 {Pr(resultado~ positivo~de~la~prueba|vampiro) = 0.95}
 \]</span></p>
@@ -233,7 +232,7 @@ Pr(positivo) = Pr(positivo|vampiro)\times Pr(vampiro) + Pr(positivo|mortal) \tim
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Pr_positivo_vampiro <span class="ot">&lt;-</span> <span class="fl">0.95</span> </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>Pr_positivo_Mortal <span class="ot">&lt;-</span> <span class="fl">0.01</span> </span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Pr_vampiro <span class="ot">&lt;-</span> <span class="fl">0.001</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Pr_vampiro <span class="ot">&lt;-</span> <span class="fl">0.001</span> </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Tomamos la fórmula de Bayes para <em>invertir la probabilidad</em>, pues queremos saber qué está pasando cuando tenemos la fortuna de toparnos con un resultado positivo en la prueba de sangre: <span class="math inline">\(Pr(positivo|vampiro)\)</span> Esto equivale a preguntarnos, ya vimos el resultado científico que significa la prueba de sangre, entonce ¿será vampiro el que dió esa muestra?:</p>
 <p><span class="math display">\[Pr(vampiro|positivo)\]</span></p>
@@ -242,7 +241,7 @@ Pr(positivo) = Pr(positivo|vampiro)\times Pr(vampiro) + Pr(positivo|mortal) \tim
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>Pr_vampiro_positivo <span class="ot">&lt;-</span> (Pr_positivo_vampiro <span class="sc">*</span> Pr_vampiro) <span class="sc">/</span> Pr_positivo</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(Pr_vampiro_positivo, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(Pr_vampiro_positivo, <span class="dv">3</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.087</code></pre>
 </div>
@@ -316,7 +315,7 @@ Pr(detectada|Hipótesis) = \frac{Pr(Hipótesis|detectada) Pr(detectado)} {Pr(Hip
 \]</span></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Pr_posterior_hallazgo_verdadero <span class="ot">&lt;-</span> (<span class="fl">0.95</span> <span class="sc">*</span> <span class="fl">0.01</span>) <span class="sc">/</span> ((<span class="fl">0.95</span> <span class="sc">*</span> <span class="fl">0.01</span>) <span class="sc">+</span> (<span class="fl">0.05</span> <span class="sc">*</span> (<span class="dv">1</span><span class="fl">-0.01</span>)))</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>Pr_posterior_hallazgo_verdadero</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>Pr_posterior_hallazgo_verdadero</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.1610169</code></pre>
 </div>
@@ -339,7 +338,7 @@ Pr(detectada|Hipótesis) = \frac{Pr(Hipótesis|detectada) Pr(detectado)} {Pr(Hip
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    pr_verdadero_pos <span class="ot">&lt;-</span> pr_pos_verdadero <span class="sc">*</span> pr_verdadero <span class="sc">/</span> (pr_pos_verdadero <span class="sc">*</span> pr_verdadero <span class="sc">+</span> pr_pos_falso<span class="sc">*</span>pr_falso)</span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(pr_verdadero_pos)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Hemos definido un programa como una <em>función</em> en <strong>R</strong>. Esta función puede tomar datos y procesarlos de acuerdo con la lógica que le hemos especificado.</p>
 <p>Ahora podemos experimentar para tener una idea aproximada de lo que está pasando.</p>
@@ -352,7 +351,7 @@ Pr(detectada|Hipótesis) = \frac{Pr(Hipótesis|detectada) Pr(detectado)} {Pr(Hip
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (pr <span class="cf">in</span> valores_de_interés) </span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    resultados <span class="ot">&lt;-</span> <span class="fu">rbind</span>(resultados, <span class="fu">c</span>(pr, <span class="fu">ciencia</span>(pr, <span class="fl">0.01</span>)))</span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(resultados) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"p_error"</span>, <span class="st">"p_post"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(resultados) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"p_error"</span>, <span class="st">"p_post"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Ahora podemos ver los resultados del experimento con ayuda de una gráfica.</p>
 <div class="cell">
@@ -366,7 +365,7 @@ Pr(detectada|Hipótesis) = \frac{Pr(Hipótesis|detectada) Pr(detectado)} {Pr(Hip
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfica</span></span>
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> <span class="dv">1</span> <span class="sc">-</span> resultados<span class="sc">$</span>p_error, <span class="at">y =</span> resultados<span class="sc">$</span>p_post,</span>
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">"b"</span>, <span class="at">xlab =</span> <span class="st">"valor de P"</span>, <span class="at">ylab =</span> <span class="st">"Pr post detección positiva"</span>, <span class="at">cex =</span> <span class="dv">2</span>, </span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex.axis  =</span> <span class="dv">2</span>, <span class="at">cex.lab =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex.axis  =</span> <span class="dv">2</span>, <span class="at">cex.lab =</span> <span class="dv">2</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -458,7 +457,7 @@ Se concibe como un planteamiento que asume la ausencia de efecto de los “facto
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># poner \n significa agregar un salto de renglón en donde se anote.</span></span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># total de arreglos posibles de cinco cartas</span></span>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>n_total_de_manos <span class="ot">&lt;-</span> <span class="fu">comboCount</span>(<span class="dv">52</span>, <span class="dv">5</span>)  </span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Número total de manos, arreglos de 5 cartas, posibles: "</span>, n_total_de_manos, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Número total de manos, arreglos de 5 cartas, posibles: "</span>, n_total_de_manos, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Número total de manos, arreglos de 5 cartas, posibles:  2598960 </code></pre>
 </div>
@@ -469,12 +468,12 @@ Se concibe como un planteamiento que asume la ausencia de efecto de los “facto
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>n_poker <span class="ot">&lt;-</span> <span class="fu">comboCount</span>(<span class="dv">4</span>,<span class="dv">4</span>) <span class="sc">*</span> <span class="fu">comboCount</span>(<span class="dv">48</span>, <span class="dv">1</span>) <span class="sc">*</span> <span class="dv">13</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>p_poker <span class="ot">&lt;-</span> n_poker <span class="sc">/</span> n_total_de_manos</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">posibles arreglos de 5 cartas que resultan en póker: "</span>, n_poker, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">posibles arreglos de 5 cartas que resultan en póker: "</span>, n_poker, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 posibles arreglos de 5 cartas que resultan en póker:  624 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Probabilidad de tener algún póker: "</span>, n_poker <span class="sc">/</span> n_total_de_manos, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Probabilidad de tener algún póker: "</span>, n_poker <span class="sc">/</span> n_total_de_manos, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Probabilidad de tener algún póker:  0.000240096 </code></pre>
 </div>
@@ -483,13 +482,13 @@ posibles arreglos de 5 cartas que resultan en póker:  624 </code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># El póker de ases es solo 1 de los 13 posibles</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>n_poker_as <span class="ot">&lt;-</span> n_poker <span class="sc">/</span> <span class="dv">13</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"posibles arreglos de 5 cartas que resultan en póker de ases: "</span>, n_poker_as, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"posibles arreglos de 5 cartas que resultan en póker de ases: "</span>, n_poker_as, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>posibles arreglos de 5 cartas que resultan en póker de ases:  48 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># probabilidad de tener un póker de ases en un juego</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>p_poker_as <span class="ot">&lt;-</span> n_poker_as <span class="sc">/</span> n_total_de_manos</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Probabilidad de tener póker de ases: "</span>, <span class="fu">format</span>(p_poker_as, <span class="at">scientific =</span> F), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Probabilidad de tener póker de ases: "</span>, <span class="fu">format</span>(p_poker_as, <span class="at">scientific =</span> F), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Probabilidad de tener póker de ases:  0.00001846893 </code></pre>
 </div>
@@ -497,7 +496,7 @@ posibles arreglos de 5 cartas que resultan en póker:  624 </code></pre>
 <p>Finalmente, ¿qué tan probable es conseguir dos vece póker de ases en una noche de juego?</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sacar dos veces póker de ases entre las 15 partidas, suponiendo que las manos son independientes en cada juego.</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Probabilidad de tener 2 veces póker de ases entre las 15 partidas: "</span>, <span class="fu">format</span>(<span class="fu">dbinom</span>(<span class="dv">2</span>, <span class="at">size=</span><span class="dv">15</span>, <span class="at">prob=</span>p_poker_as), <span class="at">scientific =</span> F), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Probabilidad de tener 2 veces póker de ases entre las 15 partidas: "</span>, <span class="fu">format</span>(<span class="fu">dbinom</span>(<span class="dv">2</span>, <span class="at">size=</span><span class="dv">15</span>, <span class="at">prob=</span>p_poker_as), <span class="at">scientific =</span> F), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Probabilidad de tener 2 veces póker de ases entre las 15 partidas:  0.00000003580703 </code></pre>
 </div>
@@ -591,12 +590,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // flash "checked"
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
+    button.setAttribute("title", "Copiado");
     let tooltip;
     if (window.bootstrap) {
       button.setAttribute("data-bs-toggle", "tooltip");
       button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
+      button.setAttribute("data-bs-title", "Copiado");
       tooltip = new bootstrap.Tooltip(button, 
         { trigger: "manual", 
           customClass: "code-copy-button-tooltip",
