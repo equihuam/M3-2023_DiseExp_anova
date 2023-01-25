@@ -2,9 +2,9 @@
   {
     "objectID": "about.html",
     "href": "about.html",
-    "title": "Acerca",
+    "title": "Acerca del módulo III",
     "section": "",
-    "text": "Blog del módulo III del curso de estadística\nEl módulo III se ocupa de las nociones básicas de diseño de experimentos y las técnicas estadísticas utilizadas para analizarlos: El Análisis de Varianza (Andeva o Anova).\nSe reúnen aquí los documentos y código en R utilizados como apoyo audiovisual en clase."
+    "text": "El módulo III se ocupa de las nociones básicas de diseño de experimentos y las técnicas estadísticas utilizadas para analizarlos: El Análisis de Varianza (Andeva o Anova).\nSe reúnen aquí los documentos y código en R utilizados como apoyo audiovisual en clase."
   },
   {
     "objectID": "index.html",
