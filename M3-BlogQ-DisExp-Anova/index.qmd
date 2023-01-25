@@ -1,5 +1,5 @@
 ---
-title: "M3-BlogQ-DisExp-Anova"
+title: "M3 - Diseño de Experimentos"
 listing:
   contents: posts
   sort: "date desc"
