@@ -2,7 +2,8 @@ project:
   type: website
 
 website:
-  title: "Curso de Estadística: Módulo III"
+  title: "Curso de Estadística"
+  favicon: bar-chart-business-analytics-statistics-svgrepo-com.png
   navbar:
     right:
       - about.qmd
