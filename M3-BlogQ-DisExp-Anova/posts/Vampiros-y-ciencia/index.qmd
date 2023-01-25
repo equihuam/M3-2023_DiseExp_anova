@@ -1,5 +1,5 @@
 ---
-title: "Clase 2 - Vampiros y ciencia"
+title: "2. - Vampiros y ciencia"
 author: "Miguel Equihua"
 date: "2023-01-21"
 lang: es
@@ -66,7 +66,6 @@ $$
 Pr(vampiro|positivo)
 $$
 
-
 ```{r}
 Pr_positivo <- Pr_positivo_vampiro * Pr_vampiro + Pr_positivo_Mortal * (1 - Pr_vampiro) 
 
@@ -113,8 +112,6 @@ Los eventos muestreados en el análisis de las distribuciones de probabilidades 
 
 El formalismo bayesiano trata las distribuciones de los parámetros como una plausibilidad relativa, no como un proceso aleatorio que ocurre en el mundo físico. En cualquier caso, la aleatoriedad es siempre una propiedad de la información, nunca del mundo real.
 
-
-
 ## Para pensar sobre los alcances de la ciencia
 
 ¿Podemos confiar en que la estadística nos proteja de la mala ciencia?.
@@ -147,7 +144,6 @@ Supongamos que la probabilidad de un hallazgo positivo, cuando una hipótesis es
 
 Esa es la tasa de falsos positivos, se trata del, digamos 5%, de la **prueba de significancia** cque usamos onvencionalmente.
 
-
 #### ¿Cuál será el estado real del mundo?
 
 Finalmente, tenemos que establecer la tasa base con la que ocurren las hipótesis que son verdaderas. Supongamos, por ejemplo, que 1 de cada 100 hipótesis resulta ser verdadera. Entonces ${Pr(verdadero) = P(V) = 0.01}$.
@@ -177,7 +173,6 @@ Así que un resultado positivo corresponde a un 16% de probabilidad de que la hi
 Este es el mismo fenómeno de baja tasa de base que se aplica en las pruebas médicas (y en nuestro ejemplo de *vampiros*).
 
 Puedes reducir la tasa de falsos positivos al 1% y ¿qué pasaría?
-
 
 ### Programar para explorar ideas
 
@@ -279,7 +274,6 @@ En contraste se propone una o más hipótesis alternativas ($H_{1...n}$), en las
 ![](images/Potencia_estad%C3%ADstica.png){width="700"}
 
 En la práctica, suele ocurrir que se concentre la atención en la hipótesis nula expresada con la gran simplicidad que implica la *ausencia de efectos* y se proceda con menor rigurosidad el análisis de la hipótesis alternativa, la que suele procesarse en forma más bien exploratoria mediante procedimientos de comparaciones múltiples.
-
 
 ### Ejemplo con el juego de póker
 
@@ -396,7 +390,6 @@ Para enfrentar algunos de los inconvenientes del enfoque clásico de prueba de h
 La práctica de presentar intervalos de confianza, posiblemente en conjunto con *p*, constituye una respuesta a la crítica de que sólo se excluye un valor como valor plausible para el parámetro. Además, hacer esto proporciona información sobre significancia. Si el intervalo no incluye el valor de cero, entonces se declararía el resultado como estadísticamente significativo. El intervalo informa también sobre el posible tamaño del efecto.
 
 A la luz de las críticas, Muchos autores ven necesario actualmente adoptar el marco Bayesiano para enfrentar las deficiencias del enfoque *clásico*.
-
 
 ### Potencia de la prueba
 

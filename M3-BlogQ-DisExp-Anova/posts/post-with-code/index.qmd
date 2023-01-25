@@ -1,8 +1,9 @@
 ---
-title: "Uso básico de R"
+title: "1. Leyes de la Ciencia"
 author: "Miguel Equihua"
 date: "2023-01-24"
-categories: [noticias, clase, tarea]
+lang: es
+categories: [clase]
 image: "image.jpg"
 format:
   html:
@@ -10,14 +11,6 @@ format:
     code-tools: true
 ---
 
-Este es un post con código ejecutable
-
-```{r}
-1 + 1
-```
-
-<iframe src="https://inecol.sharepoint.com/sites/ie-2016/_layouts/15/Doc.aspx?sourcedoc={e068e093-47cd-46e3-b81f-1af72ef2e5e7}&amp;action=embedview&amp;wdAr=1.7777777777777777" width="476px" height="288px" frameborder="0">
-
-Esto es un documento de <a target="_blank" href="https://office.com">Microsoft Office</a> incrustado con tecnología de <a target="_blank" href="https://office.com/webapps">Office</a>.
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTCdUcwWh31T-1oxX_etqljMcHVmH3AfaLMbmA8gUtiaX52VXNnOpzXnDRaosXjdg/embed?start=false&amp;loop=false&amp;delayms=3000" frameborder="0" width="645px" height="400px" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true">
 
 </iframe>
