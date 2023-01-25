@@ -18,7 +18,7 @@
     "href": "posts/post-with-code/index.html",
     "title": "Uso básico de R",
     "section": "",
-    "text": "Este es un post con código ejecutable\n\n1 + 1\n\n[1] 2"
+    "text": "Este es un post con código ejecutable\n\n\nCode\n1 + 1\n\n\n[1] 2"
   },
   {
     "objectID": "posts/welcome/index.html",

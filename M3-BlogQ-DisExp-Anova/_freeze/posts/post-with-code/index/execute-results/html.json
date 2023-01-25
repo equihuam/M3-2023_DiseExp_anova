@@ -1,7 +1,7 @@
 {
-  "hash": "1e5c8b367f964809923123c300720918",
+  "hash": "04654115ae93be5f7d17e49d8eff02dc",
   "result": {
-    "markdown": "---\ntitle: \"Uso básico de R\"\nauthor: \"Miguel Equihua\"\ndate: \"2023-01-24\"\ncategories: [noticias, código, análisis]\nimage: \"image.jpg\"\n---\n\n\nEste es un post con código ejecutable\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 2\n```\n:::\n:::\n",
+    "markdown": "---\ntitle: \"Uso básico de R\"\nauthor: \"Miguel Equihua\"\ndate: \"2023-01-24\"\ncategories: [noticias, código, análisis]\nimage: \"image.jpg\"\nformat:\n  html:\n    code-fold: true\n    code-tools: true\n---\n\n\nEste es un post con código ejecutable\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 2\n```\n:::\n:::\n",
     "supporting": [],
     "filters": [
       "rmarkdown/pagebreak.lua"
