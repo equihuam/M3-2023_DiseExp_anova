@@ -267,7 +267,7 @@ Se concibe como un planteamiento que asume la ausencia de efecto de los "factore
 
 En contraste se propone una o más hipótesis alternativas ($H_{1...n}$), en las que se valora algún o algunos efectos de los "factores explicativos". La propocisión hipotética que hacemos se traduce en valores que podemos comparar con un conjunto de valores a los que consideramos *observados*. La diferencia entre estos dos conjuntos de valores nos permiten valorar la factibilidad de nuestra proposición.
 
-![](images/Potencia_estadística.png){width="700"}
+![](images/Potencia_estad%C3%ADstica.png){width="700"}
 
 En la práctica, suele ocurrir que se concentre la atención en la hipótesis nula expresada con la gran simplicidad que implica la *ausencia de efectos* y se proceda con menor rigurosidad el análisis de la hipótesis alternativa, la que suele procesarse en forma más bien exploratoria mediante procedimientos de comparaciones múltiples.
 
@@ -391,7 +391,7 @@ A la luz de las críticas, Muchos autores ven necesario actualmente adoptar el m
 
 En la práctica, la potencia de la prueba depende del *grado de dispersión* en los datos. Si se está asumiendo un modelo de probabilidades Gaussiano (distribución normal), el factor de disperción o escala se relaciona con la varianza. Por lo tanto, es usual notar que el mismo cálculo del error estandar, $s_{e}=\frac{\sigma}{\sqrt{n}}$, sugiere la solución.
 
-![](images/Potencia_estadística.png){width="700"}
+![](images/Potencia_estad%C3%ADstica.png){width="700"}
 
 1.  Se puede incrementar el tamaño de muestra, *n*, [¿por qué funcionaría esto?]{style="color:GoldenRod"}
 2.  Aumentar la precisión con la que se estima $\sigma^2$, [¿cómo se puede hacer esto?]{style="color:GoldenRod"}
