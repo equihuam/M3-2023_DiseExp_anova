@@ -1,12 +1,10 @@
 ---
-title: "Welcome To My Blog"
-author: "Tristan O'Malley"
+title: "Bienvenidos al Módulo III de estadística"
+author: "Miguel Equihua"
 date: "2023-01-21"
-categories: [news]
+categories: [noticias]
 ---
-
-This is the first post in a Quarto blog. Welcome!
 
 ![](thumbnail.jpg)
 
-Since this post doesn't specify an explicit `image`, the first image in the post will be used in the listing page of posts.
+Esta es la presentación del módulo III. Durante las últimas semanas revisaron conceptos de probabilidad y matemáticas, que necesitamos como un **lenguaje eficiente de comunicación**. También empezaron a explorar como es que se pueden analizar proposiciones sobre la existencia de asociación o incluso relaciones de dependencia entre dos variables: **modelos de regresión simple**. Ahora vamos aplicar y extender estos conocimientos para abordar el desafío de obtener conocimiento que nos permita comprender como funciona el mundo.
