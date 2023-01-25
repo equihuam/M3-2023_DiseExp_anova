@@ -1,5 +1,6 @@
 ---
 title: "M3 - Diseño de Experimentos"
+lang: es
 listing:
   contents: posts
   sort: "date desc"
