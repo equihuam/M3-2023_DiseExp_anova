@@ -10,7 +10,7 @@ categories: [clase]
 
 ![](images/vampiro-dracula.png){width="300"}
 
-McElreath (2020) presenta en este libro el hipotético ejemplo de *la prueba de sangre para vampirismo*. Propone que hay un análisis de sangre que detecta correctamente 95% de las veces, la afiliación de un individuo al linage de los inmortales vampiros. En notación matemática:
+McElreath (2020) presenta en este libro el hipotético ejemplo de *la prueba de sangre para vampirismo*. Propone que hay un análisis de sangre que detecta correctamente 95% de las veces, la afiliación de un individuo al linaje del conde Drácula y los inmortales vampiros. En notación matemática:
 
 $$
 {Pr(resultado~ positivo~de~la~prueba|vampiro) = 0.95}
