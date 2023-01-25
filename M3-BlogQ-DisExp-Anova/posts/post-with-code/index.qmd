@@ -2,7 +2,7 @@
 title: "Uso básico de R"
 author: "Miguel Equihua"
 date: "2023-01-24"
-categories: [noticias, código, análisis]
+categories: [noticias, clase, tarea]
 image: "image.jpg"
 format:
   html:

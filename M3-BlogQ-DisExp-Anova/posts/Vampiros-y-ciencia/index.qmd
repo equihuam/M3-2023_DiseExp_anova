@@ -1,6 +1,8 @@
 ---
 title: "Clase 2 - Vampiros y ciencia"
-output: html_document
+author: "Miguel Equihua"
+date: "2023-01-21"
+categories: [clase]
 ---
 
 # Un cuento de Vampiros y Ciencia
