@@ -234,8 +234,14 @@ Pr(positivo) = Pr(positivo|vampiro)\times Pr(vampiro) + Pr(positivo|mortal) \tim
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>Pr_positivo_Mortal <span class="ot">&lt;-</span> <span class="fl">0.01</span> </span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Pr_vampiro <span class="ot">&lt;-</span> <span class="fl">0.001</span> </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Tomamos la fórmula de Bayes para <em>invertir la probabilidad</em>, pues queremos saber qué está pasando cuando tenemos la fortuna de toparnos con un resultado positivo en la prueba de sangre: <span class="math inline">\(Pr(positivo|vampiro)\)</span> Esto equivale a preguntarnos, ya vimos el resultado científico que significa la prueba de sangre, entonce ¿será vampiro el que dió esa muestra?:</p>
-<p><span class="math display">\[Pr(vampiro|positivo)\]</span></p>
+<p>Tomamos la fórmula de Bayes para <em>invertir la probabilidad</em>, pues queremos saber qué está pasando cuando tenemos la fortuna de toparnos con un resultado positivo en la prueba de sangre:</p>
+<p><span class="math display">\[
+Pr(positivo|vampiro)
+\]</span></p>
+<p>Esto equivale a preguntarnos, dado que ya vimos el resultado científico que significa la prueba de sangre, ¿será vampiro el sujeto de quien se obtuvo esa muestra?:</p>
+<p><span class="math display">\[
+Pr(vampiro|positivo)
+\]</span></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Pr_positivo <span class="ot">&lt;-</span> Pr_positivo_vampiro <span class="sc">*</span> Pr_vampiro <span class="sc">+</span> Pr_positivo_Mortal <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> Pr_vampiro) </span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -248,8 +254,8 @@ Pr(positivo) = Pr(positivo|vampiro)\times Pr(vampiro) + Pr(positivo|mortal) \tim
 </div>
 <p>Por lo tanto, la probabilidad de que el amigo sea en realidad un vampiro es 8.7%.</p>
 <p>¿Encuentras este resultado afin o contrario a lo que pensabas antes de hacer los cálculos?</p>
-<p>Este es un resultado muy importante. Exactamente así, o algo muy parecido, es el proccedimiento que se sigue en muchos contextos de prueba realistas: * las pruebas de PCR, antígeno o anticuerpos para SarsCov-2 * la prueba del VIH * la del DNA en un perfil criminal * la prueba de significancia estadística.</p>
-<p>Quizás ayude a mejorar la intuición que tenemos de las cosas el considerar que siempre que la condición de interés sea muy rara, desarrollar una prueba excelente capaz de diagnosticar bien todos los casos verdaderos (aunque inveitablemente produzca también algunos falsos positivos), seguiría sin ser garantía de que un resultado positivo en general conlleve mucha información.</p>
+<p>Este es un resultado muy importante. Exactamente así, o algo muy parecido, es el procedimiento que se sigue en muchos contextos de prueba realistas: <em>las pruebas de PCR</em>, <em>antígeno</em> o <em>anticuerpos para SarsCov-2</em>, <em>la prueba del VIH</em> la del <em>DNA en un perfil criminal</em> y por supuesto la <em>prueba de significancia estadística</em>.</p>
+<p>Quizás ayude a mejorar la intuición que tenemos de las cosas el considerar que siempre que la condición de interés sea muy rara, desarrollar una <em>prueba excelente</em>, capaz de diagnosticar bien todos los casos verdaderos (aunque invitablemente produzca también algunos falsos positivos), no es garantía suficiente de que un resultado positivo en general conlleve mucha información.</p>
 <p>La razón es que usualmente resulta inevitable tener <strong>falsos positivos</strong> y por simple aritmética, esos casos serán la mayoría de los resultados que tendremos, incluso si todos los <em>verdaderos positivos</em> fueran <em>detectados correctamente</em>.</p>
 <p>Aunque, como dice McElreath, no hay nada particularmente bayesiano aqui. Podríamos pensar que la ecuación que usamos aquí salio de la nada, aunque quizás la recuerdes de algún curso previo, de alguna charla interesante por ahí o incluso de lo que viste con Rosario ¡hace unas semanas!</p>
 <p>Quizás el ejemplo puede verse en forma más intuitiva utilizando otra narrativa para comprender lo que está ocurriendo. Digamos que en lugar de informar sobre las probabilidades, como antes, te digo lo siguiente:</p>
@@ -264,12 +270,10 @@ Pr(positivo) = Pr(positivo|vampiro)\times Pr(vampiro) + Pr(positivo|mortal) \tim
 <p><span class="math display">\[
 Pr(vampiro|positivo) = \frac{95}{1094} ≈ 0.087
 \]</span></p>
-<p>Esta es exatamente la misma respuesta de 8.7% que encontramos antes. Pero no tuvimos que recordar la ´“formula mágica” de Bayes, nada más tuvimos que contar y pensar con calma.</p>
+<p>Esta es exactamente la misma respuesta de 8.7% que encontramos antes. Pero no tuvimos que recordar la ´“formula mágica” de Bayes, nada más tuvimos que contar y pensar con calma.</p>
 <p>Esta forma de presentar el problema mediante el “conteo de los actores” en lugar de recurrir a probabilidades, suele denominarse <em>formato de frecuencia</em> o <em>frecuencias naturales</em>.</p>
-<p>Las razones propuestas para explicar el por qué el <em>formato de frecuencia</em> ayuda a la gente a intuir el enfoque correcto siguen siendo polémicas. Podría ser que de entrada sólo podemos encontrarnos con conteos en el mundo real.</p>
-<p>Quizás sea cierto que nadie ha visto nunca una probabilidad andando por ahí. Independientemente de la explicación de este fenómeno, podemos explotarlo.</p>
-<p>Los eventos muestreados en el análisis de las distribuciones de probabilidades de modelos estadísticos en algún análisis de datos, son los valores de los parámetros.</p>
-<p>La mayoría de los parámetros no tienen una “materialización” empírica exacta.</p>
+<p>Las razones propuestas para explicar el por qué el <em>formato de frecuencia</em> ayuda a la gente a intuir el enfoque correcto siguen siendo polémicas. Podría ser que de entrada sólo podemos encontrarnos con conteos en el mundo real. Quizás sea cierto que nadie ha visto nunca una probabilidad andando por ahí. Independientemente de la explicación de este fenómeno, podemos explotarlo.</p>
+<p>Los eventos muestreados en el análisis de las distribuciones de probabilidades de modelos estadísticos en algún análisis de datos, son los valores de los parámetros. La mayoría de los parámetros no tienen una “materialización” empírica exacta.</p>
 <p>El formalismo bayesiano trata las distribuciones de los parámetros como una plausibilidad relativa, no como un proceso aleatorio que ocurre en el mundo físico. En cualquier caso, la aleatoriedad es siempre una propiedad de la información, nunca del mundo real.</p>
 <section id="para-pensar-sobre-los-alcances-de-la-ciencia" class="level2">
 <h2 class="anchored" data-anchor-id="para-pensar-sobre-los-alcances-de-la-ciencia">Para pensar sobre los alcances de la ciencia</h2>
@@ -297,7 +301,7 @@ Pr(vampiro|positivo) = \frac{95}{1094} ≈ 0.087
 <section id="probabilidad-de-errar" class="level4">
 <h4 class="anchored" data-anchor-id="probabilidad-de-errar">Probabilidad de <em>errar</em></h4>
 <p>Supongamos que la probabilidad de un hallazgo positivo, cuando una hipótesis es falsa, es <span class="math inline">\({Pr(señal~detectada|falso) = Pr(H|F) = 0.05}\)</span>.</p>
-<p>Esa es la tasa de falsos positivos, se trata del, digamos 5%, de la <strong>prueba de significancia</strong> convencional.</p>
+<p>Esa es la tasa de falsos positivos, se trata del, digamos 5%, de la <strong>prueba de significancia</strong> cque usamos onvencionalmente.</p>
 </section>
 <section id="cuál-será-el-estado-real-del-mundo" class="level4">
 <h4 class="anchored" data-anchor-id="cuál-será-el-estado-real-del-mundo">¿Cuál será el estado real del mundo?</h4>
@@ -375,7 +379,7 @@ Pr(detectada|Hipótesis) = \frac{Pr(Hipótesis|detectada) Pr(detectado)} {Pr(Hip
 <h3 class="anchored" data-anchor-id="conclusión-del-experimento-pensado">Conclusión del experimento pensado</h3>
 <p>Una investigación muy exigente que reduce la detección de falsos positivos a 1%, nos permite llevar la probabilidad posterior de <em>descubrimientos exitosos</em> hasta 0.5.</p>
 <p>Apenas tan buena como el lanzamiento de una moneda.</p>
-<p>¿A dónde nos lleva este razonamiento de juguete?.</p>
+<p>Podemos pensar que lo que hemos hecho hasta aquí es prácticamente un juego, pero ¿qué tan cercano podría ser a lo que ocurre en la vida real? y si fuera una razonable aproximación ¿a qué nos conduce?</p>
 <p>Quizás nos sugiera que lo más importante es mejorar la tasa base, <span class="math inline">\({Pr(V)}\)</span>, y eso requiere pensar mejor, no hacer muchas más pruebas o incluso ponerse exageradamente exigente. ¿Tú que piensas?</p>
 </section>
 </section>

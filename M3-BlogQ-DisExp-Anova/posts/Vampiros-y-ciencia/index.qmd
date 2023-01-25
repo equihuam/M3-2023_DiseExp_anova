@@ -54,9 +54,18 @@ Pr_positivo_Mortal <- 0.01
 Pr_vampiro <- 0.001 
 ```
 
-Tomamos la fórmula de Bayes para *invertir la probabilidad*, pues queremos saber qué está pasando cuando tenemos la fortuna de toparnos con un resultado positivo en la prueba de sangre: $Pr(positivo|vampiro)$ Esto equivale a preguntarnos, ya vimos el resultado científico que significa la prueba de sangre, entonce ¿será vampiro el que dió esa muestra?:
+Tomamos la fórmula de Bayes para *invertir la probabilidad*, pues queremos saber qué está pasando cuando tenemos la fortuna de toparnos con un resultado positivo en la prueba de sangre:
 
-$$Pr(vampiro|positivo)$$
+$$
+Pr(positivo|vampiro)
+$$
+
+Esto equivale a preguntarnos, dado que ya vimos el resultado científico que significa la prueba de sangre, ¿será vampiro el sujeto de quien se obtuvo esa muestra?:
+
+$$
+Pr(vampiro|positivo)
+$$
+
 
 ```{r}
 Pr_positivo <- Pr_positivo_vampiro * Pr_vampiro + Pr_positivo_Mortal * (1 - Pr_vampiro) 
@@ -70,9 +79,9 @@ Por lo tanto, la probabilidad de que el amigo sea en realidad un vampiro es 8.7%
 
 ¿Encuentras este resultado afin o contrario a lo que pensabas antes de hacer los cálculos?
 
-Este es un resultado muy importante. Exactamente así, o algo muy parecido, es el proccedimiento que se sigue en muchos contextos de prueba realistas: \* las pruebas de PCR, antígeno o anticuerpos para SarsCov-2 \* la prueba del VIH \* la del DNA en un perfil criminal \* la prueba de significancia estadística.
+Este es un resultado muy importante. Exactamente así, o algo muy parecido, es el procedimiento que se sigue en muchos contextos de prueba realistas: *las pruebas de PCR*, *antígeno* o *anticuerpos para SarsCov-2*, *la prueba del VIH* la del *DNA en un perfil criminal* y por supuesto la *prueba de significancia estadística*.
 
-Quizás ayude a mejorar la intuición que tenemos de las cosas el considerar que siempre que la condición de interés sea muy rara, desarrollar una prueba excelente capaz de diagnosticar bien todos los casos verdaderos (aunque inveitablemente produzca también algunos falsos positivos), seguiría sin ser garantía de que un resultado positivo en general conlleve mucha información.
+Quizás ayude a mejorar la intuición que tenemos de las cosas el considerar que siempre que la condición de interés sea muy rara, desarrollar una *prueba excelente*, capaz de diagnosticar bien todos los casos verdaderos (aunque invitablemente produzca también algunos falsos positivos), no es garantía suficiente de que un resultado positivo en general conlleve mucha información.
 
 La razón es que usualmente resulta inevitable tener **falsos positivos** y por simple aritmética, esos casos serán la mayoría de los resultados que tendremos, incluso si todos los *verdaderos positivos* fueran *detectados correctamente*.
 
@@ -94,19 +103,17 @@ $$
 Pr(vampiro|positivo) = \frac{95}{1094} ≈ 0.087 
 $$
 
-Esta es exatamente la misma respuesta de 8.7% que encontramos antes. Pero no tuvimos que recordar la ´"formula mágica" de Bayes, nada más tuvimos que contar y pensar con calma.
+Esta es exactamente la misma respuesta de 8.7% que encontramos antes. Pero no tuvimos que recordar la ´"formula mágica" de Bayes, nada más tuvimos que contar y pensar con calma.
 
 Esta forma de presentar el problema mediante el "conteo de los actores" en lugar de recurrir a probabilidades, suele denominarse *formato de frecuencia* o *frecuencias naturales*.
 
-Las razones propuestas para explicar el por qué el *formato de frecuencia* ayuda a la gente a intuir el enfoque correcto siguen siendo polémicas. Podría ser que de entrada sólo podemos encontrarnos con conteos en el mundo real.
+Las razones propuestas para explicar el por qué el *formato de frecuencia* ayuda a la gente a intuir el enfoque correcto siguen siendo polémicas. Podría ser que de entrada sólo podemos encontrarnos con conteos en el mundo real. Quizás sea cierto que nadie ha visto nunca una probabilidad andando por ahí. Independientemente de la explicación de este fenómeno, podemos explotarlo.
 
-Quizás sea cierto que nadie ha visto nunca una probabilidad andando por ahí. Independientemente de la explicación de este fenómeno, podemos explotarlo.
-
-Los eventos muestreados en el análisis de las distribuciones de probabilidades de modelos estadísticos en algún análisis de datos, son los valores de los parámetros.
-
-La mayoría de los parámetros no tienen una "materialización" empírica exacta.
+Los eventos muestreados en el análisis de las distribuciones de probabilidades de modelos estadísticos en algún análisis de datos, son los valores de los parámetros. La mayoría de los parámetros no tienen una "materialización" empírica exacta.
 
 El formalismo bayesiano trata las distribuciones de los parámetros como una plausibilidad relativa, no como un proceso aleatorio que ocurre en el mundo físico. En cualquier caso, la aleatoriedad es siempre una propiedad de la información, nunca del mundo real.
+
+
 
 ## Para pensar sobre los alcances de la ciencia
 
@@ -138,7 +145,8 @@ Ese es lo que se suele llamar **la potencia de la prueba**.
 
 Supongamos que la probabilidad de un hallazgo positivo, cuando una hipótesis es falsa, es ${Pr(señal~detectada|falso) = Pr(H|F) = 0.05}$.
 
-Esa es la tasa de falsos positivos, se trata del, digamos 5%, de la **prueba de significancia** convencional.
+Esa es la tasa de falsos positivos, se trata del, digamos 5%, de la **prueba de significancia** cque usamos onvencionalmente.
+
 
 #### ¿Cuál será el estado real del mundo?
 
@@ -169,6 +177,7 @@ Así que un resultado positivo corresponde a un 16% de probabilidad de que la hi
 Este es el mismo fenómeno de baja tasa de base que se aplica en las pruebas médicas (y en nuestro ejemplo de *vampiros*).
 
 Puedes reducir la tasa de falsos positivos al 1% y ¿qué pasaría?
+
 
 ### Programar para explorar ideas
 
@@ -224,7 +233,7 @@ Una investigación muy exigente que reduce la detección de falsos positivos a 1
 
 Apenas tan buena como el lanzamiento de una moneda.
 
-¿A dónde nos lleva este razonamiento de juguete?.
+Podemos pensar que lo que hemos hecho hasta aquí es prácticamente un juego, pero ¿qué tan cercano podría ser a lo que ocurre en la vida real? y si fuera una razonable aproximación ¿a qué nos conduce?
 
 Quizás nos sugiera que lo más importante es mejorar la tasa base, ${Pr(V)}$, y eso requiere pensar mejor, no hacer muchas más pruebas o incluso ponerse exageradamente exigente. ¿Tú que piensas?
 
@@ -270,6 +279,7 @@ En contraste se propone una o más hipótesis alternativas ($H_{1...n}$), en las
 ![](images/Potencia_estad%C3%ADstica.png){width="700"}
 
 En la práctica, suele ocurrir que se concentre la atención en la hipótesis nula expresada con la gran simplicidad que implica la *ausencia de efectos* y se proceda con menor rigurosidad el análisis de la hipótesis alternativa, la que suele procesarse en forma más bien exploratoria mediante procedimientos de comparaciones múltiples.
+
 
 ### Ejemplo con el juego de póker
 
@@ -386,6 +396,7 @@ Para enfrentar algunos de los inconvenientes del enfoque clásico de prueba de h
 La práctica de presentar intervalos de confianza, posiblemente en conjunto con *p*, constituye una respuesta a la crítica de que sólo se excluye un valor como valor plausible para el parámetro. Además, hacer esto proporciona información sobre significancia. Si el intervalo no incluye el valor de cero, entonces se declararía el resultado como estadísticamente significativo. El intervalo informa también sobre el posible tamaño del efecto.
 
 A la luz de las críticas, Muchos autores ven necesario actualmente adoptar el marco Bayesiano para enfrentar las deficiencias del enfoque *clásico*.
+
 
 ### Potencia de la prueba
 
