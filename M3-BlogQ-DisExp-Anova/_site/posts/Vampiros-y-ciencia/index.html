@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Curso de Estadística - Clase 2 - Vampiros y ciencia</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../bar-chart-business-analytics-statistics-svgrepo-com.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Curso de Estadística</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">Acerca del módulo III</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/equihuam/M3-2023_DiseExp_anova"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Clase 2 - Vampiros y ciencia</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="un-cuento-de-vampiros-y-ciencia" class="level1">
+<h1>Un cuento de Vampiros y Ciencia</h1>
+<p><img src="images/vampiro-dracula.png" class="img-fluid" width="300"></p>
+<p>El ejemplo de la prueba de sangre que viene en el libro de McElreath (2020) propone que hay un análisis de sangre que detecta correctamente el vampirismo el 95% de las veces. En notación matemática:</p>
+<p><span class="math display">\[
+{Pr(resultado~ positivo~de~la~prueba|vampiro) = 0.95}
+\]</span></p>
+<p>Es una prueba muy precisa, casi siempre identificando <em>vampiros</em> reales. Sin embargo, también comete errores y produce falsos positivos. Es así que el uno por ciento de las veces diagnostica incorrectamente a los <em>simples mortales</em> como <em>vampiros</em>:</p>
+<p><span class="math display">\[
+{Pr(resultado~positivo~de~la~prueba|mortal) = 0.01}
+\]</span></p>
+<p>La última pieza de información que necesitamos es saber que los <em>vampiros</em> en realidad son bastante raros. Sólo el 0.1% de la población lo es, lo que implica:</p>
+<p><span class="math display">\[
+{Pr(vampiro) = 0.001}
+\]</span></p>
+<p>A partir de este conocimiento científico, supongamos que un amigo da positivo en el test de vampirismo.</p>
+<p>¿Cuál es la probabilidad de que sea un <em>inmortal chupasangre</em>?</p>
+<p>El enfoque de investigación formal empezaría por usar el <em>teorema de Bayes</em> para deducir la probabilidad <span class="math inline">\({Pr(vampiro|positivo)}\)</span>, lo que en cierta forma implica “invertir la probabilidad”, pues lo que ahora sabemos es el valor de <span class="math inline">\({Pr(positivo|vampiro)}\)</span>. El cálculo puede presentarse como:</p>
+<p><span class="math display">\[
+\Pr(vampiro|positivo) = \frac{Pr(positivo|vampiro) \times Pr(vampiro)}{Pr(positivo)}
+\]</span></p>
+<p>en donde <span class="math inline">\({Pr(positivo)}\)</span> es la probabilidad promedio de los resultados positivos de la prueba, es decir,</p>
+<p><span class="math display">\[
+Pr(positivo) = Pr(positivo|vampiro)\times Pr(vampiro) + Pr(positivo|mortal) \times ({1 − Pr(vampiro)})
+\]</span></p>
+<p>Todo esto lo podemos hacer en <strong>R</strong>.</p>
+<p>Primero tomamos nota de lo que ya sabemos al principio, ¡<em>a priori</em>!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Pr_positivo_vampiro <span class="ot">&lt;-</span> <span class="fl">0.95</span> </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>Pr_positivo_Mortal <span class="ot">&lt;-</span> <span class="fl">0.01</span> </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Pr_vampiro <span class="ot">&lt;-</span> <span class="fl">0.001</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Tomamos la fórmula de Bayes para <em>invertir la probabilidad</em>, pues queremos saber qué está pasando cuando tenemos la fortuna de toparnos con un resultado positivo en la prueba de sangre: <span class="math inline">\(Pr(positivo|vampiro)\)</span> Esto equivale a preguntarnos, ya vimos el resultado científico que significa la prueba de sangre, entonce ¿será vampiro el que dió esa muestra?:</p>
+<p><span class="math display">\[Pr(vampiro|positivo)\]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Pr_positivo <span class="ot">&lt;-</span> Pr_positivo_vampiro <span class="sc">*</span> Pr_vampiro <span class="sc">+</span> Pr_positivo_Mortal <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> Pr_vampiro) </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>Pr_vampiro_positivo <span class="ot">&lt;-</span> (Pr_positivo_vampiro <span class="sc">*</span> Pr_vampiro) <span class="sc">/</span> Pr_positivo</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(Pr_vampiro_positivo, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.087</code></pre>
+</div>
+</div>
+<p>Por lo tanto, la probabilidad de que el amigo sea en realidad un vampiro es 8.7%.</p>
+<p>¿Encuentras este resultado afin o contrario a lo que pensabas antes de hacer los cálculos?</p>
+<p>Este es un resultado muy importante. Exactamente así, o algo muy parecido, es el proccedimiento que se sigue en muchos contextos de prueba realistas: * las pruebas de PCR, antígeno o anticuerpos para SarsCov-2 * la prueba del VIH * la del DNA en un perfil criminal * la prueba de significancia estadística.</p>
+<p>Quizás ayude a mejorar la intuición que tenemos de las cosas el considerar que siempre que la condición de interés sea muy rara, desarrollar una prueba excelente capaz de diagnosticar bien todos los casos verdaderos (aunque inveitablemente produzca también algunos falsos positivos), seguiría sin ser garantía de que un resultado positivo en general conlleve mucha información.</p>
+<p>La razón es que usualmente resulta inevitable tener <strong>falsos positivos</strong> y por simple aritmética, esos casos serán la mayoría de los resultados que tendremos, incluso si todos los <em>verdaderos positivos</em> fueran <em>detectados correctamente</em>.</p>
+<p>Aunque, como dice McElreath, no hay nada particularmente bayesiano aqui. Podríamos pensar que la ecuación que usamos aquí salio de la nada, aunque quizás la recuerdes de algún curso previo, de alguna charla interesante por ahí o incluso de lo que viste con Rosario ¡hace unas semanas!</p>
+<p>Quizás el ejemplo puede verse en forma más intuitiva utilizando otra narrativa para comprender lo que está ocurriendo. Digamos que en lugar de informar sobre las probabilidades, como antes, te digo lo siguiente:</p>
+<ol type="1">
+<li>En una población de 100,000 personas, 100 de ellas son <em>vampiros</em>.</li>
+<li>De los 100 que son vampiros 95 darán positivo en la prueba de vampirismo.</li>
+<li>De los 99,900 <em>simples mortales</em>, 999 darán positivo a la prueba de vampirismo.</li>
+</ol>
+<p>Ahora piensa en esto, si hacemos pruebas a las 100,000 personas, ¿qué proporción de los que dan positivo en las pruebas de vampirismo son realmente <em>vampiros</em>?</p>
+<p>Muchas personas, aunque ciertamente no todas, encuentran esta forma de contar la historia mucho más fácil. Sigamos por este camino.</p>
+<p>¿Qué tal si contamos el número de personas que dan positivo?: 95 + 999 = 1094. De estas 1094 pruebas positivas, 95 de ellas son vampiros reales, lo que nos lleva sencillamente a esto:</p>
+<p><span class="math display">\[
+Pr(vampiro|positivo) = \frac{95}{1094} ≈ 0.087
+\]</span></p>
+<p>Esta es exatamente la misma respuesta de 8.7% que encontramos antes. Pero no tuvimos que recordar la ´“formula mágica” de Bayes, nada más tuvimos que contar y pensar con calma.</p>
+<p>Esta forma de presentar el problema mediante el “conteo de los actores” en lugar de recurrir a probabilidades, suele denominarse <em>formato de frecuencia</em> o <em>frecuencias naturales</em>.</p>
+<p>Las razones propuestas para explicar el por qué el <em>formato de frecuencia</em> ayuda a la gente a intuir el enfoque correcto siguen siendo polémicas. Podría ser que de entrada sólo podemos encontrarnos con conteos en el mundo real.</p>
+<p>Quizás sea cierto que nadie ha visto nunca una probabilidad andando por ahí. Independientemente de la explicación de este fenómeno, podemos explotarlo.</p>
+<p>Los eventos muestreados en el análisis de las distribuciones de probabilidades de modelos estadísticos en algún análisis de datos, son los valores de los parámetros.</p>
+<p>La mayoría de los parámetros no tienen una “materialización” empírica exacta.</p>
+<p>El formalismo bayesiano trata las distribuciones de los parámetros como una plausibilidad relativa, no como un proceso aleatorio que ocurre en el mundo físico. En cualquier caso, la aleatoriedad es siempre una propiedad de la información, nunca del mundo real.</p>
+<section id="para-pensar-sobre-los-alcances-de-la-ciencia" class="level2">
+<h2 class="anchored" data-anchor-id="para-pensar-sobre-los-alcances-de-la-ciencia">Para pensar sobre los alcances de la ciencia</h2>
+<p>¿Podemos confiar en que la estadística nos proteja de la mala ciencia?.</p>
+<p>El ejemplo del vampirismo que acabamos de ver tiene la misma estructura lógica que muchos problemas de <em>detección</em> considerando que:</p>
+<ol type="1">
+<li>Hay algún estado binario al que no tenemos acceso.</li>
+<li>Observamos un indicio imperfecto del estado oculto.</li>
+<li>(Deberíamos/podríamos) usar el teorema de Bayes para deducir lógicamente el impacto del indicio en nuestra incertidumbre (aunque <a href="http://www.theguardian.com/law/2011/oct/02/formula-justice-bayes-theorem-miscarriage">ve lo que salió en el periódico</a>)</li>
+</ol>
+<p>La inferencia científica puede enmarcase en términos similares:</p>
+<ol type="1">
+<li>Una hipótesis es verdadera o falsa, pero no podemos saberlo;</li>
+<li>Obtenemos un indicio estadístico de la <strong>falsedad</strong> de la hipótesis;</li>
+<li>Debemos/podemos utilizar el teorema de Bayes para deducir lógicamente el impacto del indicio en el estado de la hipótesis.</li>
+</ol>
+<p>Es el tercer paso el que casi nunca se hace. Sin debatir por lo pronto si debemos o no usar a Bayes, consideremos por un momento la idea como un ejemplo de juguete.</p>
+<section id="resultados-posibles-de-un-estudio-científico" class="level3">
+<h3 class="anchored" data-anchor-id="resultados-posibles-de-un-estudio-científico">Resultados posibles de un estudio científico</h3>
+<section id="probabilidad-de-acertar" class="level4">
+<h4 class="anchored" data-anchor-id="probabilidad-de-acertar">Probabilidad de <em>acertar</em></h4>
+<p>Supongamos que la probabilidad de obtener un hallazgo positivo, cuando la hipótesis postulada es cierta, es <span class="math inline">\({Pr(señal~detectada|verdadero) =Pr(H|V) = 0.95}\)</span>.</p>
+<p>Ese es lo que se suele llamar <strong>la potencia de la prueba</strong>.</p>
+</section>
+<section id="probabilidad-de-errar" class="level4">
+<h4 class="anchored" data-anchor-id="probabilidad-de-errar">Probabilidad de <em>errar</em></h4>
+<p>Supongamos que la probabilidad de un hallazgo positivo, cuando una hipótesis es falsa, es <span class="math inline">\({Pr(señal~detectada|falso) = Pr(H|F) = 0.05}\)</span>.</p>
+<p>Esa es la tasa de falsos positivos, se trata del, digamos 5%, de la <strong>prueba de significancia</strong> convencional.</p>
+</section>
+<section id="cuál-será-el-estado-real-del-mundo" class="level4">
+<h4 class="anchored" data-anchor-id="cuál-será-el-estado-real-del-mundo">¿Cuál será el estado real del mundo?</h4>
+<p>Finalmente, tenemos que establecer la tasa base con la que ocurren las hipótesis que son verdaderas. Supongamos, por ejemplo, que 1 de cada 100 hipótesis resulta ser verdadera. Entonces <span class="math inline">\({Pr(verdadero) = P(V) = 0.01}\)</span>.</p>
+<p>En realidad nadie conoce este valor ni se ve posible conocerlo, pero la historia de la ciencia sugiere que es pequeño.</p>
+</section>
+<section id="probabilidad-de-haber-acertado-con-una-hipótesis" class="level4">
+<h4 class="anchored" data-anchor-id="probabilidad-de-haber-acertado-con-una-hipótesis">Probabilidad de haber acertado con una hipótesis</h4>
+<p>Para averiguar esto, calculamos la componente <em>a posteriori</em>:</p>
+<p><span class="math display">\[
+Pr(detectada|Hipótesis) = \frac{Pr(Hipótesis|detectada) Pr(detectado)} {Pr(Hipótesis)} = \\
+\\
+\frac{Pr(H|V) Pr(V)} {Pr(H|V) Pr(V) + Pr(H|F) Pr(F)}
+\\
+\]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Pr_posterior_hallazgo_verdadero <span class="ot">&lt;-</span> (<span class="fl">0.95</span> <span class="sc">*</span> <span class="fl">0.01</span>) <span class="sc">/</span> ((<span class="fl">0.95</span> <span class="sc">*</span> <span class="fl">0.01</span>) <span class="sc">+</span> (<span class="fl">0.05</span> <span class="sc">*</span> (<span class="dv">1</span><span class="fl">-0.01</span>)))</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>Pr_posterior_hallazgo_verdadero</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1610169</code></pre>
+</div>
+</div>
+<p>Como podemos ver, al substituir los valores <em>imaginados</em>, encontramos que la respuesta es aproximadamente <span class="math inline">\({Pr(V|H) = 0.16}\)</span>.</p>
+<p>Así que un resultado positivo corresponde a un 16% de probabilidad de que la hipótesis sea cierta.</p>
+<p>Este es el mismo fenómeno de baja tasa de base que se aplica en las pruebas médicas (y en nuestro ejemplo de <em>vampiros</em>).</p>
+<p>Puedes reducir la tasa de falsos positivos al 1% y ¿qué pasaría?</p>
+</section>
+</section>
+<section id="programar-para-explorar-ideas" class="level3">
+<h3 class="anchored" data-anchor-id="programar-para-explorar-ideas">Programar para explorar ideas</h3>
+<p>Una manera de explorar esto es haciendo un <em>escript</em>, <em>algorítmo</em> o <em>programa</em> que nos permita automatizar una tarea repetitiva y potencialmente aburrida. Veamos como hacerlo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ciencia <span class="ot">&lt;-</span> <span class="cf">function</span> (<span class="at">pr_pos_verdadero =</span> <span class="fl">0.95</span>, <span class="at">pr_verdadero =</span> <span class="fl">0.01</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    pr_falso <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> pr_verdadero</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    pr_pos_falso <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> pr_pos_verdadero</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    pr_verdadero_pos <span class="ot">&lt;-</span> pr_pos_verdadero <span class="sc">*</span> pr_verdadero <span class="sc">/</span> (pr_pos_verdadero <span class="sc">*</span> pr_verdadero <span class="sc">+</span> pr_pos_falso<span class="sc">*</span>pr_falso)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(pr_verdadero_pos)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Hemos definido un programa como una <em>función</em> en <strong>R</strong>. Esta función puede tomar datos y procesarlos de acuerdo con la lógica que le hemos especificado.</p>
+<p>Ahora podemos experimentar para tener una idea aproximada de lo que está pasando.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Elegimos una serie de valores de interés</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>valores_de_interés <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.9</span>, <span class="fl">0.99</span>, <span class="fl">0.01</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Creamos un espacio de memoria vacío para anotar ahí los cálculos</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>resultados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">numeric</span>(<span class="dv">0</span>), <span class="fu">numeric</span>(<span class="dv">0</span>))</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (pr <span class="cf">in</span> valores_de_interés) </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    resultados <span class="ot">&lt;-</span> <span class="fu">rbind</span>(resultados, <span class="fu">c</span>(pr, <span class="fu">ciencia</span>(pr, <span class="fl">0.01</span>)))</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(resultados) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"p_error"</span>, <span class="st">"p_post"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Ahora podemos ver los resultados del experimento con ayuda de una gráfica.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Área de graficación. mar() para el margen. oma() alrededor del margen.</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">oma=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">2</span>)) <span class="co"># abajo=2, izq=3, arriba=1, der=2</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">2</span>) <span class="sc">+</span> <span class="fl">0.7</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Tamaño de la gráfica</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">repr.plot.width =</span> <span class="dv">15</span>, <span class="at">repr.plot.height =</span> <span class="dv">5</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfica</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> <span class="dv">1</span> <span class="sc">-</span> resultados<span class="sc">$</span>p_error, <span class="at">y =</span> resultados<span class="sc">$</span>p_post,</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">"b"</span>, <span class="at">xlab =</span> <span class="st">"valor de P"</span>, <span class="at">ylab =</span> <span class="st">"Pr post detección positiva"</span>, <span class="at">cex =</span> <span class="dv">2</span>, </span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex.axis  =</span> <span class="dv">2</span>, <span class="at">cex.lab =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="conclusión-del-experimento-pensado" class="level3">
+<h3 class="anchored" data-anchor-id="conclusión-del-experimento-pensado">Conclusión del experimento pensado</h3>
+<p>Una investigación muy exigente que reduce la detección de falsos positivos a 1%, nos permite llevar la probabilidad posterior de <em>descubrimientos exitosos</em> hasta 0.5.</p>
+<p>Apenas tan buena como el lanzamiento de una moneda.</p>
+<p>¿A dónde nos lleva este razonamiento de juguete?.</p>
+<p>Quizás nos sugiera que lo más importante es mejorar la tasa base, <span class="math inline">\({Pr(V)}\)</span>, y eso requiere pensar mejor, no hacer muchas más pruebas o incluso ponerse exageradamente exigente. ¿Tú que piensas?</p>
+</section>
+</section>
+<section id="la-tradición-de-prueba-de-hipótesis" class="level2">
+<h2 class="anchored" data-anchor-id="la-tradición-de-prueba-de-hipótesis">La tradición de prueba de hipótesis</h2>
+<p>El planteamiento de la prueba de significancia estadística de hipótesis se pueden encontrar ya en el siglo XIX, su formalización teórica realmente ocurre en los años 20 y 30 del siglo XX con las publicaciones de Sir Ronald Fisher, Jerzy Neyman y Egon Pearson.</p>
+<p>Entre estos autores existieron diferencias filosóficas y conceptuales entre sus planteamientos y concepciones. En special Fisher y Neyman sostuvieron acres debates que sólo interrumpieron con el fallecimiento de Fisher en 1962. No obstante <a href="http://www.elsevier.es/es-revista-investigacion-educacion-medica-343-articulo-la-prueba-hipotesis-nula-sus-X2007505712427368">el debate continua hasta hoy</a>.</p>
+<p>El resultado es que el uso actual de la <strong>prueba estadística de hipótesis</strong> se ha conformado como un <em>extraño híbrido</em> surgido de una mezcla más o menos ecléctica de las dos corrientes y no tanto una teoría coherente sobre la prueba de hipótesis.</p>
+<section id="el-procedimiento" class="level3">
+<h3 class="anchored" data-anchor-id="el-procedimiento">El procedimiento</h3>
+<p>El objetivo de una prueba de significancia es hacer inferencias sobre un parámetro que el investigador concibe asociado a un atributo numérico relevante de la población que define su objetivo de investigación. El procedimiento utiliza como base los datos de una muestra extraída de esa población. El enfoque se opera específicamente como un instrumento para excluir un valor o un rango de valores específicos como plausibles para el parámetro.</p>
+<section id="el-paso-a-paso-del-formalismo-de-prueba-de-hipótesis" class="level4">
+<h4 class="anchored" data-anchor-id="el-paso-a-paso-del-formalismo-de-prueba-de-hipótesis">El <em>paso a paso</em> del formalismo de prueba de hipótesis</h4>
+<ol type="1">
+<li>Construir un modelo estadístico. Se trata de un conjunto de supuestos sobre las variables de interés.</li>
+<li>Especificar la hipótesis nula.</li>
+<li>Definir un estadístico de contraste (frecuentemente llamada “la prueba estadística”).</li>
+<li>Identificar la distribución del estadístico de contraste bajo los supuestos del modelo.</li>
+<li>Calcular, bajo el supuesto de la hipótesis nula, el valor del estadístico de contraste en la muestra observada.</li>
+<li>Calcular la probabilidad de tener un valor del estadístico como el resultante o un valor más extremo en la distribución de referencia (el famosos valor <em>p</em>).</li>
+<li>Aceptar o rechazar la hipótesis nula. Si el valor <em>p</em> es menor que el criterio α de significancia (especificado a priori), se rechaza la hipótesis nula, en el caso contrario se acepta o por lo menos no se rechaza (por lo pronto).</li>
+</ol>
+<p>Rechazar la hipótesis nula es algo que quizás produce poca tensión emosional, quizás hasta un alivio, finalmente, el investigador sospecha (desea mostrar) que lo interesante está en otra parte, en su juego de hipótesis alternativas.</p>
+<p><span style="color:GoldenRod">¿Es este procedimiento afin al refutacionismo Popperiano?.</span></p>
+<p>Para interpretar correctamente un valor <em>p</em> se necesita tener claro que se opera dentro de una marco conceptual frecuentista. Esto lleva a que se conciba a los parámetros del modelo estadístico como constantes en la población objetivo (valor fijo que nunca se conoce en realidad).</p>
+<p>Además se asume que, al menos conceptualmente, sería posible repetir el experimento un número infinito de veces. También se asume que siempre se está muestreando la misma población objetivo (universo muestral) así que los parámetros tienen el mismo valor, pero las muestras fluctúan aleatoriamente.</p>
+<p>Bajo estos supuestos es aceptable considerar que el estadístico de prueba se distribuye de acuerdo con el modelo de probabilidades propuesto para construir el el contraste y por lo tanto da cuenta de las variaciones esperadas entre las diferentes repeticiones del experimento.</p>
+<p>En la aproximación tradicional a la contrastación estadística de hipótesis (frecuentista) se parte de la formulación de proposiciones hipotéticas que son descritas con referencia a alguna distribución de probabilidades.</p>
+<p>Un componente es la llamada hipótesis nula (<span class="math inline">\(H_{0}\)</span>).<br>
+Se concibe como un planteamiento que asume la ausencia de efecto de los “factores explicativos”.</p>
+<p>En contraste se propone una o más hipótesis alternativas (<span class="math inline">\(H_{1...n}\)</span>), en las que se valora algún o algunos efectos de los “factores explicativos”. La propocisión hipotética que hacemos se traduce en valores que podemos comparar con un conjunto de valores a los que consideramos <em>observados</em>. La diferencia entre estos dos conjuntos de valores nos permiten valorar la factibilidad de nuestra proposición.</p>
+<p><img src="images/Potencia_estadística.png" class="img-fluid" width="700"></p>
+<p>En la práctica, suele ocurrir que se concentre la atención en la hipótesis nula expresada con la gran simplicidad que implica la <em>ausencia de efectos</em> y se proceda con menor rigurosidad el análisis de la hipótesis alternativa, la que suele procesarse en forma más bien exploratoria mediante procedimientos de comparaciones múltiples.</p>
+</section>
+</section>
+<section id="ejemplo-con-el-juego-de-póker" class="level3">
+<h3 class="anchored" data-anchor-id="ejemplo-con-el-juego-de-póker">Ejemplo con el juego de póker</h3>
+<p>Veamos este caso: Si en 15 manos de póquer en una noche, al mismo jugador le salen 4 ases.</p>
+<p><img src="images/Baraja.jfif" class="img-fluid"></p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>jugador</th>
+<th>Suerte en la noche</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Jugador 1</td>
+<td>2 veces 4 ases</td>
+</tr>
+<tr class="even">
+<td>Jugador 2</td>
+<td>5 veces 4 ases</td>
+</tr>
+<tr class="odd">
+<td>Jugador 3</td>
+<td>12 veces 4 ases</td>
+</tr>
+</tbody>
+</table>
+<p><span style="color:GoldenRod">¿Explica como aplicarías el enfoque centrado en <em>hipótesis nula</em>?</span> * <span class="math inline">\(H_{0}\)</span> = el jugador no es tramposo * <span class="math inline">\(H_{a1}\)</span> = el jugador es tramposo * <span class="math inline">\(H_{a2}\)</span> = el jugador es un mago</p>
+<p>¿Qué piensas de cada jugador?</p>
+<p>Si quieres jugar con este ejemplo y hacer un poco de probabilidades con <strong>R</strong> te sugiero instalar la biblioteca <em>RcppAlgos</em>.</p>
+<ul>
+<li>Considera que el número total de <em>manos</em> es el número de combinaciones posibles de las cartas en el mazo, usa la función <code>comboCount()</code> para contarlas.</li>
+<li>Luego hay que considerar que el valor de la carta que se va a repetir la podemos escoger de 13 maneras distintas y las cuatros cartas con este valor las podemos escoger de una sola manera.</li>
+<li>Para la carta que no forma parte del póker hay 12 valores posibles y una vez escogido el valor</li>
+<li>hay 4 posibles maneras de escoger las carta y así suscesivamente.</li>
+</ul>
+<p><a href="https://www.partypoker.com/es/how-to-play/school/basics/key-facts">probabilidades en el póker</a></p>
+<p>Las probabilidades de interés en esta <em>Noche de póker</em> empiezan con averiguar ¿cuántas manos distintas se podrán tener a partir de un mazo normal de 52 cartas y entregando 5 naipes a cada jugador.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Para funciones sobre combinaciones utilizo esta librería</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RcppAlgos)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># combinaciones que incluyen una mano póker. Cualquiera combinaciones de cuatro cartas iguales </span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># más alguna carta cualquiera de las restantes (1 de entre 48). Hay 13 posibilidades de hacer póker</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># poner \n significa agregar un salto de renglón en donde se anote.</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># total de arreglos posibles de cinco cartas</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>n_total_de_manos <span class="ot">&lt;-</span> <span class="fu">comboCount</span>(<span class="dv">52</span>, <span class="dv">5</span>)  </span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Número total de manos, arreglos de 5 cartas, posibles: "</span>, n_total_de_manos, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Número total de manos, arreglos de 5 cartas, posibles:  2598960 </code></pre>
+</div>
+</div>
+<p>¿Qué tan probable es conseguir un <em>póker</em>?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Arreglos que resutan en póker</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>n_poker <span class="ot">&lt;-</span> <span class="fu">comboCount</span>(<span class="dv">4</span>,<span class="dv">4</span>) <span class="sc">*</span> <span class="fu">comboCount</span>(<span class="dv">48</span>, <span class="dv">1</span>) <span class="sc">*</span> <span class="dv">13</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>p_poker <span class="ot">&lt;-</span> n_poker <span class="sc">/</span> n_total_de_manos</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">posibles arreglos de 5 cartas que resultan en póker: "</span>, n_poker, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+posibles arreglos de 5 cartas que resultan en póker:  624 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Probabilidad de tener algún póker: "</span>, n_poker <span class="sc">/</span> n_total_de_manos, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Probabilidad de tener algún póker:  0.000240096 </code></pre>
+</div>
+</div>
+<p>¿Qué tan probable es sacar póker de aces?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># El póker de ases es solo 1 de los 13 posibles</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>n_poker_as <span class="ot">&lt;-</span> n_poker <span class="sc">/</span> <span class="dv">13</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"posibles arreglos de 5 cartas que resultan en póker de ases: "</span>, n_poker_as, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>posibles arreglos de 5 cartas que resultan en póker de ases:  48 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># probabilidad de tener un póker de ases en un juego</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>p_poker_as <span class="ot">&lt;-</span> n_poker_as <span class="sc">/</span> n_total_de_manos</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Probabilidad de tener póker de ases: "</span>, <span class="fu">format</span>(p_poker_as, <span class="at">scientific =</span> F), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Probabilidad de tener póker de ases:  0.00001846893 </code></pre>
+</div>
+</div>
+<p>Finalmente, ¿qué tan probable es conseguir dos vece póker de ases en una noche de juego?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sacar dos veces póker de ases entre las 15 partidas, suponiendo que las manos son independientes en cada juego.</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Probabilidad de tener 2 veces póker de ases entre las 15 partidas: "</span>, <span class="fu">format</span>(<span class="fu">dbinom</span>(<span class="dv">2</span>, <span class="at">size=</span><span class="dv">15</span>, <span class="at">prob=</span>p_poker_as), <span class="at">scientific =</span> F), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Probabilidad de tener 2 veces póker de ases entre las 15 partidas:  0.00000003580703 </code></pre>
+</div>
+</div>
+<p>Con estos resultados, ¿qué piensas del “afortunado” jugador?</p>
+</section>
+<section id="críticas" class="level3">
+<h3 class="anchored" data-anchor-id="críticas">Críticas</h3>
+<p>Entre las críticas que se han hecho al procedimiento clásico de <strong><em>prueba de hipótesis</em></strong> está la que señala que el valor <em>p</em>, al excluir el valor de cero como valor plausible para el parámetro, no aporta información completa sobre los valores que sí son plausibles. Esto implica que la <em>significancia estadística</em> no implica <em>relevancia práctica</em>.<span style="color:GoldenRod">¿Cómo interpretas esta afirmación?</span>.</p>
+<p>En el mismo razonamiento, un “valor de <em>p</em> extremadamente significativo” no hace otra cosa que excluir el cero como valor plausible para el parámetro no precisamente sobre la calidad del hallazgo.</p>
+<p>Otra crítica señala que interpretar el valor <em>p</em> en términos de <em>evidencia en contra de la hipótesis nula</em> (siguiendo el pensamiento de Fisher) o <em>la plausibilidad de que la hipótesis nula sea falsa</em> a veces se expresan equivocadamente como la probabilidad de que la hipótesis nula sea falsa en consideración de la evidencia (<em>E</em>) disponible. Al plantearlo así, formalmente se enuncia como <span class="math inline">\(P(H_{0}|E)\)</span>. Pero esto no es apropiado, es una incosnsistencia en la lógica del planteamiento.</p>
+<p><span style="color:GoldenRod">¿Puedes reconocer esta inconsistencia?</span></p>
+<p>La inconsistencia está en que, en primer lugar como dije arriba, el valor <em>p</em> se define dentro del marco frecuentista y se concibe que los parámetros son valores constantes, aunque desconocidos (¡supuesto estadístico de efectos fijos!). No se trata de los parámetros de alguna distribución de probabilidades (observada o no). Por tanto, no tiene sentido asignar probabilidades a los distintos valores estimados del parámetro.</p>
+<p>Además, el valor <em>p</em> se calcula bajo el supuesto de que la hipótesis nula es cierta; esto hace imposible, por construcción, interpretarlo como la probabilidad de que la hipótesis alternativa sea cierta.</p>
+<p><span style="color:GoldenRod">¿Puedes comentar esto a la luz del ejemplo de la <em>noche de cartas</em>?</span></p>
+<p>La probabilidad a la que se refiere el valor <em>p</em> guarda más relación con la probabilidad inversa, <span class="math inline">\(P(E|H{0})\)</span>. Esto se conoce como la verosimilitud, es decir, la probabilidad de observar los datos que se han obtenido en un estudio, los que entonces conviene valorar como <em>condicionales</em> a los supuestos hechos en el modelo estadístico y la hipótesis nula.</p>
+<p>La probabilidad que realmente interesa -por ejemplo, al investigador de nuestro ejemplo- es la anteriormente mencionada <span class="math inline">\(P(H_{0}|E)\)</span>. Aunque no está definida dentro del marco frecuentista, en el marco Bayesiano sí se define. Las probabilidades <span class="math inline">\(P(E|H_{0})\)</span> y <span class="math inline">\(P(H_{0}|E)\)</span> no son iguales, pero,</p>
+<p><span style="color:GoldenRod">¿recuerdas qué representa cada uno de ellas? ¿cuál es la relación entre ambas?</span></p>
+<p>Otra crítica interesante surge de la llamada paradoja de Lindley (1957), quien mostró, con una formulación Bayesiana, que existe la posibilidad de tener datos congruentes con rechazar una hipótesis nula con un bajo valor <em>p</em> y que al mismo tiempo llevan a una probabilidad posterior alta.</p>
+<p>Encontró que es perfectamente posible, a partir de los mismos datos <em>E</em>, obtener al mismo tiempo una <span class="math inline">\(P(E|H_{0})\)</span> = 0.05 (baja probabilidad de obtener una muestra como la que se observó, si <span class="math inline">\(H_{0}\)</span> fuera cierta) y <span class="math inline">\(P(H_{0}|E)\)</span> = 0.95 (fuerte evidencia en favor de <span class="math inline">\(H_{0}\)</span>). Este resultado contradictorio pone en duda la validez de la interpretación del valor <em>p</em> como “evidencia en contra de la hipótesis nula”.</p>
+<p>Se ha contrargumentado que la paradoja requiere muestras grandes para manifestarse, y se oponen a los supuestos adicionales que requiere el análisis Bayesiano. Se ha argumentado que bajo condiciones razonables, un bajo valor <em>p</em> generalmente implica una baja probabilidad posterior, es decir, poca evidencia para la hipótesis nula. Sin embargo, a pesar de esta defensa al enfoque <em>clásico</em>, se ha encontrado que los valores <em>p</em> sistemáticamente sobreestiman la evidencia en contra de la hipótesis nula.</p>
+<p>En resumen, el valor mismo de <em>p</em>, resultado de una prueba clásica de hipóteis, no aporta mucha información de interés para los investigadores. En caso de aceptar la hipótesis nula no se propicia llegar a ninguna conclusión sustancial.</p>
+<p>Hay que tener claro que si el valor <em>p</em> es significativo, únicamente nos inclina a excluir un solo valor como estimador plausible para el parámetro.</p>
+<p>Peor aún, el significado de <strong>plausible</strong> en la última expresión tiene una relación nebulosa con la probabilidad que sí le interesa a los investigadores: <strong><em>la probabilidad posterior de que la hipótesis del estudio sea cierta a la luz de la evidencia recopilada</em></strong> <span class="math inline">\(P(H_{0}|E)P\)</span>.</p>
+<p><span style="color:GoldenRod">¿Qué piensas de la paradoja de Lindley y sus implicaciones</span></p>
+</section>
+<section id="remedios-y-alternativas-para-la-prueba-estadística-de-la-hipótesis-nula" class="level3">
+<h3 class="anchored" data-anchor-id="remedios-y-alternativas-para-la-prueba-estadística-de-la-hipótesis-nula">Remedios y alternativas para la prueba estadística de la hipótesis nula</h3>
+<p>Para enfrentar algunos de los inconvenientes del enfoque clásico de prueba de hipótesis se ha recomendado ahora sustituir el valor <em>p</em> por un <em>intervalo de confianza</em> que abarca un conjunto de valores que permiten valorar si es razonable rechazar la hipótesis nula y además, en caso contrario proporciona una gama de valores que caracterizan al parámetro, lo que resulta de mucho interés.</p>
+<p>La práctica de presentar intervalos de confianza, posiblemente en conjunto con <em>p</em>, constituye una respuesta a la crítica de que sólo se excluye un valor como valor plausible para el parámetro. Además, hacer esto proporciona información sobre significancia. Si el intervalo no incluye el valor de cero, entonces se declararía el resultado como estadísticamente significativo. El intervalo informa también sobre el posible tamaño del efecto.</p>
+<p>A la luz de las críticas, Muchos autores ven necesario actualmente adoptar el marco Bayesiano para enfrentar las deficiencias del enfoque <em>clásico</em>.</p>
+</section>
+<section id="potencia-de-la-prueba" class="level3">
+<h3 class="anchored" data-anchor-id="potencia-de-la-prueba">Potencia de la prueba</h3>
+<p>En la práctica, la potencia de la prueba depende del <em>grado de dispersión</em> en los datos. Si se está asumiendo un modelo de probabilidades Gaussiano (distribución normal), el factor de disperción o escala se relaciona con la varianza. Por lo tanto, es usual notar que el mismo cálculo del error estandar, <span class="math inline">\(s_{e}=\frac{\sigma}{\sqrt{n}}\)</span>, sugiere la solución.</p>
+<p><img src="images/Potencia_estadística.png" class="img-fluid" width="700"></p>
+<ol type="1">
+<li>Se puede incrementar el tamaño de muestra, <em>n</em>, <span style="color:GoldenRod">¿por qué funcionaría esto?</span></li>
+<li>Aumentar la precisión con la que se estima <span class="math inline">\(\sigma^2\)</span>, <span style="color:GoldenRod">¿cómo se puede hacer esto?</span></li>
+</ol>
+<p>Es interesante apreciar, que la búsqueda de un tamaño de muestra apropiado para un estudio que estemos planeando, se puede lograr muy eficazmente haciendo simulaciones como las que hemos estado viendo en este bloque del curso. A través de este camino y haciendo el esfuerzo de especificar hipótesis alternativas relevantes se pueden resover preguntas como:</p>
+<ul>
+<li>¿Cuál es el tamaño de muestra necesario para detectar una cierta diferencia en lo que medimos?</li>
+<li>¿Cuál es la diferencia detectable dada una <em>n</em> o una potencia de la prueba (<span class="math inline">\(1-\beta\)</span>)?</li>
+<li>¿Cuál es la potencia (<span class="math inline">\(1-\beta\)</span>) dado un <em>n</em> y cierta diferencia con <span class="math inline">\(H_{a}\)</span> de interés?</li>
+</ul>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
