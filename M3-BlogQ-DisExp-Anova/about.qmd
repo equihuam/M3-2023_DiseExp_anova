@@ -1,0 +1,16 @@
+---
+title: "Acerca"
+image: profile.jpg
+about:
+  template: jolla
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com
+---
+
+# Blog del módulo III del curso de estadística
+
+El módulo III se ocupa de las nociones básicas de diseño de experimentos y las técnicas estadísticas utilizadas para analizarlos: El *Análisis de Varianza* (**Andeva** o **Anova**).
+
+Se reúnen aquí los documentos y código en **R** utilizados como apoyo audiovisual en clase.
