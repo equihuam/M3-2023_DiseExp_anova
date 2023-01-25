@@ -6,7 +6,7 @@ about:
   links:
     - icon: github
       text: Github
-      href: https://github.com
+      href: https://github.com/equihuam/M3-2023_DiseExp_anova
 ---
 
 # Blog del módulo III del curso de estadística
