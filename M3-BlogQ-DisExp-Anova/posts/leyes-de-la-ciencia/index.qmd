@@ -1,6 +1,6 @@
 ---
 title: "Leyes de la Ciencia"
-author: "Miguel Equihua"
+author: ["Miguel Equihua", "Alan Aguirre"]
 date: "2023-01-25"
 lang: es
 categories: [clase]
