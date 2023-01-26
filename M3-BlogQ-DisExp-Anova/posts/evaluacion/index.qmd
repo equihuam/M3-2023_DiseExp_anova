@@ -1,6 +1,6 @@
 ---
 title: "Evaluación"
-author: ["Miguel Equihua", "Alan Aguirre"]
+author: "Miguel Equihua"
 date: "2023-01-25"
 lang: es
 categories: [anuncios]

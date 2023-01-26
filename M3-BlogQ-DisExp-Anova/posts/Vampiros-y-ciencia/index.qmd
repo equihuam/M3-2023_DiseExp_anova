@@ -1,6 +1,6 @@
 ---
 title: "Vampiros y ciencia"
-author: ["Miguel Equihua", "Alan Aguirre"]
+author: "Miguel Equihua"
 date: "2023-01-26"
 draft: true
 lang: es

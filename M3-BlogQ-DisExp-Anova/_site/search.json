@@ -11,14 +11,14 @@
     "href": "index.html",
     "title": "M3 - Diseño de Experimentos",
     "section": "",
-    "text": "Bienvenidos al Módulo III de estadística\n\n\n\n\n\n\n\nanuncios\n\n\n\n\n\n\n\n\n\n\n\n25 ene 2023\n\n\nMiguel Equihua, Alan Aguirre\n\n\n\n\n\n\n  \n\n\n\n\nEvaluación\n\n\n\n\n\n\n\nanuncios\n\n\n\n\n\n\n\n\n\n\n\n25 ene 2023\n\n\nMiguel Equihua, Alan Aguirre\n\n\n\n\n\n\n  \n\n\n\n\nLeyes de la Ciencia\n\n\n\n\n\n\n\nclase\n\n\n\n\n\n\n\n\n\n\n\n25 ene 2023\n\n\nMiguel Equihua, Alan Aguirre\n\n\n\n\n\n\nNo hay resultados"
+    "text": "Bienvenidos al Módulo III de estadística\n\n\n\n\n\n\n\nanuncios\n\n\n\n\n\n\n\n\n\n\n\n25 ene 2023\n\n\nMiguel Equihua\n\n\n\n\n\n\n  \n\n\n\n\nEvaluación\n\n\n\n\n\n\n\nanuncios\n\n\n\n\n\n\n\n\n\n\n\n25 ene 2023\n\n\nMiguel Equihua\n\n\n\n\n\n\n  \n\n\n\n\nLeyes de la Ciencia\n\n\n\n\n\n\n\nclase\n\n\n\n\n\n\n\n\n\n\n\n25 ene 2023\n\n\nMiguel Equihua\n\n\n\n\n\n\nNo hay resultados"
   },
   {
     "objectID": "posts/bienvenida/index.html",
     "href": "posts/bienvenida/index.html",
     "title": "Bienvenidos al Módulo III de estadística",
     "section": "",
-    "text": "Esta es la presentación del módulo III. Durante las últimas semanas revisaron conceptos de probabilidad y matemáticas, que necesitamos como un lenguaje eficiente de comunicación. También empezaron a explorar como es que se pueden analizar proposiciones sobre la existencia de asociación o incluso relaciones de dependencia entre dos variables: modelos de regresión simple. Ahora vamos aplicar y extender estos aprendizajes para abordar el desafío de producir conocimiento que nos permita comprender como funciona el mundo.\nUtilizaremos el lenguaje de programación R como plataforma de cómputo para el análisis de datos. Aspiiramos a ofrecerles así un curso introductorio para su uso. También nos interesa acercarnos a los enfoques formales para el análisis causal actual, mediante la formulación de Grafos Acíclicos Dirigidos (DAG). Los invitamos a dibujar las relaciones causales de sus proyectos para comprenderlas, comunicarlas y analizarlas con mayor eficiencia."
+    "text": "Esta es la presentación del módulo III. Durante las últimas semanas revisaron conceptos de probabilidad y matemáticas, que necesitamos como un lenguaje eficiente de comunicación. También empezaron a explorar como es que se pueden analizar proposiciones sobre la existencia de asociación o incluso relaciones de dependencia entre dos variables: modelos de regresión simple. Ahora vamos aplicar y extender estos conocimientos para abordar el desafío de obtener conocimiento que nos permita comprender como funciona el mundo.\nUtilizaremos el lenguaje de programación R como plataforma de cómputo para el análisis de datos. Aspiiramos a ofrecerles así un curso introductorio para su uso. También nos interesa acercarnos a los enfoques formales para el análisis causal actual, mediante la formulación de Grafos Acíclicos Dirigidos (lDAG). Los invitamos a dibujar las relaciones causales de sus proyectos para comprenderlas, comunicarlas y analizarlas con mayor eficiencia."
   },
   {
     "objectID": "posts/evaluacion/index.html",
