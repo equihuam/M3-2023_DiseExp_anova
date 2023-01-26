@@ -1,6 +1,5 @@
 ---
 title: "M3 - Diseño de Experimentos"
-lang: es
 listing:
   contents: posts
   sort: "date desc"
@@ -9,5 +8,6 @@ listing:
   sort-ui: false
   filter-ui: false
 page-layout: full
+lang: es
 title-block-banner: true
 ---

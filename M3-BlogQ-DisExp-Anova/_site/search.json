@@ -11,7 +11,14 @@
     "href": "index.html",
     "title": "M3 - Diseño de Experimentos",
     "section": "",
-    "text": ":::{#quarto-listing-pipeline .hidden} \\(e = mC^2\\)\n:::{.hidden render-id=“pipeline-listing-listing”}\n:::{.list .quarto-listing-default}\n\n\n  \n\n\n\n\n\nLeyes de la Ciencia\n\n\n\n\n\n\n\nclase\n\n\n\n\n\n\n\n\n\n\n\n24 ene 2023\n\n\nMiguel Equihua\n\n\n\n\n\n\n  \n\n\n\n\n\n\nVampiros y ciencia\n\n\n\n\n\n\n\nclase\n\n\n\n\n\n\n\n\n\n\n\n21 ene 2023\n\n\nMiguel Equihua\n\n\n\n\n\n\n  \n\n\n\n\nBienvenidos al Módulo III de estadística\n\n\n\n\n\n\n\nnoticias\n\n\n\n\n\n\n\n\n\n\n\n21 ene 2023\n\n\nMiguel Equihua\n\n\n\n\n:::\n\n\n\n\nNo hay resultados\n\n:::\n:::"
+    "text": "Uso básico de R\n\n\n\n\n\n\n\nnoticias\n\n\nclase\n\n\ntarea\n\n\n\n\n\n\n\n\n\n\n\n24 ene 2023\n\n\nMiguel Equihua\n\n\n\n\n\n\n  \n\n\n\n\nClase 2 - Vampiros y ciencia\n\n\n\n\n\n\n\nclase\n\n\n\n\n\n\n\n\n\n\n\n21 ene 2023\n\n\nMiguel Equihua\n\n\n\n\n\n\n  \n\n\n\n\nBienvenidos al Módulo III de estadística\n\n\n\n\n\n\n\nnoticias\n\n\n\n\n\n\n\n\n\n\n\n21 ene 2023\n\n\nMiguel Equihua\n\n\n\n\n\n\nNo hay resultados"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html",
+    "href": "posts/post-with-code/index.html",
+    "title": "Uso básico de R",
+    "section": "",
+    "text": "Este es un post con código ejecutable\n\n\nCode\n1 + 1\n\n\n[1] 2\n\n\n\n<p>Esto es un documento de <a target=\"_blank\" href=\"https://office.com\">Microsoft Office</a> incrustado con tecnología de <a target=\"_blank\" href=\"https://office.com/webapps\">Office</a>.</p>"
   },
   {
     "objectID": "posts/Vampiros-y-ciencia/index.html",

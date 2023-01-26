@@ -1,10 +1,12 @@
 ---
 title: "Bienvenidos al Módulo III de estadística"
 author: "Miguel Equihua"
-date: "2023-01-21"
-categories: [noticias]
+date: "2023-01-25"
+categories: [anuncios]
 ---
 
-![](thumbnail.jpg)
+![](earth-977411_1920.jpg){width="400"}
 
 Esta es la presentación del módulo III. Durante las últimas semanas revisaron conceptos de probabilidad y matemáticas, que necesitamos como un **lenguaje eficiente de comunicación**. También empezaron a explorar como es que se pueden analizar proposiciones sobre la existencia de asociación o incluso relaciones de dependencia entre dos variables: **modelos de regresión simple**. Ahora vamos aplicar y extender estos conocimientos para abordar el desafío de obtener conocimiento que nos permita comprender como funciona el mundo.
+
+Utilizaremos el lenguaje de programación **R** como plataforma de cómputo para el análisis de datos. Aspiiramos a ofrecerles así un curso introductorio para su uso. También nos interesa acercarnos a los enfoques formales para el análisis causal actual, mediante la formulación de *Grafos Acíclicos Dirigidos* (l**DAG**). Los invitamos a dibujar las relaciones causales de sus proyectos para comprenderlas, comunicarlas y analizarlas con mayor eficiencia.
