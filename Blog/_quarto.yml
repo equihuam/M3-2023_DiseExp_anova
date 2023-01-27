@@ -3,7 +3,7 @@ project:
 
 website:
   title: "Curso de Estadística"
-  favicon: images/bar-chart-business-analytics-statistics-svgrepo-com.png
+  favicon: images/bar-chart.png
   navbar:
     right:
       - about.qmd
