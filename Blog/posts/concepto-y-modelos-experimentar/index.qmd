@@ -146,7 +146,7 @@ Ese es lo que se suele llamar **la potencia de la prueba**.
 
 Supongamos que la probabilidad de un hallazgo positivo, cuando una hipótesis es falsa, es ${Pr(señal~detectada|falso) = Pr(H|F) = 0.05}$.
 
-Esa es la tasa de falsos positivos, se trata del, digamos 5%, de la **prueba de significancia** cque usamos onvencionalmente.
+Esa es la tasa de falsos positivos, se trata del, digamos 5%, de la **prueba de significancia** que usamos convencionalmente.
 
 #### ¿Cuál será el estado real del mundo?
 
@@ -305,7 +305,7 @@ anova.data$f <- factor(rep(c("a", "b"), each = 7))
 
 ```
 
-Pongamos estos datos en una gráfica simple, sgún el orden en el que fueron obtenidas las mediciones. Lo primero que haremos es definir la tabla de datos **anova.data**, como espacio de trabajo. Haremos esto con la funnción `attach()`. Esto hace que las variables contenidas en la tabla se puedan llamar directamente sin tener que anteponer el nombre de la estructura que las contiene. Esto es conveniente, pero si olvidamos regresar al espacio general de trabajo, con la función `detach()`, podemos encontrarnos con situaciones algo extrañas. En caso de que eso ocurra, resulta útil la función `search()`, que muestra los espacios de trabajo activos.
+Pongamos estos datos en una gráfica simple, sgún el orden en el que fueron obtenidas las mediciones. Lo primero que haremos es definir la tabla de datos **anova.data**, como espacio de trabajo. Haremos esto con la función `attach()`. Esto hace que las variables contenidas en la tabla se puedan llamar directamente sin tener que anteponer el nombre de la estructura que las contiene. Esto es conveniente, pero si olvidamos regresar al espacio general de trabajo, con la función `detach()`, podemos encontrarnos con situaciones algo extrañas. En caso de que eso ocurra, resulta útil la función `search()`, que muestra los espacios de trabajo activos.
 
 ```{R}
 attach(anova.data)
@@ -370,7 +370,7 @@ for (i in 1:14) lines(c(i, i), c(mean(y), predict(modelo)[i]), col = "gray")
 detach(anova.data)
 ```
 
-## Disposición de tratamientos e interéses sobre los factores
+## Disposición de tratamientos e intereses sobre los factores
 
 ### Efectos fijos
 
@@ -452,7 +452,7 @@ En la práctica, suele ocurrir que se concentre la atención en la hipótesis nu
 
 Entre las críticas que se han hecho al procedimiento clásico de ***prueba de hipótesis*** está la que señala que el valor *p*, al excluir el valor de cero como valor plausible para el parámetro, no aporta información completa sobre los valores que sí son plausibles. Esto implica que la *significancia estadística* no implica *relevancia práctica*.
 
-### [**¿Cómo interpretas esta afirmación?**]{style="color:GoldenRod"}.
+### [**¿Cómo interpretas esta afirmación?**]{style="color:GoldenRod"}
 
 En el mismo razonamiento, un "valor de *p* extremadamente significativo" no hace otra cosa que excluir el cero como valor plausible para el parámetro no precisamente sobre la calidad del hallazgo.
 
@@ -462,27 +462,23 @@ Otra crítica señala que interpretar el valor *p* en términos de *evidencia en
 
 La inconsistencia está en que, en primer lugar como dije arriba, el valor *p* se define dentro del marco frecuentista y se concibe que los parámetros son valores constantes, aunque desconocidos (¡supuesto estadístico de efectos fijos!). No se trata de los parámetros de alguna distribución de probabilidades (observada o no). Por tanto, no tiene sentido asignar probabilidades a los distintos valores estimados del parámetro.
 
-Además, el valor *p* se calcula bajo el supuesto de que la hipótesis nula es cierta; esto hace imposible, por construcción, interpretarlo como la probabilidad de que la hipótesis alternativa sea cierta.
+Además, el valor *p* se calcula bajo el supuesto de que la hipótesis nula es cierta; esto hace imposible, por construcción, interpretarlo como la probabilidad de que la hipótesis alternativa sea cierta. La probabilidad a la que se refiere el valor *p* guarda más relación con la probabilidad inversa, $P(E|H{0})$. ¿Qué tan probable sería tener una muestra como la que tenemos enfrente, si la hipótesis considerada fuera cierta?. Esto se conoce como la **verosimilitud**, es decir, la probabilidad de observar los datos que se han obtenido en un estudio suponiendo que los atributos del modelo fueran ciertos. La verosimilitud valora a la muestra como un resultado *condicional* a los supuestos hechos en el modelo estadístico y en este caso, la hipótesis nula.
 
-### [**¿Puedes comentar esto a la luz del ejemplo de la *noche de cartas*?**]{style="color:GoldenRod"}
-
-La probabilidad a la que se refiere el valor *p* guarda más relación con la probabilidad inversa, $P(E|H{0})$. Esto se conoce como la verosimilitud, es decir, la probabilidad de observar los datos que se han obtenido en un estudio, los que entonces conviene valorar como *condicionales* a los supuestos hechos en el modelo estadístico y la hipótesis nula.
-
-La probabilidad que realmente interesa -por ejemplo, al investigador de nuestro ejemplo- es la anteriormente mencionada $P(H_{0}|E)$. Aunque no está definida dentro del marco frecuentista, en el marco Bayesiano sí se define. Las probabilidades $P(E|H_{0})$ y $P(H_{0}|E)$ no son iguales, pero,
+Sin embargo, la probabilidad que realmente interesa -por ejemplo, al investigador de nuestro ejemplo- es la anteriormente mencionada $P(H_{0}|E)$. Aunque no está definida dentro del marco frecuentista, en el marco Bayesiano sí se define. Las probabilidades $P(E|H_{0})$ y $P(H_{0}|E)$ no son iguales.
 
 ### [**¿Recuerdas qué representa cada uno de ellas? ¿cuál es la relación entre ambas?**]{style="color:GoldenRod"}
 
 Otra crítica interesante surge de la llamada paradoja de Lindley (1957), quien mostró, con una formulación Bayesiana, que existe la posibilidad de tener datos congruentes con rechazar una hipótesis nula con un bajo valor *p* y que al mismo tiempo llevan a una probabilidad posterior alta.
 
-Encontró que es perfectamente posible, a partir de los mismos datos *E*, obtener al mismo tiempo una $P(E|H_{0})$ = 0.05 (baja probabilidad de obtener una muestra como la que se observó, si $H_{0}$ fuera cierta) y $P(H_{0}|E)$ = 0.95 (fuerte evidencia en favor de $H_{0}$). Este resultado contradictorio pone en duda la validez de la interpretación del valor *p* como "evidencia en contra de la hipótesis nula".
+Encontró que es perfectamente posible, a partir de los mismos datos *E*, obtener al mismo tiempo una $P(E|H_{0})$ = 0.05 (baja probabilidad de obtener una muestra como la que se observó, si $H_{0}$ fuera cierta) y $P(H_{0}|E)$ = 0.95 (fuerte evidencia en favor de $H_{0}$). Este resultado contradictorio permite ver lo cuestionable que resulta interpretar el **valor *p* como evidencia en contra de la hipótesis nula.**
 
-Se ha contrargumentado que la paradoja requiere muestras grandes para manifestarse, y se oponen a los supuestos adicionales que requiere el análisis Bayesiano. Se ha defenddo que bajo condiciones razonables, un bajo valor *p* generalmente implica una baja probabilidad posterior, es decir, poca evidencia para la hipótesis nula. Sin embargo, a pesar de esta defensa al enfoque *clásico*, se ha encontrado que los valores *p* sistemáticamente sobrestiman la evidencia en contra de la hipótesis nula.
+Se ha contrargumentado que la paradoja requiere muestras grandes para manifestarse, y se oponen a los supuestos adicionales que requiere el análisis Bayesiano. Se ha defendido que bajo condiciones razonables, un bajo valor *p* generalmente implica una baja probabilidad posterior, es decir, poca evidencia para la hipótesis nula. Sin embargo, a pesar de esta defensa al enfoque *clásico*, se ha encontrado que los valores *p* sistemáticamente sobrestiman la evidencia en contra de la hipótesis nula.
 
-En resumen, el valor mismo de *p*, resultado de una prueba clásica de hipóteis, no aporta mucha información de interés para los investigadores. En caso de aceptar la hipótesis nula no se favorece llegar a ninguna conclusión sustancial, salvo que la nula probablemente es falsa.
+En resumen, el valor mismo de *p*, resultado de una prueba clásica de hipótesis, no aporta mucha información de interés para los investigadores. En caso de optar por la hipótesis alternativa con base en la *p*, no se favorece llegar a ninguna conclusión sustancial sobre posibles explicaciones alternativas, lo único que queda claro es que la nula probablemente es falsa.
 
-Para que quede claro, hay que insistir en que si el valor *p* es juzgado ***significativo***, únicamente nos inclina a **excluir un solo valor como estimador plausible** para el parámetro. Peor aún, el significado de **plausible** en la última expresión tiene una relación nebulosa con la probabilidad que sí le interesa a los investigadores: ***la probabilidad posterior de que la hipótesis del estudio sea cierta a la luz de la evidencia recopilada*** $P(H_{0}|E)P$.
+Para que quede claro, hay que insistir en que si el valor *p* es juzgado ***significativo***, únicamente nos inclina a **excluir un solo valor como estimador plausible** para el parámetro. Peor aún, el significado de **plausible** en la última expresión tiene una relación nebulosa con la probabilidad que sí le interesa a los investigadores: ***la probabilidad posterior de que la hipótesis nula sea cierta a la luz de la evidencia recopilada*** $P(H_{0}|E)$.
 
-### [**¿Qué piensas de la paradoja de Lindley y sus implicaciones**]{style="color:GoldenRod"}\*\*
+### [**¿Qué piensas de la paradoja de Lindley y sus implicaciones**]{style="color:GoldenRod"}
 
 ### Remedios y alternativas para la prueba estadística de la hipótesis nula
 

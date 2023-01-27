@@ -309,7 +309,7 @@ Pr(vampiro|positivo) = \frac{95}{1094} ≈ 0.087
 <section id="probabilidad-de-errar" class="level4">
 <h4 class="anchored" data-anchor-id="probabilidad-de-errar">Probabilidad de <em>errar</em></h4>
 <p>Supongamos que la probabilidad de un hallazgo positivo, cuando una hipótesis es falsa, es <span class="math inline">\({Pr(señal~detectada|falso) = Pr(H|F) = 0.05}\)</span>.</p>
-<p>Esa es la tasa de falsos positivos, se trata del, digamos 5%, de la <strong>prueba de significancia</strong> cque usamos onvencionalmente.</p>
+<p>Esa es la tasa de falsos positivos, se trata del, digamos 5%, de la <strong>prueba de significancia</strong> que usamos convencionalmente.</p>
 </section>
 <section id="cuál-será-el-estado-real-del-mundo" class="level4">
 <h4 class="anchored" data-anchor-id="cuál-será-el-estado-real-del-mundo">¿Cuál será el estado real del mundo?</h4>
@@ -475,7 +475,7 @@ H_0: m_1 = m_2 = m_3 = ... = m_k
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>anova.data<span class="sc">$</span>f <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>), <span class="at">each =</span> <span class="dv">7</span>))  </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>Pongamos estos datos en una gráfica simple, sgún el orden en el que fueron obtenidas las mediciones. Lo primero que haremos es definir la tabla de datos <strong>anova.data</strong>, como espacio de trabajo. Haremos esto con la funnción <code>attach()</code>. Esto hace que las variables contenidas en la tabla se puedan llamar directamente sin tener que anteponer el nombre de la estructura que las contiene. Esto es conveniente, pero si olvidamos regresar al espacio general de trabajo, con la función <code>detach()</code>, podemos encontrarnos con situaciones algo extrañas. En caso de que eso ocurra, resulta útil la función <code>search()</code>, que muestra los espacios de trabajo activos.</p>
+<p>Pongamos estos datos en una gráfica simple, sgún el orden en el que fueron obtenidas las mediciones. Lo primero que haremos es definir la tabla de datos <strong>anova.data</strong>, como espacio de trabajo. Haremos esto con la función <code>attach()</code>. Esto hace que las variables contenidas en la tabla se puedan llamar directamente sin tener que anteponer el nombre de la estructura que las contiene. Esto es conveniente, pero si olvidamos regresar al espacio general de trabajo, con la función <code>detach()</code>, podemos encontrarnos con situaciones algo extrañas. En caso de que eso ocurra, resulta útil la función <code>search()</code>, que muestra los espacios de trabajo activos.</p>
 <div class="cell">
 <details>
 <summary>Código</summary>
@@ -503,7 +503,7 @@ H_0: m_1 = m_2 = m_3 = ... = m_k
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>dist_med_y</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 35.94911</code></pre>
+<pre><code>[1] 42.61764</code></pre>
 </div>
 </div>
 <p>Ahora incorporemos la información del factor <strong><em>f</em></strong>. Para esto hay que calcular los promedios de “y” que corresponden a los niveles de <strong><em>f</em></strong></p>
@@ -515,7 +515,7 @@ H_0: m_1 = m_2 = m_3 = ... = m_k
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>        a         b 
- 5.713246 10.848832 </code></pre>
+ 5.162983 11.251218 </code></pre>
 </div>
 </div>
 <p>Grafiquemos esta nueva estructura de datos.</p>
@@ -542,7 +542,7 @@ H_0: m_1 = m_2 = m_3 = ... = m_k
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>dist_med_s</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 13.31547</code></pre>
+<pre><code>[1] 14.12018</code></pre>
 </div>
 </div>
 </section>
@@ -579,8 +579,8 @@ H_0: m_1 = m_2 = m_3 = ... = m_k
 </div>
 </section>
 </section>
-<section id="disposición-de-tratamientos-e-interéses-sobre-los-factores" class="level2">
-<h2 class="anchored" data-anchor-id="disposición-de-tratamientos-e-interéses-sobre-los-factores">Disposición de tratamientos e interéses sobre los factores</h2>
+<section id="disposición-de-tratamientos-e-intereses-sobre-los-factores" class="level2">
+<h2 class="anchored" data-anchor-id="disposición-de-tratamientos-e-intereses-sobre-los-factores">Disposición de tratamientos e intereses sobre los factores</h2>
 <section id="efectos-fijos" class="level3">
 <h3 class="anchored" data-anchor-id="efectos-fijos">Efectos fijos</h3>
 <p>Quizás la forma más simple de identificar las variables explicativas que tienen efectos fijos es pensar en ellas como variables cuyos niveles identifican en forma completa las condiciones de interés para el investigador. Por ejemplo, en el caso de un experimento que analiza el desempeño de larvas de mariposa que toman una dieta rica en proteinas y al mismo tiempo están expuestas a la presencia o no de un alcaloide. Estamos interesados precisamente en esas dietas y en la presencia o no del alcaloide. Estos dos factores son fijos. Es el tipo de variables que normalmente consideramos en nuestros objetivos de investigación. Se asume que su identificación y definición es completa, se asume que no hay más niveles de interés que los definidos y por lo tanto el modelo resultante no puede utilizarse para predecir fuera del ámbito de esas definiciones.</p>
@@ -644,31 +644,27 @@ H_0: m_1 = m_2 = m_3 = ... = m_k
 <h3 class="anchored" data-anchor-id="críticas">Críticas</h3>
 <p>Entre las críticas que se han hecho al procedimiento clásico de <strong><em>prueba de hipótesis</em></strong> está la que señala que el valor <em>p</em>, al excluir el valor de cero como valor plausible para el parámetro, no aporta información completa sobre los valores que sí son plausibles. Esto implica que la <em>significancia estadística</em> no implica <em>relevancia práctica</em>.</p>
 </section>
-<section id="cómo-interpretas-esta-afirmación." class="level3">
-<h3 class="anchored" data-anchor-id="cómo-interpretas-esta-afirmación."><span style="color:GoldenRod"><strong>¿Cómo interpretas esta afirmación?</strong></span>.</h3>
+<section id="cómo-interpretas-esta-afirmación" class="level3">
+<h3 class="anchored" data-anchor-id="cómo-interpretas-esta-afirmación"><span style="color:GoldenRod"><strong>¿Cómo interpretas esta afirmación?</strong></span></h3>
 <p>En el mismo razonamiento, un “valor de <em>p</em> extremadamente significativo” no hace otra cosa que excluir el cero como valor plausible para el parámetro no precisamente sobre la calidad del hallazgo.</p>
 <p>Otra crítica señala que interpretar el valor <em>p</em> en términos de <em>evidencia en contra de la hipótesis nula</em> (siguiendo el pensamiento de Fisher) o <em>la plausibilidad de que la hipótesis nula sea falsa</em> a veces se expresan equivocadamente como la probabilidad de que la hipótesis nula sea falsa en consideración de la evidencia (<em>E</em>) disponible. Al plantearlo así, formalmente se enuncia como <span class="math inline">\(P(H_{0}|E)\)</span>. Pero esto no es apropiado, formalmente resulta ser una inconsistencia en la lógica del planteamiento.</p>
 </section>
 <section id="puedes-reconocer-esta-inconsistencia" class="level3">
 <h3 class="anchored" data-anchor-id="puedes-reconocer-esta-inconsistencia"><span style="color:GoldenRod"><strong>¿Puedes reconocer esta inconsistencia?</strong></span></h3>
 <p>La inconsistencia está en que, en primer lugar como dije arriba, el valor <em>p</em> se define dentro del marco frecuentista y se concibe que los parámetros son valores constantes, aunque desconocidos (¡supuesto estadístico de efectos fijos!). No se trata de los parámetros de alguna distribución de probabilidades (observada o no). Por tanto, no tiene sentido asignar probabilidades a los distintos valores estimados del parámetro.</p>
-<p>Además, el valor <em>p</em> se calcula bajo el supuesto de que la hipótesis nula es cierta; esto hace imposible, por construcción, interpretarlo como la probabilidad de que la hipótesis alternativa sea cierta.</p>
-</section>
-<section id="puedes-comentar-esto-a-la-luz-del-ejemplo-de-la-noche-de-cartas" class="level3">
-<h3 class="anchored" data-anchor-id="puedes-comentar-esto-a-la-luz-del-ejemplo-de-la-noche-de-cartas"><span style="color:GoldenRod"><strong>¿Puedes comentar esto a la luz del ejemplo de la <em>noche de cartas</em>?</strong></span></h3>
-<p>La probabilidad a la que se refiere el valor <em>p</em> guarda más relación con la probabilidad inversa, <span class="math inline">\(P(E|H{0})\)</span>. Esto se conoce como la verosimilitud, es decir, la probabilidad de observar los datos que se han obtenido en un estudio, los que entonces conviene valorar como <em>condicionales</em> a los supuestos hechos en el modelo estadístico y la hipótesis nula.</p>
-<p>La probabilidad que realmente interesa -por ejemplo, al investigador de nuestro ejemplo- es la anteriormente mencionada <span class="math inline">\(P(H_{0}|E)\)</span>. Aunque no está definida dentro del marco frecuentista, en el marco Bayesiano sí se define. Las probabilidades <span class="math inline">\(P(E|H_{0})\)</span> y <span class="math inline">\(P(H_{0}|E)\)</span> no son iguales, pero,</p>
+<p>Además, el valor <em>p</em> se calcula bajo el supuesto de que la hipótesis nula es cierta; esto hace imposible, por construcción, interpretarlo como la probabilidad de que la hipótesis alternativa sea cierta. La probabilidad a la que se refiere el valor <em>p</em> guarda más relación con la probabilidad inversa, <span class="math inline">\(P(E|H{0})\)</span>. ¿Qué tan probable sería tener una muestra como la que tenemos enfrente, si la hipótesis considerada fuera cierta?. Esto se conoce como la <strong>verosimilitud</strong>, es decir, la probabilidad de observar los datos que se han obtenido en un estudio suponiendo que los atributos del modelo fueran ciertos. La verosimilitud valora a la muestra como un resultado <em>condicional</em> a los supuestos hechos en el modelo estadístico y en este caso, la hipótesis nula.</p>
+<p>Sin embargo, la probabilidad que realmente interesa -por ejemplo, al investigador de nuestro ejemplo- es la anteriormente mencionada <span class="math inline">\(P(H_{0}|E)\)</span>. Aunque no está definida dentro del marco frecuentista, en el marco Bayesiano sí se define. Las probabilidades <span class="math inline">\(P(E|H_{0})\)</span> y <span class="math inline">\(P(H_{0}|E)\)</span> no son iguales.</p>
 </section>
 <section id="recuerdas-qué-representa-cada-uno-de-ellas-cuál-es-la-relación-entre-ambas" class="level3">
 <h3 class="anchored" data-anchor-id="recuerdas-qué-representa-cada-uno-de-ellas-cuál-es-la-relación-entre-ambas"><span style="color:GoldenRod"><strong>¿Recuerdas qué representa cada uno de ellas? ¿cuál es la relación entre ambas?</strong></span></h3>
 <p>Otra crítica interesante surge de la llamada paradoja de Lindley (1957), quien mostró, con una formulación Bayesiana, que existe la posibilidad de tener datos congruentes con rechazar una hipótesis nula con un bajo valor <em>p</em> y que al mismo tiempo llevan a una probabilidad posterior alta.</p>
-<p>Encontró que es perfectamente posible, a partir de los mismos datos <em>E</em>, obtener al mismo tiempo una <span class="math inline">\(P(E|H_{0})\)</span> = 0.05 (baja probabilidad de obtener una muestra como la que se observó, si <span class="math inline">\(H_{0}\)</span> fuera cierta) y <span class="math inline">\(P(H_{0}|E)\)</span> = 0.95 (fuerte evidencia en favor de <span class="math inline">\(H_{0}\)</span>). Este resultado contradictorio pone en duda la validez de la interpretación del valor <em>p</em> como “evidencia en contra de la hipótesis nula”.</p>
-<p>Se ha contrargumentado que la paradoja requiere muestras grandes para manifestarse, y se oponen a los supuestos adicionales que requiere el análisis Bayesiano. Se ha defenddo que bajo condiciones razonables, un bajo valor <em>p</em> generalmente implica una baja probabilidad posterior, es decir, poca evidencia para la hipótesis nula. Sin embargo, a pesar de esta defensa al enfoque <em>clásico</em>, se ha encontrado que los valores <em>p</em> sistemáticamente sobrestiman la evidencia en contra de la hipótesis nula.</p>
-<p>En resumen, el valor mismo de <em>p</em>, resultado de una prueba clásica de hipóteis, no aporta mucha información de interés para los investigadores. En caso de aceptar la hipótesis nula no se favorece llegar a ninguna conclusión sustancial, salvo que la nula probablemente es falsa.</p>
-<p>Para que quede claro, hay que insistir en que si el valor <em>p</em> es juzgado <strong><em>significativo</em></strong>, únicamente nos inclina a <strong>excluir un solo valor como estimador plausible</strong> para el parámetro. Peor aún, el significado de <strong>plausible</strong> en la última expresión tiene una relación nebulosa con la probabilidad que sí le interesa a los investigadores: <strong><em>la probabilidad posterior de que la hipótesis del estudio sea cierta a la luz de la evidencia recopilada</em></strong> <span class="math inline">\(P(H_{0}|E)P\)</span>.</p>
+<p>Encontró que es perfectamente posible, a partir de los mismos datos <em>E</em>, obtener al mismo tiempo una <span class="math inline">\(P(E|H_{0})\)</span> = 0.05 (baja probabilidad de obtener una muestra como la que se observó, si <span class="math inline">\(H_{0}\)</span> fuera cierta) y <span class="math inline">\(P(H_{0}|E)\)</span> = 0.95 (fuerte evidencia en favor de <span class="math inline">\(H_{0}\)</span>). Este resultado contradictorio permite ver lo cuestionable que resulta interpretar el <strong>valor <em>p</em> como evidencia en contra de la hipótesis nula.</strong></p>
+<p>Se ha contrargumentado que la paradoja requiere muestras grandes para manifestarse, y se oponen a los supuestos adicionales que requiere el análisis Bayesiano. Se ha defendido que bajo condiciones razonables, un bajo valor <em>p</em> generalmente implica una baja probabilidad posterior, es decir, poca evidencia para la hipótesis nula. Sin embargo, a pesar de esta defensa al enfoque <em>clásico</em>, se ha encontrado que los valores <em>p</em> sistemáticamente sobrestiman la evidencia en contra de la hipótesis nula.</p>
+<p>En resumen, el valor mismo de <em>p</em>, resultado de una prueba clásica de hipótesis, no aporta mucha información de interés para los investigadores. En caso de optar por la hipótesis alternativa con base en la <em>p</em>, no se favorece llegar a ninguna conclusión sustancial sobre posibles explicaciones alternativas, lo único que queda claro es que la nula probablemente es falsa.</p>
+<p>Para que quede claro, hay que insistir en que si el valor <em>p</em> es juzgado <strong><em>significativo</em></strong>, únicamente nos inclina a <strong>excluir un solo valor como estimador plausible</strong> para el parámetro. Peor aún, el significado de <strong>plausible</strong> en la última expresión tiene una relación nebulosa con la probabilidad que sí le interesa a los investigadores: <strong><em>la probabilidad posterior de que la hipótesis nula sea cierta a la luz de la evidencia recopilada</em></strong> <span class="math inline">\(P(H_{0}|E)\)</span>.</p>
 </section>
 <section id="qué-piensas-de-la-paradoja-de-lindley-y-sus-implicaciones" class="level3">
-<h3 class="anchored" data-anchor-id="qué-piensas-de-la-paradoja-de-lindley-y-sus-implicaciones"><span style="color:GoldenRod"><strong>¿Qué piensas de la paradoja de Lindley y sus implicaciones</strong></span>**</h3>
+<h3 class="anchored" data-anchor-id="qué-piensas-de-la-paradoja-de-lindley-y-sus-implicaciones"><span style="color:GoldenRod"><strong>¿Qué piensas de la paradoja de Lindley y sus implicaciones</strong></span></h3>
 </section>
 <section id="remedios-y-alternativas-para-la-prueba-estadística-de-la-hipótesis-nula" class="level3">
 <h3 class="anchored" data-anchor-id="remedios-y-alternativas-para-la-prueba-estadística-de-la-hipótesis-nula">Remedios y alternativas para la prueba estadística de la hipótesis nula</h3>
