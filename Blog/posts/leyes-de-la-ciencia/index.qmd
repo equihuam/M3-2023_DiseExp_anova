@@ -1,7 +1,7 @@
 ---
 title: "Leyes de la Ciencia"
 author: ["Miguel Equihua", "Alan Aguirre"]
-date: "2023-01-25"
+date: "2023-01-26"
 lang: es
 categories: [clase]
 image: "abstract-95721_1920.jpg"
