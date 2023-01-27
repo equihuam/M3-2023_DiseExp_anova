@@ -10,6 +10,8 @@ about:
 
 ![](images/stained-glass-1181864_1920.jpg){width="400"}
 
+
 El módulo III se ocupa de las nociones básicas de diseño de experimentos y las técnicas estadísticas utilizadas para analizarlos: El *Análisis de Varianza* (**Andeva** o **Anova**).
 
 Se reúnen aquí los documentos y código en **R** utilizados como apoyo audiovisual en clase.
+
