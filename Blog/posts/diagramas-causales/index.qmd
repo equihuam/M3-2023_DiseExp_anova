@@ -1,0 +1,18 @@
+---
+title: "Diagramas Causales"
+author: ["Miguel Equihua", "Alan Aguirre"]
+date: "2023-01-27"
+lang: es
+categories: [clase]
+format:
+  html:
+    code-fold: true
+---
+
+![](images/autores_y_The_Book_of_Why.jpg){width="500"}
+
+Judea Pearl se ha aproximado a la causalidad desde una aproximación matemática y computacional. En ese camino propuso los llamados *modelos probabilísticos gráficos* en su variante de *redes Bayesianas.* También ha incursionado en los llamados *modelos de ecuaciones estructuradas*. Todo ello vinculado con la formulación de *Gráfos Acíclicos Dirigidos*, a los que llamaremos **DAG** (del inglés directed acyclic graphs). Pearl y colaboradores así como otros investigadores ahora, han venido desarrollando la comprensión de las propiedades que tales **DAG**s nos permiten comprender de los patrones de dependencia causal así como de correlación que implica una proposición causal expresada como **DAG**. En esta contribución buscamos mostrarles algunos elementos interesantes de esto y con ello, animarlos a estudiar estas ideas con mayor profundidad.
+
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQTGosQU1k4st_xfGjfbC8ZEHQ02O1fCiwafpGnZoy0poCNzcyFVLSJ0ZRoCxoKKA/embed?start=false&amp;loop=false&amp;delayms=3000" frameborder="0" width="645px" height="400px" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true">
+
+</iframe>
