@@ -11,3 +11,20 @@ categories: [anuncios]
 Esta es la presentación del módulo III. Durante las últimas semanas revisaron conceptos de probabilidad y matemáticas, que necesitamos como un **lenguaje eficiente de comunicación**. También empezaron a explorar como es que se pueden analizar proposiciones sobre la existencia de asociación o incluso relaciones de dependencia entre dos variables: **modelos de regresión simple**. Ahora vamos aplicar y extender estos aprendizajes para abordar el desafío de producir conocimiento que nos permita comprender como funciona el mundo.
 
 Utilizaremos el lenguaje de programación **R** como plataforma de cómputo para el análisis de datos. Aspiiramos a ofrecerles así un curso introductorio para su uso. También nos interesa acercarnos a los enfoques formales para el análisis causal actual, mediante la formulación de *Grafos Acíclicos Dirigidos* (**DAG**). Los invitamos a dibujar las relaciones causales de sus proyectos para comprenderlas, comunicarlas y analizarlas con mayor eficiencia.
+
+## Plan de clase
+
+Las charlas previstas son las siguientes
+
+|                     |                                                                               |
+|-----------------|--------------------------------------------------------|
+| **Día**             | **Tema**                                                                      |
+| Jueves 26           | Un lenguaje para describir modelos (diseño de experimentos y de tratamientos) |
+| Viernes 27          | Causalidad y modelación gráfica: Grafos Acíclicos Dirigidos (DAG)             |
+| Lunes 30            | Diseño de experimentos: hipótesis y la modelación estadística                 |
+| Martes 31           | Efectos fijos y aleatorios sus implicaciones en los modelos estadísticos      |
+| Miércoles 1 febrero | Evitar confusión por variables conocidas: Bloques aleatorizados               |
+| Jueves 2            | Muestreo dentro unidades experimentales: Diseños anidados                     |
+| Viernes 3           | Unidades experimentales múltinivel y anidadas: Diseños de Parcelas divididas  |
+| Lunes 6             | Modelos jerárquicos (incluye medidas repetidas)                               |
+| Martes 7            | "Feria del diseño" para discutir los protocolos de los estudiantes            |

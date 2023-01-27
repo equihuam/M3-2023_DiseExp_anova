@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Miguel Equihua">
+<meta name="author" content="Alan Aguirre">
 
 <title>Curso de Estadística - Vampiros y ciencia</title>
 <style>
@@ -94,7 +95,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../bar-chart-business-analytics-statistics-svgrepo-com.png" rel="icon" type="image/png">
+<link href="../../images/bar-chart-business-analytics-statistics-svgrepo-com.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -164,7 +165,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">2. Vampiros y ciencia</h1>
+      <h1 class="title">Vampiros y ciencia</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">clase</div>
               </div>
@@ -175,16 +176,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <div class="quarto-title-meta">
 
       <div>
-      <div class="quarto-title-meta-heading">Autor/a</div>
+      <div class="quarto-title-meta-heading">Autores/as</div>
       <div class="quarto-title-meta-contents">
                <p>Miguel Equihua </p>
+               <p>Alan Aguirre </p>
             </div>
     </div>
       
       <div>
       <div class="quarto-title-meta-heading">Fecha de publicación</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">21 de enero de 2023</p>
+        <p class="date">26 de enero de 2023</p>
       </div>
     </div>
     
@@ -547,10 +549,38 @@ posibles arreglos de 5 cartas que resultan en póker:  624 </code></pre>
 <li>¿Cuál es la diferencia detectable dada una <em>n</em> o una potencia de la prueba (<span class="math inline">\(1-\beta\)</span>)?</li>
 <li>¿Cuál es la potencia (<span class="math inline">\(1-\beta\)</span>) dado un <em>n</em> y cierta diferencia con <span class="math inline">\(H_{a}\)</span> de interés?</li>
 </ul>
-
-
 </section>
 </section>
+</section>
+<section id="el-enfoque-de-modelación" class="level1">
+<h1>El enfoque de modelación</h1>
+<p>La propuesta que seguiremos en el <strong>bloque 3</strong> es seguir el enfoque que traduce situaciones reales en abstracciones que escribimos como modelos estadísticos. De esta manera generamos una correspondencia matemática entre nuestras concepciones sobre cómo funcionan aspectos concretos de la naturaleza. Es así que nos planteamos generar series de números <em>idealizados por el modelo</em> que podemos comparar con series de números observamos directamente de la naturaleza. Sí estas dos series de números se parecen en forma importante, tendemos a pensar que nuestro modelo es útil para describir el comportamiento del segmento de la naturaleza que elegimos abstraer. <span style="color:GoldenRod">¿Podríamos usarlo para intervenir en él?</span></p>
+<p>Recordemos que el modelo completo es el que tiene todos los parámetros posibles de acuerdo con el diseño del estudio, usualmente al menos un término por cada grupo experimental (tratamiento). En general el método para llegar a un segundo modelo es introducir restricciones (supuestos que especifican el valor de particulares) sobre los parámetros del primer modelo.</p>
+<p>Las restricciones usualmente son nuestra(s) hipótesis nula(s) y en ese caso las usamos para eliminar algunos parámetros del conjunto usado en el modelo completo. Naturalmente llamamos al modelo resultante simplemente el modelo restringido.<span style="color:GoldenRod">¿piensas que sería válido restringir un modelo con valores de algún parámetro con un valor que no sea cero?</span></p>
+<p>Consideremos el ejemplo siguiente. Se trata de un grupo de hojas a las que medimos el contenido de nitrógeno. En este estudio no sabemos ni estamos postulando ninguna forma de obtener predicciones distintas para subgrupos de hojas. El modelo correspondiente es:</p>
+<p><span class="math display">\[
+y_{i} = \mu + \varepsilon_{i}
+\]</span></p>
+<p><span style="color:GoldenRod">¿Es éste un modelo de regresión simple? ¿Podrías explicarlo?</span></p>
+<p><img src="../../../Figuras/ANOVA_modelo_hojas.png" class="img-fluid"></p>
+<p>Al considerar modelos de distinta complejidad debemos pensar en alguna manera de incorporar ese aspecto en nuestro análisis. Es así que llegamos a la noción de <em>grados de libertad</em> que la expresamos como el número de observaciones menos el número de parámetros en un modelo.</p>
+<p>Con todo esto, el cálculo del <em>índice proporcional de error</em> (<strong>IPE</strong>) se puede formular para eliminar el efecto de la complejidad de los modelos que se comparan. El resultado es este:</p>
+<p><span class="math display">\[
+IPE=\frac{\frac{(E_{R}-E_{C})}{gl_{C}-gl_{R}}}{\frac{E_{C}}{gl_{C}}}  \text{ si podemos suponer normalidad en la variable de respuesta }\sim F_{(gl_{C}-gl_{R}), gl_{C}}
+\]</span></p>
+<p>Si suponemos que las variables son adecuadamente descritas por un modelo de probabilidades <em>normal</em> (Gaussiano), entones el IPE se distribuirá como una función de probabilidades <em>F</em>. Por cierto, si lo que se el experimento sólo compara dos medias entonces se cumple que los estadísticos son la misma distribución de probabilidades: <span class="math inline">\(F = t^{2}\)</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pf</span>(<span class="fl">198.50</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="at">lower.tail=</span>F)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.005000031</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pt</span>(<span class="fu">sqrt</span>(<span class="fl">198.50</span>), <span class="dv">2</span>, <span class="at">lower.tail =</span> F)<span class="sc">*</span><span class="dv">2</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.005000031</code></pre>
+</div>
+</div>
+
+
 </section>
 
 </main> <!-- /main -->
