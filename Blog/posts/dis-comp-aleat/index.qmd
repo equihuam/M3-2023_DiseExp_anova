@@ -1,0 +1,267 @@
+---
+title: "Experimentos completamente aleatorizados"
+author: ["Miguel Equihua", "Alan Aguirre"]
+date: "2023-01-30"
+draft: false
+lang: es
+categories: [clase]
+format:
+  html:
+    code-fold: true
+---
+
+![](ma%C3%ADz.jpg){width="400"}
+
+# Diseño completamente aleatorizado
+
+## Respuesta de Cultivares a fertilizantes (GLEX1)
+
+Ejemplo tomado de Crawley (1998). **Glim for Ecologists**. Oxford. UK.
+
+Es un experimento en el que se midió el crecimiento (masa seca al cosechar = *y*) de plantas tratadas con 10 concentraciones diferentes de suplemento mineral como fertilizante, *f*. El experimento fue realizado con dos cultivares diferentes, *g*. Uno fue clonado de plantas de un ambiente árido y el otro de uno húmedo. Todas las plantas de cada tipo, sin restricciones, fueron asignadas aleatoriamente a los distintos niveles de fertilizante.
+
+leer lista de archivos en un directorio
+
+### Lectura de datos
+
+```{r}
+RutaCrawley <-"../../../Crawley/"
+GLEX1 <- read.table(paste0(RutaCrawley, "GLEX1.DAT"),
+                    col.names=c("fertilizante", "rendimiento_peso")) 
+
+head(GLEX1)
+```
+
+A veces hay archivos que contienen datos faltantes o perdidos. Podemos enfrentar eso con la función `complete.cases()` que revisa linea por linea el archivo y regresa "verdadero" si todas las columnas tienen datos válidos y "falso". Esta lista de "verdaderos" y "falsos" la podemos usar para elegir que filas del archivo de datos están completas y así podemos eliminarlas del conjunto de datos que vamos a procesar.
+
+Sobre los datos limpios, generamos la variable indicativa del tipo de ambiente del que se tomo la planta que se clonó.
+
+```{r}
+# En caso de que haya datos extra, elimino registros leidos como datos erróneos
+GLEX1 <- GLEX1[complete.cases(GLEX1), ]
+```
+
+### Genera los factores genotipo y fertilizante
+
+```{r}
+GLEX1$cultivar <- factor(rep(c("seco","humedo"), each=10))
+GLEX1$fertilizante <- factor(GLEX1$fertilizante) 
+
+head(GLEX1)
+```
+
+### gráfica de masa seca contra fertilizante mineral - sin diferenciar tratamientos
+
+Veamos los datos en una gráfica simple. La función plot hace cosas distintas según el tipo de datos que le demos. Para generar la gráfica simple que queremos aquí, conviene que los valores de fertilizante sean interpretados como valores numéricos. Esto lo logramos con la funnción `as.numeric`
+
+```{r}
+plot(as.numeric(GLEX1$fertilizante), GLEX1$rendimiento_peso, xlab="fertilizante", ylab="biomasa", type="p")
+```
+
+Para explorar mejor los datos podemos marcar en la gráfica las obsevaciones que pertenecen a cada condición. En este caso, te propongo poner el nobre que le dimos al "tratamiento".
+
+Gráfica de masa seca contra fertilizante mineral diferenciando por genotipos
+
+```{r}
+plot(as.numeric(GLEX1$fertilizante), 
+     GLEX1$rendimiento_peso, xlab="fertilizante", ylab="biomasa", type="n")
+text (GLEX1$fertilizante, GLEX1$rendimiento_peso, labels=GLEX1$cultivar)
+```
+
+Podemos calcular ver las características estadísticas de lo que pasa con la biomasa que produce cada genotipo
+
+### Resumen de los datos de masa por genotipo
+
+```{r}
+by (GLEX1, GLEX1$cultivar, summary)
+```
+
+Ahora podemos realizar el análisis estadístico mediante modelos. Hagamos ahora un análisis con el enfoque "tradicional" en **R**. Lo primero que haremos es configurar el entorno de análisis, esto significa elegir el tipo de contrastes que queremos operar al ajustar modelos *reparametrizados*. Haremos esto con opción *contrasts* en la función `options(contrasts=...)`
+
+Para asegurarnos de que los estimadores del modelo toman el primer nivel como referencia hay que usar el modo de reparametrización "treatment". Hay otras formas de reparametrización, como podrás ver en la ayuda de `contr.treatment`.
+
+```{r}
+options(contrasts=c("contr.treatment", "contr.poly"))
+```
+
+### ajusta modelo nulo - sólo la media
+
+```{r}
+aj1 <- lm (rendimiento_peso ~ 1, data = GLEX1)
+summary(aj1)
+```
+
+```{r}
+# Agregamos el efecto del fertilizante
+aj2 <- update(aj1, .~ . + fertilizante)
+anova(aj2)
+```
+
+Nótese que el número de niveles de fertilizante es 10, así que los grados de libertad son 10-1=9. De modo semejante el número de observaciones es 20, así que los grados de libertad del residuo descuenta los grados de libertad del fertilizante y 1 (por la estimación de la media general): 20 - 9 - 1 = 10
+
+```{r}
+# agregamos el cultivar
+aj3 <- update(aj2,  .~ . + cultivar)
+anova(aj3)
+```
+
+Podemos intentar hacer un modelo completo, es decir con todos los posibles factores y combinaciones que pueden producirse. Sin embargo este modelo consume todos los grados de liberta (observacione) con que contamos. De todos modos lo podemos intentar para ver que nos dice **R**.
+
+```{r}
+# agregamos una pendiente diferente para cada genotipo
+aj4 <- update(aj3,  .~ . + cultivar:fertilizante)
+anova(aj4)
+```
+
+La scuencia de ajustes produce estos cambios en devianza
+
+```{r}
+anova(aj1, aj2, aj3)
+```
+
+### Modelo mínimo adecuado
+
+estos resultados sugieren que el modelo 3 es mínimo adecuado resumen del modelo mínimo adecuado
+
+```{r}
+summary(aj3)
+```
+
+Para comprender con exactitud que es lo que hace exactamente **R** al ajustar un modelo de regresión o ANDEVA, como este podemos usar la función `model.matrix()` aplicada al modelo que nos interese analizar. En este caso lo ejemplificaré con el modelo mínimo adecuado aj3. Así podemos ver en acción el uso de las formas de reparametrización
+
+```{r}
+model.matrix(aj3)
+```
+
+### crítica al modelo y recursos diagnósticos
+
+```{r}
+plot(aj3)
+```
+
+# Diseño simple aleatorio con diseño factorial de tratamientos
+
+GLEX11 (p. 138) Proteina y alcaloide. Se midió el incremento en longitud (mm) de larvas de insectos. Se hicieron mediciones después de dos semanas de alimentarlas con una dieta artificial bajo condiciones controladas de temperatura. Uno de los factores fue la cantidad de proteina en la dieta, con tres niveles (bajo, medio, alto). El otro factor es la presencia o ausencia de un alcaloide. Cada tratamiento se repitió cuatro veces. La asignación de los tratamientos a los insectos se hizo en forma aleatoria entre todos los especímenes disponibles.
+
+```{r}
+# Lectura de datos
+
+GLEX11 <- read.table(paste0(RutaCrawley, "GLEX11.DAT"),
+                     col.names=c("talla", "proteina", "alcaloide"))
+```
+
+```{r}
+# Uso la función "ordered" que genera factores ordenados, para evitar el que en el 
+# despliegue de gráficas y otros resultados, S-Plus use el orden alfabético como arreglo.
+
+GLEX11$proteina <- ordered(GLEX11$proteina, c(1,2,3), c("bajo", "medio", "alto"))
+
+GLEX11$alcaloide <-factor(GLEX11$alcaloide, c(1,2), c("ausente", "presente"))
+
+# Para simplificar el acceso a los datos uso la función attach
+attach(GLEX11)
+
+# exploración de medias
+aggregate(list(talla=talla), list(proteina=proteina), mean)
+aggregate(list(talla=talla), list(alcaloide=alcaloide),mean)
+tapply(talla, list(proteina, alcaloide), mean)
+```
+
+```{r}
+
+# Genero una table resumen de promedios. 
+GLEX11.res<-aggregate(list(talla=talla), 
+                      list(proteina=proteina,
+                           alcaloide=alcaloide), mean)
+
+#exploración de varianzas 
+aggregate(list(talla=talla),
+          list(proteina=proteina),var) 
+
+aggregate(list(talla=talla), 
+          list(alcaloide=alcaloide), var) 
+
+tapply(talla, list(proteina, alcaloide), var)
+
+
+# Graficar talla contra proteina separada por alcaloide
+
+interaction.plot(proteina, alcaloide, talla) 
+
+#args(interaction.plot)
+
+# Ajuste de modelos
+
+larvas.nulo <- lm(talla ~ 1, data=GLEX11)
+
+# defino una simple función que extrae devianza y df de un ajuste y lo despliga
+
+# mediante la función "cat"
+
+devianza <- function(x) 
+  { cat("devianza=", deviance(x), "\ndf=",x$df.residual,"\n")}
+
+# devianza del modelo nulo
+
+devianza(larvas.nulo)
+
+# modelo completo
+
+larvas.completo <- update(larvas.nulo, . ~ . + proteina + alcaloide + proteina:alcaloide) 
+
+devianza(larvas.completo) 
+coefficients(larvas.completo)
+
+# otra forma de escribir el modelo completo
+
+larvas.completo <- update(larvas.nulo, . ~ . + proteina * alcaloide) 
+
+devianza(larvas.completo) 
+
+coefficients(larvas.completo)
+
+# ¿Significancia de los términos?
+
+anova(larvas.completo)
+
+# ¿Son necesarios todos los niveles de los factores? -- Comparaciones múltiples
+
+summary(larvas.completo)
+
+# Generación de un factor re-codificado: tomaré: bame = bajo y medio, alto=alto
+
+# Por supuesto hay que considerar que esta fusión tenga sentido biológico.
+
+# Así podemos recodificar el factor proteina.
+
+detach(GLEX11)
+GLEX11$proteinaBM <- GLEX11$proteina 
+levels(GLEX11$proteinaBM) <- c("bame", "bame", "alto") # cuidar el orden
+attach(GLEX11)
+
+
+# nuevo ajuste de modelo completo con el factor proteina recodificado.
+
+larvas.protBM <- lm(talla ~ proteinaBM * alcaloide, data = GLEX11) 
+
+summary(larvas.protBM)
+
+# ¿qué significancia tiene este cambio en el modelo?
+
+anova(larvas.protBM,larvas.completo) 
+plot(larvas.protBM) 
+tapply(GLEX11$talla, list(GLEX11$proteinaBM, GLEX11$alcaloide), mean) 
+
+GLEX11.resBM <- aggregate(list(talla = talla), 
+                          list(proteinaBM= proteinaBM, 
+                               alcaloide = alcaloide), mean)
+
+interaction.plot(proteinaBM,alcaloide,talla)
+
+# Con base en estos análisis ¿Cual es el modelo mínimo adecuado?
+
+# "suelto" los datos de la tabla GLEX11
+
+detach(GLEX11)
+
+```
