@@ -222,8 +222,8 @@ options(repr.plot.width = 15, repr.plot.height = 5)
 
 # Gráfica
 plot(x = 1 - resultados$p_error, y = resultados$p_post,
-     type = "b", xlab = "valor de P", ylab = "Pr post detección positiva", cex = 2, 
-     cex.axis  = 2, cex.lab = 2)
+     type = "b", xlab = "valor de P", ylab = "Pr post detección positiva", 
+     cex = 2, cex.axis  = 1, cex.lab = 2)
 ```
 
 ### Conclusión del experimento pensado
@@ -244,9 +244,9 @@ La propuesta que seguiremos en el **Módulo 3** se basa en traducir situaciones 
 
 ### [**¿Podríamos usarlo para intervenir en él?**]{style="color:GoldenRod"}
 
-Recordemos que el modelo completo es el que tiene todos los parámetros posibles de acuerdo con el diseño del estudio, usualmente al menos un término por cada grupo experimental (tratamiento). En general el método para llegar a un segundo modelo es introducir restricciones (supuestos que especifican el valor de particulares) sobre los parámetros del primer modelo.
+El modelo que contiene todas las variables explicativas que proponemos tinen que ver con el fenómeno que estamos analizando lo llamaremos **modelo completo**. Tiene todos los parámetros posibles de acuerdo con el diseño del estudio, usualmente al menos un término por cada grupo experimental (tratamiento). En general el método para llegar a un segundo modelo es postular restricciones (supuestos que especifican el valor de particulares) sobre los parámetros del primer modelo.
 
-Las restricciones usualmente son nuestra(s) hipótesis nula(s) y en ese caso las usamos para eliminar algunos parámetros del conjunto usado en el modelo completo. Naturalmente llamamos al modelo resultante simplemente el modelo restringido.
+Las restricciones usualmente son nuestra(s) hipótesis nula(s) y en ese caso las usamos para eliminar algunos parámetros del conjunto usado en el modelo completo, equivalente a dar por hecho que el parámetro correspondiente es 0. Naturalmente llamaremos al modelo resultante simplemente el **modelo restringido** o **modelo reducido**.
 
 ### [**¿Piensas que sería válido restringir un modelo con valores de algún parámetro con un valor que no sea cero?**]{style="color:GoldenRod"}
 
@@ -320,7 +320,7 @@ for (i in 1:length(y)) lines (c(i,i), c(mean(y), y[i]))
 ### [**¿Qué muestra esta gráfica? ¿a que equivale la suma de los trazos verticales?**]{style="color:GoldenRod"}
 
 ```{R}
-dist_med_y <- sum(abs(y - mean(y)))
+dist_med_y <- sum((y - mean(y))**2)
 dist_med_y
 ```
 
@@ -344,15 +344,13 @@ for (i in 8:14) lines (c(i,i), c(means[2], y[i]))
 ### [**¿Qué muestra esta gráfica? ¿a que equivale la suma de los trazos verticales?**]{style="color:GoldenRod"}
 
 ```{R}
-dist_med_s <- sum(m1=sum(abs(y[1:7] - means[1])), m2=sum(abs(y[7:14] - means[2])))
+dist_med_s <- sum(m1=sum((y[1:7] - means[1])**2), 
+                  m2=sum((y[8:14] - means[2])**2))
+
 dist_med_s
 ```
 
-### [**Si las dos *medias* fuerean iguales ¿cómo compararían estas dos gráficas?**]{style="color:GoldenRod"}
-
-```{R}
-suma_trazos_vert_2 <- means[1] - y
-```
+### [**Si las dos *medias* fueran iguales ¿cómo compararían estas dos gráficas?**]{style="color:GoldenRod"}
 
 ### [**¿Qué interpretación tiene la diferencia entre las dos sumas mencionadas arriba?**]{style="color:GoldenRod"}
 
@@ -364,6 +362,33 @@ plot (y, col = "red")
 abline (mean(y), 0)
 points(predict(modelo), pch = 16, col = "lightblue")
 for (i in 1:14) lines(c(i, i), c(mean(y), predict(modelo)[i]), col = "gray")
+```
+
+Ahora la suma de estas líneas verticales es
+
+```{R}
+dist_med_s_y <- sum(sum((rep(means[1], 7) - mean(anova.data$y))**2),  
+                    sum((rep(means[2], 7) - mean(anova.data$y))**2))
+dist_med_s_y
+```
+
+Estas tres formas de calcular las distancias entre datos y promedios se asocia con *fuentes de variación*
+
+1.  variaciones o error total
+2.  variaciones o error residual (componente aleatorio/efecto aleatorio)
+3.  variaciones o error del modelo (componente sistemático/efecto fijo)
+
+En el cuadro de análisis de varianza se suele etiquetar a los componentes de error de acuerdo con su *fuente*. Se les acompaña con los grados de libertad, la *suma de cuadrados* de las distancias que mostré en las tres gráficas anteriores y luego los llamados *cuadrados medios*. Para referencia podemos pedrle a **R** que nos reporte el cuadro de ANOVA de este modelo.
+
+### [Analiza la correspondencia entre los valores y las gráficas que vimos arriba con lo que reporta **R**.]{style="color:GoldenRod"}
+
+```{r}
+anova(modelo)
+
+dist_med_y
+dist_med_s
+dist_med_s_y 
+
 ```
 
 ```{R}

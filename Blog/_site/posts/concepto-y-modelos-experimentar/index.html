@@ -387,8 +387,8 @@ Pr(detectada|Hipótesis) = \frac{Pr(Hipótesis|detectada) Pr(detectado)} {Pr(Hip
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfica</span></span>
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> <span class="dv">1</span> <span class="sc">-</span> resultados<span class="sc">$</span>p_error, <span class="at">y =</span> resultados<span class="sc">$</span>p_post,</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">"b"</span>, <span class="at">xlab =</span> <span class="st">"valor de P"</span>, <span class="at">ylab =</span> <span class="st">"Pr post detección positiva"</span>, <span class="at">cex =</span> <span class="dv">2</span>, </span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex.axis  =</span> <span class="dv">2</span>, <span class="at">cex.lab =</span> <span class="dv">2</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">"b"</span>, <span class="at">xlab =</span> <span class="st">"valor de P"</span>, <span class="at">ylab =</span> <span class="st">"Pr post detección positiva"</span>, </span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex =</span> <span class="dv">2</span>, <span class="at">cex.axis  =</span> <span class="dv">1</span>, <span class="at">cex.lab =</span> <span class="dv">2</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
@@ -412,8 +412,8 @@ Pr(detectada|Hipótesis) = \frac{Pr(Hipótesis|detectada) Pr(detectado)} {Pr(Hip
 <p>La propuesta que seguiremos en el <strong>Módulo 3</strong> se basa en traducir situaciones reales en abstracciones que escribimos como modelos estadísticos. De esta manera buscamos generar expresiones matemáticas que dan cuenta de nuestras concepciones sobre cómo funcionan aspectos concretos de la naturaleza. Es así que nos planteamos generar series de números <em>idealizados por el modelo</em> que podemos comparar con series de números observamos directamente de la naturaleza. Sí estas dos series de números se <em>parecen lo suficiente</em>, nos <em>sentiremos con confianza suficiente</em> como para pensar que nuestro modelo es útil para describir el comportamiento del segmento de la naturaleza que elegimos abstraer.</p>
 <section id="podríamos-usarlo-para-intervenir-en-él" class="level3">
 <h3 class="anchored" data-anchor-id="podríamos-usarlo-para-intervenir-en-él"><span style="color:GoldenRod"><strong>¿Podríamos usarlo para intervenir en él?</strong></span></h3>
-<p>Recordemos que el modelo completo es el que tiene todos los parámetros posibles de acuerdo con el diseño del estudio, usualmente al menos un término por cada grupo experimental (tratamiento). En general el método para llegar a un segundo modelo es introducir restricciones (supuestos que especifican el valor de particulares) sobre los parámetros del primer modelo.</p>
-<p>Las restricciones usualmente son nuestra(s) hipótesis nula(s) y en ese caso las usamos para eliminar algunos parámetros del conjunto usado en el modelo completo. Naturalmente llamamos al modelo resultante simplemente el modelo restringido.</p>
+<p>El modelo que contiene todas las variables explicativas que proponemos tinen que ver con el fenómeno que estamos analizando lo llamaremos <strong>modelo completo</strong>. Tiene todos los parámetros posibles de acuerdo con el diseño del estudio, usualmente al menos un término por cada grupo experimental (tratamiento). En general el método para llegar a un segundo modelo es postular restricciones (supuestos que especifican el valor de particulares) sobre los parámetros del primer modelo.</p>
+<p>Las restricciones usualmente son nuestra(s) hipótesis nula(s) y en ese caso las usamos para eliminar algunos parámetros del conjunto usado en el modelo completo, equivalente a dar por hecho que el parámetro correspondiente es 0. Naturalmente llamaremos al modelo resultante simplemente el <strong>modelo restringido</strong> o <strong>modelo reducido</strong>.</p>
 </section>
 <section id="piensas-que-sería-válido-restringir-un-modelo-con-valores-de-algún-parámetro-con-un-valor-que-no-sea-cero" class="level3">
 <h3 class="anchored" data-anchor-id="piensas-que-sería-válido-restringir-un-modelo-con-valores-de-algún-parámetro-con-un-valor-que-no-sea-cero"><span style="color:GoldenRod"><strong>¿Piensas que sería válido restringir un modelo con valores de algún parámetro con un valor que no sea cero?</strong></span></h3>
@@ -499,11 +499,11 @@ H_0: m_1 = m_2 = m_3 = ... = m_k
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>dist_med_y <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">abs</span>(y <span class="sc">-</span> <span class="fu">mean</span>(y)))</span>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>dist_med_y <span class="ot">&lt;-</span> <span class="fu">sum</span>((y <span class="sc">-</span> <span class="fu">mean</span>(y))<span class="sc">**</span><span class="dv">2</span>)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>dist_med_y</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 42.61764</code></pre>
+<pre><code>[1] 97.63709</code></pre>
 </div>
 </div>
 <p>Ahora incorporemos la información del factor <strong><em>f</em></strong>. Para esto hay que calcular los promedios de “y” que corresponden a los niveles de <strong><em>f</em></strong></p>
@@ -515,7 +515,7 @@ H_0: m_1 = m_2 = m_3 = ... = m_k
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>        a         b 
- 5.162983 11.251218 </code></pre>
+ 5.145941 10.162875 </code></pre>
 </div>
 </div>
 <p>Grafiquemos esta nueva estructura de datos.</p>
@@ -538,22 +538,18 @@ H_0: m_1 = m_2 = m_3 = ... = m_k
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>dist_med_s <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="at">m1=</span><span class="fu">sum</span>(<span class="fu">abs</span>(y[<span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>] <span class="sc">-</span> means[<span class="dv">1</span>])), <span class="at">m2=</span><span class="fu">sum</span>(<span class="fu">abs</span>(y[<span class="dv">7</span><span class="sc">:</span><span class="dv">14</span>] <span class="sc">-</span> means[<span class="dv">2</span>])))</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>dist_med_s</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>dist_med_s <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="at">m1=</span><span class="fu">sum</span>((y[<span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>] <span class="sc">-</span> means[<span class="dv">1</span>])<span class="sc">**</span><span class="dv">2</span>), </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">m2=</span><span class="fu">sum</span>((y[<span class="dv">8</span><span class="sc">:</span><span class="dv">14</span>] <span class="sc">-</span> means[<span class="dv">2</span>])<span class="sc">**</span><span class="dv">2</span>))</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>dist_med_s</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 14.12018</code></pre>
+<pre><code>[1] 9.543406</code></pre>
 </div>
 </div>
 </section>
-<section id="si-las-dos-medias-fuerean-iguales-cómo-compararían-estas-dos-gráficas" class="level3">
-<h3 class="anchored" data-anchor-id="si-las-dos-medias-fuerean-iguales-cómo-compararían-estas-dos-gráficas"><span style="color:GoldenRod"><strong>Si las dos <em>medias</em> fuerean iguales ¿cómo compararían estas dos gráficas?</strong></span></h3>
-<div class="cell">
-<details>
-<summary>Código</summary>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>suma_trazos_vert_2 <span class="ot">&lt;-</span> means[<span class="dv">1</span>] <span class="sc">-</span> y</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
+<section id="si-las-dos-medias-fueran-iguales-cómo-compararían-estas-dos-gráficas" class="level3">
+<h3 class="anchored" data-anchor-id="si-las-dos-medias-fueran-iguales-cómo-compararían-estas-dos-gráficas"><span style="color:GoldenRod"><strong>Si las dos <em>medias</em> fueran iguales ¿cómo compararían estas dos gráficas?</strong></span></h3>
 </section>
 <section id="qué-interpretación-tiene-la-diferencia-entre-las-dos-sumas-mencionadas-arriba" class="level3">
 <h3 class="anchored" data-anchor-id="qué-interpretación-tiene-la-diferencia-entre-las-dos-sumas-mencionadas-arriba"><span style="color:GoldenRod"><strong>¿Qué interpretación tiene la diferencia entre las dos sumas mencionadas arriba?</strong></span></h3>
@@ -561,20 +557,79 @@ H_0: m_1 = m_2 = m_3 = ... = m_k
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> f) <span class="co"># ¿qué estoy haciendo aquí?</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span> (y, <span class="at">col =</span> <span class="st">"red"</span>)</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span> (<span class="fu">mean</span>(y), <span class="dv">0</span>)</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="fu">predict</span>(modelo), <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">col =</span> <span class="st">"lightblue"</span>)</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">14</span>) <span class="fu">lines</span>(<span class="fu">c</span>(i, i), <span class="fu">c</span>(<span class="fu">mean</span>(y), <span class="fu">predict</span>(modelo)[i]), <span class="at">col =</span> <span class="st">"gray"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> f) <span class="co"># ¿qué estoy haciendo aquí?</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span> (y, <span class="at">col =</span> <span class="st">"red"</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span> (<span class="fu">mean</span>(y), <span class="dv">0</span>)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="fu">predict</span>(modelo), <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">col =</span> <span class="st">"lightblue"</span>)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">14</span>) <span class="fu">lines</span>(<span class="fu">c</span>(i, i), <span class="fu">c</span>(<span class="fu">mean</span>(y), <span class="fu">predict</span>(modelo)[i]), <span class="at">col =</span> <span class="st">"gray"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Ahora la suma de estas líneas verticales es</p>
+<div class="cell">
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>dist_med_s_y <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">sum</span>((<span class="fu">rep</span>(means[<span class="dv">1</span>], <span class="dv">7</span>) <span class="sc">-</span> <span class="fu">mean</span>(anova.data<span class="sc">$</span>y))<span class="sc">**</span><span class="dv">2</span>),  </span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">sum</span>((<span class="fu">rep</span>(means[<span class="dv">2</span>], <span class="dv">7</span>) <span class="sc">-</span> <span class="fu">mean</span>(anova.data<span class="sc">$</span>y))<span class="sc">**</span><span class="dv">2</span>))</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>dist_med_s_y</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 88.09368</code></pre>
+</div>
+</div>
+<p>Estas tres formas de calcular las distancias entre datos y promedios se asocia con <em>fuentes de variación</em></p>
+<ol type="1">
+<li>variaciones o error total</li>
+<li>variaciones o error residual (componente aleatorio/efecto aleatorio)</li>
+<li>variaciones o error del modelo (componente sistemático/efecto fijo)</li>
+</ol>
+<p>En el cuadro de análisis de varianza se suele etiquetar a los componentes de error de acuerdo con su <em>fuente</em>. Se les acompaña con los grados de libertad, la <em>suma de cuadrados</em> de las distancias que mostré en las tres gráficas anteriores y luego los llamados <em>cuadrados medios</em>. Para referencia podemos pedrle a <strong>R</strong> que nos reporte el cuadro de ANOVA de este modelo.</p>
+</section>
+<section id="analiza-la-correspondencia-entre-los-valores-y-las-gráficas-que-vimos-arriba-con-lo-que-reporta-r." class="level3">
+<h3 class="anchored" data-anchor-id="analiza-la-correspondencia-entre-los-valores-y-las-gráficas-que-vimos-arriba-con-lo-que-reporta-r."><span style="color:GoldenRod">Analiza la correspondencia entre los valores y las gráficas que vimos arriba con lo que reporta <strong>R</strong>.</span></h3>
+<div class="cell">
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(modelo)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Variance Table
+
+Response: y
+          Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+f          1 88.094  88.094  110.77 2.055e-07 ***
+Residuals 12  9.543   0.795                      
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>dist_med_y</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 97.63709</code></pre>
+</div>
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>dist_med_s</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 9.543406</code></pre>
+</div>
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>dist_med_s_y </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 88.09368</code></pre>
 </div>
 </div>
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(anova.data)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(anova.data)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
