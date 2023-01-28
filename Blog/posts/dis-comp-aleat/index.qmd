@@ -25,8 +25,7 @@ leer lista de archivos en un directorio
 ### Lectura de datos
 
 ```{r}
-RutaCrawley <-"../../../Crawley/"
-GLEX1 <- read.table(paste0(RutaCrawley, "GLEX1.DAT"),
+GLEX1 <- read.table("GLEX1.DAT",
                     col.names=c("fertilizante", "rendimiento_peso")) 
 
 head(GLEX1)
@@ -139,58 +138,104 @@ model.matrix(aj3)
 plot(aj3)
 ```
 
-# Comparación de medias
+# Ejemplo Proteina y alcaloide
 
-GLEX11 (p. 138) Proteina y alcaloide. Se midió el incremento en longitud (mm) de larvas de insectos. Se hicieron mediciones después de dos semanas de alimentarlas con una dieta artificial bajo condiciones controladas de temperatura. Uno de los factores fue la cantidad de proteina en la dieta, con tres niveles (bajo, medio, alto). El otro factor es la presencia o ausencia de un alcaloide. Cada tratamiento se repitió cuatro veces. La asignación de los tratamientos a los insectos se hizo en forma aleatoria entre todos los especímenes disponibles.
+GLEX11 (p. 138) Proteína y alcaloide. Se midió el incremento en longitud (mm) de larvas de insectos. Se hicieron mediciones después de dos semanas de alimentarlas con una dieta artificial bajo condiciones controladas de temperatura. Uno de los factores fue la cantidad de proteína en la dieta, con tres niveles (bajo, medio, alto). El otro factor es la presencia o ausencia de un alcaloide. Cada tratamiento se repitió cuatro veces. La asignación de los tratamientos a los insectos se hizo en forma aleatoria entre todos los especímenes disponibles.
+
+En este ejemplo usaremos la biblioteca `readxl` para leer los datos directamente desde un libro de Excel. Esta biblioteca define la función `read_excel` que lee los datos y entrega una tabla. Hay que notar que esta tabla no es un `data.frame`, es una `tibble` que es una versión actual de `data.frame` y como tal tiene algunas peculiaridades para el manejo de su contenido.
+
+## Lectura ded datos
 
 ```{r}
-# Lectura de datos
-
-GLEX11 <- read.table(paste0(RutaCrawley, "GLEX11.DAT"),
-                     col.names=c("talla", "proteina", "alcaloide"))
+library(readxl)
+library(tidyverse)
+GLEX11 <- read_excel("GLEX11.xlsx",
+    col_types = c("numeric", "numeric", "numeric"),
+    col_names = TRUE)
 ```
 
+## Definnición de los factores
+
+Los datos contienen información cualitativa, así que necesitamos definir esas piezas de información como factores. Aprovecharemos para experimentar con los factores de tipo "ordenado". Esta variante de factor aprovecha el contenido *seminumérico* que pudiéramos tener en alguna variable. En este caso lo haremos así para el contenido de proteína.
+
 ```{r}
-# Uso la función "ordered" que genera factores ordenados, para evitar el que en el 
-# despliegue de gráficas y otros resultados, S-Plus use el orden alfabético como arreglo.
+# Uso la función "ordered" que genera factores ordenados, 
+# útil para aprovechar datos "semicuantitativos" y probar polinomios
 
-GLEX11$proteina <- ordered(GLEX11$proteina, c(1,2,3), c("bajo", "medio", "alto"))
+# Enfoque antiguo con data.frame
+#GLEX11$proteina <- ordered(GLEX11$proteina, c(1,2,3), 
+#                           c("bajo", "medio", "alto"))
+#
+#GLEX11$alcaloide <-factor(GLEX11$alcaloide, c(1,2), c("ausente", "presente"))
+#
 
-GLEX11$alcaloide <-factor(GLEX11$alcaloide, c(1,2), c("ausente", "presente"))
+# Enfoque actual con tibble
+GLEX11 <- GLEX11 %>% mutate(proteina = ordered(proteina, c(1,2,3), 
+                                     c("bajo", "medio", "alto")),
+                  alcaloide = factor(alcaloide, c(1,2), 
+                                      c("ausente", "presente")))
+```
 
+## exploración de medias
+
+Siempre es conveniente hacer una revisión previa de los datos y considerar los patrones que apreciamos en ellos como fuente de ideas o simplemente para verificar que no haya errores de algún tipo.
+
+```{R}
+#
+# Enfoque antiguo con data.frame
 # Para simplificar el acceso a los datos uso la función attach
-attach(GLEX11)
+#attach(GLEX11)
+#aggregate(list(talla=talla), list(proteina=proteina), mean)
+#aggregate(list(talla=talla), list(alcaloide=alcaloide),mean)
+#tapply(talla, list(proteina, alcaloide), mean)
 
-# exploración de medias
-aggregate(list(talla=talla), list(proteina=proteina), mean)
-aggregate(list(talla=talla), list(alcaloide=alcaloide),mean)
-tapply(talla, list(proteina, alcaloide), mean)
-```
-
-```{r}
+# Con un tibble es más práctico hacer esto
+GLEX11 %>% group_by(proteina) %>%
+           summarize(promedio = mean(talla, na.rm=TRUE))
+GLEX11 %>% group_by(alcaloide) %>%
+           summarize(promedio = mean(talla, na.rm=TRUE))
 
 # Genero una table resumen de promedios. 
-GLEX11.res<-aggregate(list(talla=talla), 
-                      list(proteina=proteina,
-                           alcaloide=alcaloide), mean)
+# GLEX11.res<-aggregate(list(talla=GLEX11$talla), 
+#                      list(proteina=GLEX11$proteina,
+#                           alcaloide=GLEX11$alcaloide), mean)
 
-#exploración de varianzas 
-aggregate(list(talla=talla),
-          list(proteina=proteina),var) 
+GLEX11 %>% group_by(proteina, alcaloide) %>%
+           summarize(promedio = mean(talla, na.rm=TRUE)) %>%
+           pivot_wider(names_from = proteina, values_from = promedio)
+```
 
-aggregate(list(talla=talla), 
-          list(alcaloide=alcaloide), var) 
+## Exploración de varianzas
 
-tapply(talla, list(proteina, alcaloide), var)
+```{r}
 
+#aggregate(list(talla=GLEX11$talla),
+#          list(proteina=GLEX11$proteina),var) 
+GLEX11 %>% group_by(proteina) %>%
+           summarize(var = var(talla, na.rm=TRUE))
 
-# Graficar talla contra proteina separada por alcaloide
+#aggregate(list(talla=GLEX11$talla), 
+#          list(alcaloide=GLEX11$alcaloide), var) 
+GLEX11 %>% group_by(alcaloide) %>%
+           summarize(var = var(talla, na.rm=TRUE))
 
-interaction.plot(proteina, alcaloide, talla) 
+# tapply(GLEX11$talla, list(GLEX11$proteina, GLEX11$alcaloide), var)
+GLEX11 %>% group_by(proteina, alcaloide) %>%
+           summarize(var = var(talla, na.rm=TRUE)) %>%
+           pivot_wider(names_from = proteina, values_from = var)
+```
+
+## Gráficas exploratorias
+
+```{r}
+interaction.plot(GLEX11$proteina, GLEX11$alcaloide, GLEX11$talla) 
 
 #args(interaction.plot)
+```
 
-# Ajuste de modelos
+## Ajuste de modelos
+
+```{r}
 
 larvas.nulo <- lm(talla ~ 1, data=GLEX11)
 
@@ -212,7 +257,12 @@ larvas.completo <- update(larvas.nulo, . ~ . + proteina + alcaloide + proteina:a
 devianza(larvas.completo) 
 coefficients(larvas.completo)
 
-# otra forma de escribir el modelo completo
+```
+
+### Otra forma de escribir el modelo completo
+
+```{r}
+
 
 larvas.completo <- update(larvas.nulo, . ~ . + proteina * alcaloide) 
 
@@ -220,11 +270,23 @@ devianza(larvas.completo)
 
 coefficients(larvas.completo)
 
-# ¿Significancia de los términos?
+```
+
+### ¿Significancia de los términos?
+
+```{r}
+
 
 anova(larvas.completo)
 
-# ¿Son necesarios todos los niveles de los factores? -- Comparaciones múltiples
+```
+
+### Comparaciones múltiples
+
+Esto es equivalente a una búsqueda, algo exploratoria, para dar respuesta a la pregunta: **¿Son necesarios todos los niveles de los factores?**
+
+```{r}
+
 
 summary(larvas.completo)
 
@@ -232,36 +294,38 @@ summary(larvas.completo)
 
 # Por supuesto hay que considerar que esta fusión tenga sentido biológico.
 
-# Así podemos recodificar el factor proteina.
+# Así podemos recodificar el factor proteína.
 
-detach(GLEX11)
 GLEX11$proteinaBM <- GLEX11$proteina 
 levels(GLEX11$proteinaBM) <- c("bame", "bame", "alto") # cuidar el orden
-attach(GLEX11)
 
+```
 
-# nuevo ajuste de modelo completo con el factor proteina recodificado.
+#### nuevo ajuste de modelo completo con el factor proteina recodificado.
+
+```{r}
 
 larvas.protBM <- lm(talla ~ proteinaBM * alcaloide, data = GLEX11) 
 
 summary(larvas.protBM)
 
-# ¿qué significancia tiene este cambio en el modelo?
+```
+
+#### ¿qué significancia tiene este cambio en el modelo?
+
+```{r}
 
 anova(larvas.protBM,larvas.completo) 
 plot(larvas.protBM) 
 tapply(GLEX11$talla, list(GLEX11$proteinaBM, GLEX11$alcaloide), mean) 
 
-GLEX11.resBM <- aggregate(list(talla = talla), 
-                          list(proteinaBM= proteinaBM, 
-                               alcaloide = alcaloide), mean)
+GLEX11.resBM <- aggregate(list(talla = GLEX11$talla), 
+                          list(proteinaBM= GLEX11$proteinaBM, 
+                               alcaloide = GLEX11$alcaloide), mean)
 
-interaction.plot(proteinaBM,alcaloide,talla)
-
-# Con base en estos análisis ¿Cual es el modelo mínimo adecuado?
-
-# "suelto" los datos de la tabla GLEX11
-
-detach(GLEX11)
-
+interaction.plot(GLEX11$proteinaBM, GLEX11$alcaloide, GLEX11$talla)
 ```
+
+## Conclusiones
+
+Con base en estos análisis ¿Cual es el modelo mínimo adecuado?. ¿cómo podemos interpretar estos resultados? ¿tienen sentido o relevancia?
