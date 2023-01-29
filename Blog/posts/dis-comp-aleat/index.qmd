@@ -30,7 +30,7 @@ GLEX1 <- read.table("GLEX1.DAT",
 head(GLEX1)
 ```
 
-A veces hay archivos que contienen datos faltantes o perdidos. Podemos enfrentar eso con la función `complete.cases()` que revisa linea por linea el archivo y regresa "verdadero" si todas las columnas tienen datos válidos y "falso". Esta lista de "verdaderos" y "falsos" la podemos usar para elegir que filas del archivo de datos están completas y así podemos eliminarlas del conjunto de datos que vamos a procesar.
+A veces hay archivos que contienen datos faltantes o perdidos. Podemos enfrentar eso con la función `complete.cases()` que revisa linea por linea el archivo y regresa "verdadero" si todas las columnas tienen datos válidos y "falso" si hay huecos. Esta lista de "verdaderos" y "falsos" la podemos usar para elegir que filas del archivo de datos están completas y así podemos eliminarlas del conjunto de datos que vamos a procesar.
 
 Sobre los datos limpios, generamos la variable indicativa del tipo de ambiente del que se tomo la planta que se clonó.
 
