@@ -20,7 +20,6 @@ Ejemplo tomado de Crawley (1998). **Glim for Ecologists**. Oxford. UK.
 
 Es un experimento en el que se midió el crecimiento (masa seca al cosechar = *y*) de plantas tratadas con 10 concentraciones diferentes de suplemento mineral como fertilizante, *f*. El experimento fue realizado con dos cultivares diferentes, *g*. Uno fue clonado de plantas de un ambiente árido y el otro de uno húmedo. Todas las plantas de cada tipo, sin restricciones, fueron asignadas aleatoriamente a los distintos niveles de fertilizante.
 
-leer lista de archivos en un directorio
 
 ### Lectura de datos
 
