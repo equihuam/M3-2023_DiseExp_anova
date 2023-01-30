@@ -20,7 +20,6 @@ Ejemplo tomado de Crawley (1998). **Glim for Ecologists**. Oxford. UK.
 
 Es un experimento en el que se midió el crecimiento (masa seca al cosechar = *y*) de plantas tratadas con 10 concentraciones diferentes de suplemento mineral como fertilizante, *f*. El experimento fue realizado con dos cultivares diferentes, *g*. Uno fue clonado de plantas de un ambiente árido y el otro de uno húmedo. Todas las plantas de cada tipo, sin restricciones, fueron asignadas aleatoriamente a los distintos niveles de fertilizante.
 
-leer lista de archivos en un directorio
 
 ### Lectura de datos
 
@@ -31,7 +30,7 @@ GLEX1 <- read.table("GLEX1.DAT",
 head(GLEX1)
 ```
 
-A veces hay archivos que contienen datos faltantes o perdidos. Podemos enfrentar eso con la función `complete.cases()` que revisa linea por linea el archivo y regresa "verdadero" si todas las columnas tienen datos válidos y "falso". Esta lista de "verdaderos" y "falsos" la podemos usar para elegir que filas del archivo de datos están completas y así podemos eliminarlas del conjunto de datos que vamos a procesar.
+A veces hay archivos que contienen datos faltantes o perdidos. Podemos enfrentar eso con la función `complete.cases()` que revisa linea por linea el archivo y regresa "verdadero" si todas las columnas tienen datos válidos y "falso" si hay huecos. Esta lista de "verdaderos" y "falsos" la podemos usar para elegir que filas del archivo de datos están completas y así podemos eliminarlas del conjunto de datos que vamos a procesar.
 
 Sobre los datos limpios, generamos la variable indicativa del tipo de ambiente del que se tomo la planta que se clonó.
 
@@ -67,7 +66,7 @@ plot(as.numeric(GLEX1$fertilizante),
 text (GLEX1$fertilizante, GLEX1$rendimiento_peso, labels=GLEX1$cultivar)
 ```
 
-Podemos calcular ver las características estadísticas de lo que pasa con la biomasa que produce cada genotipo
+Podemos ver las características estadísticas de lo que pasa con la biomasa que produce cada genotipo
 
 ### Resumen de los datos de masa por genotipo
 
@@ -75,7 +74,7 @@ Podemos calcular ver las características estadísticas de lo que pasa con la bi
 by (GLEX1, GLEX1$cultivar, summary)
 ```
 
-Ahora podemos realizar el análisis estadístico mediante modelos. Hagamos ahora un análisis con el enfoque "tradicional" en **R**. Lo primero que haremos es configurar el entorno de análisis, esto significa elegir el tipo de contrastes que queremos operar al ajustar modelos *reparametrizados*. Haremos esto con opción *contrasts* en la función `options(contrasts=...)`
+Ahora podemos realizar el análisis estadístico mediante modelos. Hagamos un análisis con el enfoque "tradicional" en **R**. Lo primero que haremos es configurar el entorno de análisis, esto significa elegir el tipo de contrastes que queremos operar al ajustar modelos *reparametrizados*. Haremos esto con opción *contrasts* en la función `options(contrasts=...)`
 
 Para asegurarnos de que los estimadores del modelo toman el primer nivel como referencia hay que usar el modo de reparametrización "treatment". Hay otras formas de reparametrización, como podrás ver en la ayuda de `contr.treatment`.
 
@@ -104,7 +103,7 @@ aj3 <- update(aj2,  .~ . + cultivar)
 anova(aj3)
 ```
 
-Podemos intentar hacer un modelo completo, es decir con todos los posibles factores y combinaciones que pueden producirse. Sin embargo este modelo consume todos los grados de liberta (observacione) con que contamos. De todos modos lo podemos intentar para ver que nos dice **R**.
+Podemos intentar hacer un modelo completo, es decir con todos los posibles factores y combinaciones que pueden producirse. Sin embargo este modelo consume todos los grados de liberta (observacione) con que contamos pues cada tratamiento fue ensayado una sola vez en este experimento. De todos modos lo podemos intentar para ver que nos dice **R**.
 
 ```{r}
 # agregamos una pendiente diferente para cada genotipo
