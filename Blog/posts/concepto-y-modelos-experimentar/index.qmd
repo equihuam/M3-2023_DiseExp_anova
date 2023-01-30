@@ -34,7 +34,7 @@ $$
 
 A partir de este conocimiento científico, supongamos que un amigo da positivo en el test de vampirismo.
 
-¿Cuál es la probabilidad de que sea un *inmortal chupasangre*?
+[**¿Cuál es la probabilidad de que sea un** ***inmortal chupasangre*** **?**]{style="color:GoldenRod"}
 
 El enfoque de investigación formal empezaría por usar el *teorema de Bayes* para deducir la probabilidad ${Pr(vampiro|positivo)}$, lo que en cierta forma implica "invertir la probabilidad", pues lo que ahora sabemos es el valor de ${Pr(positivo|vampiro)}$. El cálculo puede presentarse como:
 
@@ -80,7 +80,7 @@ round(Pr_vampiro_positivo, 3)
 
 Por lo tanto, la probabilidad de que el amigo sea en realidad un vampiro es 8.7%.
 
-¿Encuentras este resultado afin o contrario a lo que pensabas antes de hacer los cálculos?
+[**¿Encuentras este resultado afin o contrario a lo que pensabas antes de hacer los cálculos?**]{style="color:GoldenRod"}
 
 Este es un resultado muy importante. Exactamente así, o algo muy parecido, es el procedimiento que se sigue en muchos contextos de prueba realistas: *las pruebas de PCR*, *antígeno* o *anticuerpos para SarsCov-2*, *la prueba del VIH* la del *DNA en un perfil criminal* y por supuesto la *prueba de significancia estadística*.
 
@@ -100,7 +100,12 @@ Ahora piensa en esto, si hacemos pruebas a las 100,000 personas, ¿qué proporci
 
 Muchas personas, aunque ciertamente no todas, encuentran esta forma de contar la historia mucho más fácil. Sigamos por este camino.
 
-¿Qué tal si contamos el número de personas que dan positivo?: 95 + 999 = 1094. De estas 1094 pruebas positivas, 95 de ellas son vampiros reales, lo que nos lleva sencillamente a esto:
+[**¿Qué tal si contamos el número de personas que dan positivo?:**]{style="color:GoldenRod"}
+
+$$
+95 + 999 = 1094
+$$
+De estas 1094 pruebas positivas, 95 de ellas son vampiros reales, lo que nos lleva sencillamente a esto:
 
 $$
 Pr(vampiro|positivo) = \frac{95}{1094} ≈ 0.087 
@@ -118,7 +123,7 @@ El formalismo bayesiano trata las distribuciones de los parámetros como una pla
 
 ## Estadística para mejorar la ciencia
 
-¿Podemos confiar en que la estadística nos proteja de la mala ciencia?.
+[**¿Podemos confiar en que la estadística nos proteja de la mala ciencia?.**]{style="color:GoldenRod"}
 
 El ejemplo del vampirismo que acabamos de ver tiene la misma estructura lógica que muchos problemas de *detección* considerando que:
 
@@ -176,7 +181,7 @@ Así que un resultado positivo corresponde a un 16% de probabilidad de que la hi
 
 Este es el mismo fenómeno de baja tasa de base que se aplica en las pruebas médicas (y en nuestro ejemplo de *vampiros*).
 
-Puedes reducir la tasa de falsos positivos al 1% y ¿qué pasaría?
+Puedes reducir la tasa de falsos positivos al 1% y [**¿qué pasaría?**]{style="color:GoldenRod"}
 
 ### Programar para explorar ideas
 

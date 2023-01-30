@@ -220,7 +220,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 {Pr(vampiro) = 0.001}
 \]</span></p>
 <p>A partir de este conocimiento científico, supongamos que un amigo da positivo en el test de vampirismo.</p>
-<p>¿Cuál es la probabilidad de que sea un <em>inmortal chupasangre</em>?</p>
+<p><span style="color:GoldenRod"><strong>¿Cuál es la probabilidad de que sea un</strong> <strong><em>inmortal chupasangre</em></strong> <strong>?</strong></span></p>
 <p>El enfoque de investigación formal empezaría por usar el <em>teorema de Bayes</em> para deducir la probabilidad <span class="math inline">\({Pr(vampiro|positivo)}\)</span>, lo que en cierta forma implica “invertir la probabilidad”, pues lo que ahora sabemos es el valor de <span class="math inline">\({Pr(positivo|vampiro)}\)</span>. El cálculo puede presentarse como:</p>
 <p><span class="math display">\[
 \Pr(vampiro|positivo) = \frac{Pr(positivo|vampiro) \times Pr(vampiro)}{Pr(positivo)}
@@ -261,7 +261,7 @@ Pr(vampiro|positivo)
 </div>
 </div>
 <p>Por lo tanto, la probabilidad de que el amigo sea en realidad un vampiro es 8.7%.</p>
-<p>¿Encuentras este resultado afin o contrario a lo que pensabas antes de hacer los cálculos?</p>
+<p><span style="color:GoldenRod"><strong>¿Encuentras este resultado afin o contrario a lo que pensabas antes de hacer los cálculos?</strong></span></p>
 <p>Este es un resultado muy importante. Exactamente así, o algo muy parecido, es el procedimiento que se sigue en muchos contextos de prueba realistas: <em>las pruebas de PCR</em>, <em>antígeno</em> o <em>anticuerpos para SarsCov-2</em>, <em>la prueba del VIH</em> la del <em>DNA en un perfil criminal</em> y por supuesto la <em>prueba de significancia estadística</em>.</p>
 <p>Quizás ayude a mejorar la intuición que tenemos de las cosas el considerar que siempre que la condición de interés sea muy rara, desarrollar una <em>prueba excelente</em>, capaz de diagnosticar bien todos los casos verdaderos (aunque invitablemente produzca también algunos falsos positivos), no es garantía suficiente de que un resultado positivo en general conlleve mucha información.</p>
 <p>La razón es que usualmente resulta inevitable tener <strong>falsos positivos</strong> y por simple aritmética, esos casos serán la mayoría de los resultados que tendremos, incluso si todos los <em>verdaderos positivos</em> fueran <em>detectados correctamente</em>.</p>
@@ -274,7 +274,10 @@ Pr(vampiro|positivo)
 </ol>
 <p>Ahora piensa en esto, si hacemos pruebas a las 100,000 personas, ¿qué proporción de los que dan positivo en las pruebas de vampirismo son realmente <em>vampiros</em>?</p>
 <p>Muchas personas, aunque ciertamente no todas, encuentran esta forma de contar la historia mucho más fácil. Sigamos por este camino.</p>
-<p>¿Qué tal si contamos el número de personas que dan positivo?: 95 + 999 = 1094. De estas 1094 pruebas positivas, 95 de ellas son vampiros reales, lo que nos lleva sencillamente a esto:</p>
+<p><span style="color:GoldenRod"><strong>¿Qué tal si contamos el número de personas que dan positivo?:</strong></span></p>
+<p><span class="math display">\[
+95 + 999 = 1094
+\]</span> De estas 1094 pruebas positivas, 95 de ellas son vampiros reales, lo que nos lleva sencillamente a esto:</p>
 <p><span class="math display">\[
 Pr(vampiro|positivo) = \frac{95}{1094} ≈ 0.087
 \]</span></p>
@@ -285,7 +288,7 @@ Pr(vampiro|positivo) = \frac{95}{1094} ≈ 0.087
 <p>El formalismo bayesiano trata las distribuciones de los parámetros como una plausibilidad relativa, no como un proceso aleatorio que ocurre en el mundo físico. En cualquier caso, la aleatoriedad es siempre una propiedad de la información, nunca del mundo real.</p>
 <section id="estadística-para-mejorar-la-ciencia" class="level2">
 <h2 class="anchored" data-anchor-id="estadística-para-mejorar-la-ciencia">Estadística para mejorar la ciencia</h2>
-<p>¿Podemos confiar en que la estadística nos proteja de la mala ciencia?.</p>
+<p><span style="color:GoldenRod"><strong>¿Podemos confiar en que la estadística nos proteja de la mala ciencia?.</strong></span></p>
 <p>El ejemplo del vampirismo que acabamos de ver tiene la misma estructura lógica que muchos problemas de <em>detección</em> considerando que:</p>
 <ol type="1">
 <li>Hay algún estado binario al que no tenemos acceso.</li>
@@ -338,7 +341,7 @@ Pr(detectada|Hipótesis) = \frac{Pr(Hipótesis|detectada) Pr(detectado)} {Pr(Hip
 <p>Como podemos ver, al substituir los valores <em>imaginados</em>, encontramos que la respuesta es aproximadamente <span class="math inline">\({Pr(V|H) = 0.16}\)</span>.</p>
 <p>Así que un resultado positivo corresponde a un 16% de probabilidad de que la hipótesis sea cierta.</p>
 <p>Este es el mismo fenómeno de baja tasa de base que se aplica en las pruebas médicas (y en nuestro ejemplo de <em>vampiros</em>).</p>
-<p>Puedes reducir la tasa de falsos positivos al 1% y ¿qué pasaría?</p>
+<p>Puedes reducir la tasa de falsos positivos al 1% y <span style="color:GoldenRod"><strong>¿qué pasaría?</strong></span></p>
 </section>
 </section>
 <section id="programar-para-explorar-ideas" class="level3">
@@ -503,7 +506,7 @@ H_0: m_1 = m_2 = m_3 = ... = m_k
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>dist_med_y</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 97.63709</code></pre>
+<pre><code>[1] 127.7306</code></pre>
 </div>
 </div>
 <p>Ahora incorporemos la información del factor <strong><em>f</em></strong>. Para esto hay que calcular los promedios de “y” que corresponden a los niveles de <strong><em>f</em></strong></p>
@@ -515,7 +518,7 @@ H_0: m_1 = m_2 = m_3 = ... = m_k
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>        a         b 
- 5.145941 10.162875 </code></pre>
+ 4.981559 10.845612 </code></pre>
 </div>
 </div>
 <p>Grafiquemos esta nueva estructura de datos.</p>
@@ -544,7 +547,7 @@ H_0: m_1 = m_2 = m_3 = ... = m_k
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>dist_med_s</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 9.543406</code></pre>
+<pre><code>[1] 7.3757</code></pre>
 </div>
 </div>
 </section>
@@ -576,7 +579,7 @@ H_0: m_1 = m_2 = m_3 = ... = m_k
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>dist_med_s_y</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 88.09368</code></pre>
+<pre><code>[1] 120.3549</code></pre>
 </div>
 </div>
 <p>Estas tres formas de calcular las distancias entre datos y promedios se asocia con <em>fuentes de variación</em></p>
@@ -598,9 +601,9 @@ H_0: m_1 = m_2 = m_3 = ... = m_k
 <pre><code>Analysis of Variance Table
 
 Response: y
-          Df Sum Sq Mean Sq F value    Pr(&gt;F)    
-f          1 88.094  88.094  110.77 2.055e-07 ***
-Residuals 12  9.543   0.795                      
+          Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
+f          1 120.355 120.355  195.81 8.578e-09 ***
+Residuals 12   7.376   0.615                      
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
@@ -609,21 +612,21 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>dist_med_y</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 97.63709</code></pre>
+<pre><code>[1] 127.7306</code></pre>
 </div>
 <details>
 <summary>Código</summary>
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>dist_med_s</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 9.543406</code></pre>
+<pre><code>[1] 7.3757</code></pre>
 </div>
 <details>
 <summary>Código</summary>
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>dist_med_s_y </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 88.09368</code></pre>
+<pre><code>[1] 120.3549</code></pre>
 </div>
 </div>
 <div class="cell">
