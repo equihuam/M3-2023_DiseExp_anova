@@ -104,8 +104,7 @@ Muchas personas, aunque ciertamente no todas, encuentran esta forma de contar la
 
 $$
 95 + 999 = 1094
-$$
-De estas 1094 pruebas positivas, 95 de ellas son vampiros reales, lo que nos lleva sencillamente a esto:
+$$ De estas 1094 pruebas positivas, 95 de ellas son vampiros reales, lo que nos lleva sencillamente a esto:
 
 $$
 Pr(vampiro|positivo) = \frac{95}{1094} ≈ 0.087 

@@ -20,7 +20,6 @@ Ejemplo tomado de Crawley (1998). **Glim for Ecologists**. Oxford. UK.
 
 Es un experimento en el que se midió el crecimiento (masa seca al cosechar = *y*) de plantas tratadas con 10 concentraciones diferentes de suplemento mineral como fertilizante, *f*. El experimento fue realizado con dos cultivares diferentes, *g*. Uno fue clonado de plantas de un ambiente árido y el otro de uno húmedo. Todas las plantas de cada tipo, sin restricciones, fueron asignadas aleatoriamente a los distintos niveles de fertilizante.
 
-
 ### Lectura de datos
 
 ```{r}
@@ -56,7 +55,7 @@ Veamos los datos en una gráfica simple. La función plot hace cosas distintas s
 plot(as.numeric(GLEX1$fertilizante), GLEX1$rendimiento_peso, xlab="fertilizante", ylab="biomasa", type="p")
 ```
 
-Para explorar mejor los datos podemos marcar en la gráfica las obsevaciones que pertenecen a cada condición. En este caso, te propongo poner el nobre que le dimos al "tratamiento".
+Para explorar mejor los datos podemos marcar en la gráfica las obsevaciones que pertenecen a cada condición. En este caso, te propongo poner el nombre que le dimos al "tratamiento".
 
 Gráfica de masa seca contra fertilizante mineral diferenciando por genotipos
 
