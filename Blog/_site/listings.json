@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/restringir-aleatorizacion/index.html",
       "/posts/diagramas-causales/index.html",
       "/posts/dis-comp-aleat/index.html",
       "/posts/modelo-lineal/index.html",
