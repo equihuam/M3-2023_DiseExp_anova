@@ -210,7 +210,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="respuesta-de-cultivares-a-fertilizantes-glex1">Respuesta de Cultivares a fertilizantes (GLEX1)</h2>
 <p>Ejemplo tomado de Crawley (1998). <strong>Glim for Ecologists</strong>. Oxford. UK.</p>
 <p>Es un experimento en el que se midió el crecimiento (masa seca al cosechar = <em>y</em>) de plantas tratadas con 10 concentraciones diferentes de suplemento mineral como fertilizante, <em>f</em>. El experimento fue realizado con dos cultivares diferentes, <em>g</em>. Uno fue clonado de plantas de un ambiente árido y el otro de uno húmedo. Todas las plantas de cada tipo, sin restricciones, fueron asignadas aleatoriamente a los distintos niveles de fertilizante.</p>
-<p>leer lista de archivos en un directorio</p>
 <section id="lectura-de-datos" class="level3">
 <h3 class="anchored" data-anchor-id="lectura-de-datos">Lectura de datos</h3>
 <div class="cell">
@@ -231,7 +230,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 6            6           3.6493</code></pre>
 </div>
 </div>
-<p>A veces hay archivos que contienen datos faltantes o perdidos. Podemos enfrentar eso con la función <code>complete.cases()</code> que revisa linea por linea el archivo y regresa “verdadero” si todas las columnas tienen datos válidos y “falso”. Esta lista de “verdaderos” y “falsos” la podemos usar para elegir que filas del archivo de datos están completas y así podemos eliminarlas del conjunto de datos que vamos a procesar.</p>
+<p>A veces hay archivos que contienen datos faltantes o perdidos. Podemos enfrentar eso con la función <code>complete.cases()</code> que revisa linea por linea el archivo y regresa “verdadero” si todas las columnas tienen datos válidos y “falso” si hay huecos. Esta lista de “verdaderos” y “falsos” la podemos usar para elegir que filas del archivo de datos están completas y así podemos eliminarlas del conjunto de datos que vamos a procesar.</p>
 <p>Sobre los datos limpios, generamos la variable indicativa del tipo de ambiente del que se tomo la planta que se clonó.</p>
 <div class="cell">
 <details>
@@ -274,7 +273,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Para explorar mejor los datos podemos marcar en la gráfica las obsevaciones que pertenecen a cada condición. En este caso, te propongo poner el nobre que le dimos al “tratamiento”.</p>
+<p>Para explorar mejor los datos podemos marcar en la gráfica las obsevaciones que pertenecen a cada condición. En este caso, te propongo poner el nombre que le dimos al “tratamiento”.</p>
 <p>Gráfica de masa seca contra fertilizante mineral diferenciando por genotipos</p>
 <div class="cell">
 <details>
@@ -287,7 +286,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Podemos calcular ver las características estadísticas de lo que pasa con la biomasa que produce cada genotipo</p>
+<p>Podemos ver las características estadísticas de lo que pasa con la biomasa que produce cada genotipo</p>
 </section>
 <section id="resumen-de-los-datos-de-masa-por-genotipo" class="level3">
 <h3 class="anchored" data-anchor-id="resumen-de-los-datos-de-masa-por-genotipo">Resumen de los datos de masa por genotipo</h3>
@@ -318,7 +317,7 @@ GLEX1$cultivar: seco
  (Other):4                                 </code></pre>
 </div>
 </div>
-<p>Ahora podemos realizar el análisis estadístico mediante modelos. Hagamos ahora un análisis con el enfoque “tradicional” en <strong>R</strong>. Lo primero que haremos es configurar el entorno de análisis, esto significa elegir el tipo de contrastes que queremos operar al ajustar modelos <em>reparametrizados</em>. Haremos esto con opción <em>contrasts</em> en la función <code>options(contrasts=...)</code></p>
+<p>Ahora podemos realizar el análisis estadístico mediante modelos. Hagamos un análisis con el enfoque “tradicional” en <strong>R</strong>. Lo primero que haremos es configurar el entorno de análisis, esto significa elegir el tipo de contrastes que queremos operar al ajustar modelos <em>reparametrizados</em>. Haremos esto con opción <em>contrasts</em> en la función <code>options(contrasts=...)</code></p>
 <p>Para asegurarnos de que los estimadores del modelo toman el primer nivel como referencia hay que usar el modo de reparametrización “treatment”. Hay otras formas de reparametrización, como podrás ver en la ayuda de <code>contr.treatment</code>.</p>
 <div class="cell">
 <details>
@@ -389,7 +388,7 @@ Residuals     9  30.402   3.378
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
-<p>Podemos intentar hacer un modelo completo, es decir con todos los posibles factores y combinaciones que pueden producirse. Sin embargo este modelo consume todos los grados de liberta (observacione) con que contamos. De todos modos lo podemos intentar para ver que nos dice <strong>R</strong>.</p>
+<p>Podemos intentar hacer un modelo completo, es decir con todos los posibles factores y combinaciones que pueden producirse. Sin embargo este modelo consume todos los grados de liberta (observacione) con que contamos pues cada tratamiento fue ensayado una sola vez en este experimento. De todos modos lo podemos intentar para ver que nos dice <strong>R</strong>.</p>
 <div class="cell">
 <details>
 <summary>Código</summary>
@@ -665,8 +664,8 @@ cultivarseco   -5.7096998 -1.990940</code></pre>
 </details>
 </div>
 </section>
-<section id="definnición-de-los-factores" class="level2">
-<h2 class="anchored" data-anchor-id="definnición-de-los-factores">Definnición de los factores</h2>
+<section id="definición-de-los-factores" class="level2">
+<h2 class="anchored" data-anchor-id="definición-de-los-factores">Definición de los factores</h2>
 <p>Los datos contienen información cualitativa, así que necesitamos definir esas piezas de información como factores. Aprovecharemos para experimentar con los factores de tipo “ordenado”. Esta variante de factor aprovecha el contenido <em>seminumérico</em> que pudiéramos tener en alguna variable. En este caso lo haremos así para el contenido de proteína.</p>
 <div class="cell">
 <details>

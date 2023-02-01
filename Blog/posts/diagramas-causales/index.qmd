@@ -17,19 +17,16 @@ Judea Pearl se ha aproximado a la causalidad desde una peerspectiva matemática 
 
 </iframe>
 
-
-
 # Los DAG y modelos estadísticos
 
 $\newcommand{\ci}{\perp\!\!\!\perp\!\!\!~~~}$
 
-<img src="http://images.ecestaticos.com/MKj85n1PcWWKTkz_KGAbBek3-gk=/0x0:783x1200/490x752/filters:fill(white):format(.JPG)/f.elconfidencial.com/original/576/350/da1/576350da1a73890bf7e9710e9f63c5fe.jpg" style="float: right;" width="20%"/>
+<img src="https://images.ecestaticos.com/MKj85n1PcWWKTkz_KGAbBek3-gk=/0x0:783x1200/490x752/filters:fill(white):format(.JPG)/f.elconfidencial.com/original/576/350/da1/576350da1a73890bf7e9710e9f63c5fe.jpg" style="float: right;" width="20%"/>
 
-[Lübkea K, et. al (2020)](1). nos ofrecen el artículo *Why We Should Teach Causal Inference: Examples in Linear Regression With Simulated Data*. La propuesta es atractiva y vamos a ensayar hacerlo. Esta publicación, dicen los propios autores, surge de que desde hace ya algunos años se ha venido señalando la importancia de propiciar la integración de la inferencia causal (**DAG**s y similares) en los cursos introductorios de estadística. Judea Pearl llama a este enfoque la "revolución causal". Con su obra **El libro del Porqué** ha logrado incrementar el interés en hacer esta fusión en la enseñanza de la estadística.
-  \
-  \
-  \
-  
+[Lübkea K, et. al (2020)](1). nos ofrecen el artículo *Why We Should Teach Causal Inference: Examples in Linear Regression With Simulated Data*. La propuesta es atractiva y vamos a ensayar hacerlo. Esta publicación, dicen los propios autores, surge de que desde hace ya algunos años se ha venido señalando la importancia de propiciar la integración de la inferencia causal (**DAG**s y similares) en los cursos introductorios de estadística. Judea Pearl llama a este enfoque la "revolución causal". Con su obra **El libro del Porqué** ha logrado incrementar el interés en hacer esta fusión en la enseñanza de la estadística.\
+\
+\
+
 <img src="guia_autores_confunding.png" style="float:left;" width="40%"/>La influencia de este modo de pensar es tal que está provocando incluso que algunas revistas se interesen en generar guias de uso de estas ideas, por ejemplo: *Control of Confounding and Reporting of Results 1n Causal Inference Studies Guidance for Authors...*. En gran parte, la tradición de experimentos aleatorizados ofrece una sólida herramienta para estudiar relaciones causales. El problema, es que hay muchas disciplinas y más situaciones, en donde el enfoque de experimentos aleatorizados es inviable.
 
 El hecho es que los datos observacionales son una proporción abrumadora de la materia prima para la investigación empírica. Por lo tanto es necesario que, además de adquirir las destrezas que los experimentos aleatorizado requieren, también deben aprender a pensar en una forma más amplia acerca del proceso a través del cual se generan los datos. Esto es indispensable para fortalecer habilidades críticas necesarias para estar en posibilidad de extraer conclusiones adecuadas a partir de ellos.
@@ -42,9 +39,9 @@ Vivimos en un mundo pleno de datos observacionales multivariados. Se trata de da
 
 ## Ejemplo: Efectos de sesgo en las causas
 
-El primer ejemplo de simulación que haremos parte de la proposición causal: 
+El primer ejemplo de simulación que haremos parte de la proposición causal:
 
-* El aprendizaje (X) tiene como efecto el conocimiento (C), y conocer provoca la comprensión (Y),
+-   El aprendizaje (X) tiene como efecto el conocimiento (C), y conocer provoca la comprensión (Y),
 
 Además actúan algunos factores exógenos (U, son el término de error en el modelo estadístico). En la vida real, el aprendizaje, el conocimiento y la comprensión pueden ser operacionalizados por algún cuestionario y estandarizados para dar la precisión necesaria al análisis.
 
@@ -63,6 +60,7 @@ en donde *N*(*μ*, *σ*) indica que existen variaciones por causas no observadas
 ```{r}
 set.seed(1896) # Si interesa repetir la misma secuencia de numeros aleatorios. Habilita Repetibilidad
 n <- 1000 # Sample Size
+
 aprender <- rnorm(n)
 conocer <- 5 * aprender + rnorm(n)  # Conocer depende del comportamiento de aprender
 entender <- 3 * conocer + rnorm(n)  # entender depende del comportamiento de conocer
@@ -106,21 +104,28 @@ Los resultados de esta exploración produce dos ecuaciones:
 
 $$
 \begin{align}
-entender &= -0.022 + 15.12 \, aprender  + \varepsilon  \label{ec1}\tag{1} \\
-entender &= -0.005 +  0.122 \, aprender + 2.98 \,conocer + \varepsilon \label{ec2}\tag{2}
+X &= U_{X}, \, U_{X} \sim N(0, 1) \\
+C &= 5 X + U_{C}, \, U_{C} \sim N(0, 1) \\ 
+Y &= 3 C + U_{Y}, \, U_{Y} \sim N(0, 1)
 \end{align}
 $$
 
-* [¿Puedes explicar qué pasó aquí?]{style="color:GoldenRod"}
+$$
+\begin{align}
+entender &= -0.022 + 15.12 \, aprender  + \varepsilon \\
+entender &= -0.005 +  0.122 \, aprender + 2.98 \, conocer + \varepsilon 
+\end{align}
+$$
 
-* [¿Qué relación tiene esto con lo que cabría esperar de acuerdo con as reglas de la "separación direccional"?]{style="color:GoldenRod"}
+-   [¿Puedes explicar qué pasó aquí?]{style="color:GoldenRod"}
 
-* [¿Qué sugieren los datos del ajuste del modelo estadístico `lm`?]{style="color:GoldenRod"}
+-   [¿Qué relación tiene esto con lo que cabría esperar de acuerdo con as reglas de la "separación direccional"?]{style="color:GoldenRod"}
 
-* [¿Tienen relevancia el aprendizaje y el conocimiento?]{style="color:GoldenRod"}
+-   [¿Qué sugieren los datos del ajuste del modelo estadístico `lm`?]{style="color:GoldenRod"}
 
-* [¿Cuál es el modelo adecuado dada la proposición causal considerada?]{style="color:GoldenRod"}
+-   [¿Tienen relevancia el aprendizaje y el conocimiento?]{style="color:GoldenRod"}
 
+-   [¿Cuál es el modelo adecuado dada la proposición causal considerada?]{style="color:GoldenRod"}
 
 Podemos utilizar a `dagitty` para explorar el DAG directamente de la siguiente manera. Podemos preguntarnos cuales serían las formas de *separar* el grafo con criterios de independencia condicional. Se trata de aplicar las tres reglas de separación direccional al grafo. Afortunadamente `dagitty` lo puede hacer por nosotros.
 

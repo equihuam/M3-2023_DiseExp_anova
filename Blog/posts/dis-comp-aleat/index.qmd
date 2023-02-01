@@ -180,7 +180,7 @@ GLEX11 <- read_excel("GLEX11.xlsx",
     col_names = TRUE)
 ```
 
-## Definnición de los factores
+## Definición de los factores
 
 Los datos contienen información cualitativa, así que necesitamos definir esas piezas de información como factores. Aprovecharemos para experimentar con los factores de tipo "ordenado". Esta variante de factor aprovecha el contenido *seminumérico* que pudiéramos tener en alguna variable. En este caso lo haremos así para el contenido de proteína.
 

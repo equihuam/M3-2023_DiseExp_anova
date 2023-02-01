@@ -1,5 +1,5 @@
 ---
-title: "Conceptos y Modelos en la experimentación"
+title: "Restricciones a la aleatorización"
 author: ["Miguel Equihua", "Alan Aguirre"]
 date: "2023-01-27"
 draft: true
@@ -7,49 +7,13 @@ lang: es
 categories: [clase]
 ---
 
-# El enfoque de modelación
-
-La propuesta que seguiremos en el **bloque 3** es seguir el enfoque que traduce situaciones reales en abstracciones que escribimos como modelos estadísticos. De esta manera generamos una correspondencia matemática entre nuestras concepciones sobre cómo funcionan aspectos concretos de la naturaleza. Es así que nos planteamos generar series de números *idealizados por el modelo* que podemos comparar con series de números observamos directamente de la naturaleza. Sí estas dos series de números se parecen en forma importante, tendemos a pensar que nuestro modelo es útil para describir el comportamiento del segmento de la naturaleza que elegimos abstraer. [¿Podríamos usarlo para intervenir en él?]{style="color:GoldenRod"}
-
-Recordemos que el modelo completo es el que tiene todos los parámetros posibles de acuerdo con el diseño del estudio, usualmente al menos un término por cada grupo experimental (tratamiento). En general el método para llegar a un segundo modelo es introducir restricciones (supuestos que especifican el valor de particulares) sobre los parámetros del primer modelo.
-
-Las restricciones usualmente son nuestra(s) hipótesis nula(s) y en ese caso las usamos para eliminar algunos parámetros del conjunto usado en el modelo completo. Naturalmente llamamos al modelo resultante simplemente el modelo restringido.[¿piensas que sería válido restringir un modelo con valores de algún parámetro con un valor que no sea cero?]{style="color:GoldenRod"}
-
-Consideremos el ejemplo siguiente. Se trata de un grupo de hojas a las que medimos el contenido de nitrógeno. En este estudio no sabemos ni estamos postulando ninguna forma de obtener predicciones distintas para subgrupos de hojas. El modelo correspondiente es:
-
-$$
-y_{i} = \mu + \varepsilon_{i}
-$$
-
-[¿No es este un modelo de regresión simple? ¿explicalo?]{style="color:GoldenRod"}
-
-![image.png](../../../Figuras/ANOVA_modelo_hojas.png)
-
-
-Al considerar modelos de distinta complejidad debemos pensar en alguna manera de incorporar ese aspecto en nuestro análisis. Es así que llegamos a la noción de *grados de libertad* que la expresamos como el número de observaciones menos el número de parámetros en un modelo.
-
-Con todo esto, el cálculo del *índice proporcional de error* (**IPE**) se puede formular para eliminar el efecto de la complejidad de los modelos que se comparan. El resultado es este:
-
-$$
-IPE=\frac{\frac{(E_{R}-E_{C})}{gl_{C}-gl_{R}}}{\frac{E_{C}}{gl_{C}}}  \text{ si podemos suponer normalidad en la variable de respuesta }\sim F_{(gl_{C}-gl_{R}), gl_{C}}
-$$
-
-Si suponemos que las variables son adecuadamente descritas por un modelo de probabilidades *normal* (Gaussiano), entones el IPE se distribuirá como una función de probabilidades *F*. Por cierto, si lo que se el experimento sólo compara dos medias entonces se cumple que los estadísticos son la misma distribución de probabilidades:\$ F = t\^{2}\$
-
-```{r}
-pf(198.50, 1, 2, lower.tail=F)
-pt(sqrt(198.50), 2, lower.tail = F)*2
-```
-
 ### Restricciones a la aleatorización
 
-Tenemos las dos situaciones experimentales que se ilustran en la figura. El análisis de estas situaciones experimentales sugiere dos aproximaciones distintas.
+Imaginemos que tenemos las dos situaciones experimentales que se ilustran en la figura. El análisis de estas situaciones experimentales sugiere dos posible aproximaciones, aproximaciones prácticas, pero
 
-![image.png](../../../Figuras/retricciones_a_la_aleatorizaci%C3%B3n_1.png)
+[**¿qué modelos propondrías para analizarlos?**]{style="color:GoldenRod"}
 
 ![](images/retricciones_a_la_aleatorizaci%C3%B3n_1.png)
-
-Veamos, [¿qué modelos propondrías para analizarlos?]{style="color:GoldenRod"}
 
 Si se supone ausencia de interacción entre Z y β, ambos casos se podría analizar con el mismo modelo:
 
@@ -63,17 +27,23 @@ En donde: \* $\mu$ es la media general \* $Z_{i}$ es el efecto del tratamiento $
 
 Anderson (1970, 1974) notó que no podía ser que el mismo modelo fuera apropiado para dos situaciones tan distintas. Razonó que no se podían hacer inferencias sobre los bloques pues cada uno de ellosaparece sólo una vez.
 
-[¿Concuerdas en que no es posible estimar su efecto?]{style="color:GoldenRod"}
+[**¿Concuerdas en que no es posible estimar su efecto?**]{style="color:GoldenRod"}
 
-[¿cuál piensas es el efecto de restringir el proceso de aleatorización en la asignación de los tratamientos?]{style="color:GoldenRod"}.
+[**¿Cuál es el efecto de restringir la aleatorización en la asignación de los tratamientos?**]{style="color:GoldenRod"}.
 
-Anderson propuso incorporar en el modelo términos que dieran cuenta de restricciones en la aleatorización de las unidades experimentales. Llamó a estos términos "errores de restricción", pues también sugirió que deberían ser términos de *efectos aleatorios*. Así, el modelo de bloques se
+Anderson propuso incorporar en el modelo términos que dieran cuenta de restricciones en la aleatorización de las unidades experimentales. Llamó a estos términos "errores de restricción", pues también sugirió que deberían ser considerados términos de *efectos aleatorios*.
+
+Así, el modelo de bloques se escribiría así:
 
 $$
 y_{ijkm} = \mu + Z_{i} + B_{j} + \delta_{k(j)} + \varepsilon_{m(ijk)}
 $$
 
-En donde los términos tienen la misma interpretación de arriba, y los cambios son: \* $\delta_{k(j)}$ es el componente de variación aleatoria introducido por la restricción a la aleatorización (no estimable). \* $\varepsilon_{m(ijk)}$ es el componente aleatorio derivado de la presición de las mediciones.
+En donde los términos tienen la misma interpretación de arriba, y lo que aregamoses:
+
+-   $\delta_{k(j)}$ , el componente de variación aleatoria introducido por la restricción a la aleatorización al formar bloques. Este error por lo pronto no es estimable.
+
+-   $\varepsilon_{m(ijk)}$ es el componente aleatorio derivado de la presición de las mediciones.
 
 El error de restricción de bloques representa las características particulares y aleatorias de cada conjunto de unidades que formen el bloque *j* (cosas como errores de medición, condiciones ambientales comunes, manipulación común, etc.). Este nuevo término tiene estas características:
 
