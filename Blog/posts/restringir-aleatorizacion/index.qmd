@@ -77,7 +77,7 @@ La idea de Anderson tiene validez general para experimentos *completos y balance
 
 #### Ejemplo de aplicación del error de restricción en la planeación de experimentos
 
-![](images/becerro.jpg)
+![](images/becerro.jpg){width="400"}
 
 Se quieren probar 3 tipos de *ración de alimentación* (**A**, **B**, **C**), sobre el desempeño de vacas de la raza Holstein. Se dispone de 12 animales para realizar el ensayo. Se cuenta con corrales en los que caben hasta 4 animales en cada uno. Podemos optar por dar un tratamiento de alimentación a cada corral.
 
