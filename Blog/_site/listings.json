@@ -2,6 +2,8 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/modelos-mixtos/index.html",
+      "/posts/experimentos-anidados/index.html",
       "/posts/restringir-aleatorizacion/index.html",
       "/posts/diagramas-causales/index.html",
       "/posts/dis-comp-aleat/index.html",

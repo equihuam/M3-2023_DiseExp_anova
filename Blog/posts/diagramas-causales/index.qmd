@@ -23,7 +23,7 @@ $\newcommand{\ci}{\perp\!\!\!\perp\!\!\!~~~}$
 
 <img src="https://images.ecestaticos.com/MKj85n1PcWWKTkz_KGAbBek3-gk=/0x0:783x1200/490x752/filters:fill(white):format(.JPG)/f.elconfidencial.com/original/576/350/da1/576350da1a73890bf7e9710e9f63c5fe.jpg" style="float: right;" width="20%"/>
 
-[Lübkea K, et. al (2020)](1). nos ofrecen el artículo *Why We Should Teach Causal Inference: Examples in Linear Regression With Simulated Data*. La propuesta es atractiva y vamos a ensayar hacerlo. Esta publicación, dicen los propios autores, surge de que desde hace ya algunos años se ha venido señalando la importancia de propiciar la integración de la inferencia causal (**DAG**s y similares) en los cursos introductorios de estadística. Judea Pearl llama a este enfoque la "revolución causal". Con su obra **El libro del Porqué** ha logrado incrementar el interés en hacer esta fusión en la enseñanza de la estadística.\
+[Lübkea K, et. al (2020)](https://www.tandfonline.com/doi/full/10.1080/10691898.2020.1752859). nos ofrecen el artículo *Why We Should Teach Causal Inference: Examples in Linear Regression With Simulated Data*. La propuesta es atractiva y vamos a ensayar hacerlo. Esta publicación, dicen los propios autores, surge de que desde hace ya algunos años se ha venido señalando la importancia de propiciar la integración de la inferencia causal (**DAG**s y similares) en los cursos introductorios de estadística. Judea Pearl llama a este enfoque la "revolución causal". Con su obra **El libro del Porqué** ha logrado incrementar el interés en hacer esta fusión en la enseñanza de la estadística.\
 \
 \
 
