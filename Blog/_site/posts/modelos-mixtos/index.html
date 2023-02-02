@@ -374,7 +374,7 @@ $class
 
 $formula
 viaje ~ 1 | riel
-&lt;environment: 0x0000020e838b5f78&gt;
+&lt;environment: 0x0000018c9437de70&gt;
 
 $labels
 $labels$y
@@ -389,7 +389,7 @@ $units$y
 $FUN
 function (x) 
 max(x, na.rm = TRUE)
-&lt;environment: 0x0000020e838f0cf0&gt;
+&lt;environment: 0x0000018c943bcc18&gt;
 
 $order.groups
 [1] TRUE</code></pre>
@@ -1453,33 +1453,31 @@ dbl (1): Length
 <div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a>manos.lme <span class="ot">&lt;-</span> <span class="fu">lme</span>(<span class="at">fixed=</span> Length <span class="sc">~</span> Hand <span class="sc">-</span> <span class="dv">1</span>, </span>
 <span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">random=</span><span class="fu">list</span>(<span class="at">Individual =</span> <span class="sc">~</span> <span class="dv">1</span>),</span>
 <span id="cb104-3"><a href="#cb104-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data=</span>manos)</span>
-<span id="cb104-4"><a href="#cb104-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(manos.lme)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb104-4"><a href="#cb104-4" aria-hidden="true" tabindex="-1"></a>manos.lme</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Linear mixed-effects model fit by REML
   Data: manos 
-       AIC      BIC    logLik
-  80.62586 86.23065 -36.31293
+  Log-restricted-likelihood: -36.31293
+  Fixed: Length ~ Hand - 1 
+ HandLeft HandRight 
+ 17.35625  17.59375 
 
 Random effects:
  Formula: ~1 | Individual
         (Intercept)  Residual
 StdDev:    1.950137 0.1981163
 
-Fixed effects:  Length ~ Hand - 1 
-             Value Std.Error DF  t-value p-value
-HandLeft  17.35625 0.4900436 15 35.41777       0
-HandRight 17.59375 0.4900436 15 35.90242       0
- Correlation: 
-          HndLft
-HandRight 0.99  
-
-Standardized Within-Group Residuals:
-        Min          Q1         Med          Q3         Max 
--1.39345279 -0.49824688 -0.05117901  0.54100404  1.31959953 
-
 Number of Observations: 32
 Number of Groups: 16 </code></pre>
+</div>
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(manos.lme)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>     numDF denDF  F-value p-value
+Hand     2    15 644.8337  &lt;.0001</code></pre>
 </div>
 </div>
 
