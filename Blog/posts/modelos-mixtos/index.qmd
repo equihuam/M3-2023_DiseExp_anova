@@ -205,9 +205,9 @@ Al ignorar el efecto de los rieles, dentro de los que repito la prueba para obte
 
 Los residuos de cada riel tienen todos el mismo signo. Es decir se mantiene un efecto sistemático importante en ellos.
 
-[Te parecería buena idea agregar el término que representa al riel para resolver este problema? ]{style="color:GoldenRod"}
+[Te parecería buena idea agregar el término que representa al riel para resolver este problema?]{style="color:GoldenRod"}
 
-[¿es fijo o aleatorio?]{style="color:GoldenRod"}
+[¿Es fijo o aleatorio?]{style="color:GoldenRod"}
 
 Este nuevo modelo permite que cada riel sea representado por una media diferente. Suponiendo efectos fijos, la estimación del parámetro de interés es esta.
 
@@ -258,7 +258,7 @@ rieles.m3 <- lme(fixed = viaje ~ 1,
 rieles.m3
 ```
 
-[ Ayudame a comentar estos resultados ¿qué te llama la atención?]{style="color:GoldenRod"}
+[Ayudame a comentar estos resultados ¿qué te llama la atención?]{style="color:GoldenRod"}
 
 ```{r}
 summary (rieles.m3)
@@ -277,13 +277,9 @@ El resumen del ajuste muestra dos criterios nuevos para comparar y evaluar model
 
 Es bueno contar con ellos para comparar la calidad general de los modelos ajustados, pero no olviden que centrar nuestra atención en los intervalos de confianza es más informativo y potencialmente interesante.
 
-En cualquier caso, "entre más pequeño el valor del criterio, mejor", pero no olvides que más interesantes son los intervalos de confianza que obtengas.
+En cualquier caso, "entre más pequeño el valor del criterio, mejor", pero no olvides que más interesantes son los intervalos de confianza que obtengas.Finalmente, veamos los residuos
 
-Finalmente, veamos los residuos [¿cómo se ven?]{style="color:GoldenRod"}
-
-```{r}
-plot (rieles.m3, col="black")
-```
+[¿Cómo se ven?]{style="color:GoldenRod"}
 
 [¿Qué nos sugieren estos resultados?]{style="color:GoldenRod"}
 
@@ -530,4 +526,18 @@ t(data.frame(trat_1 = intervals(ratas.lme.m4, level = nivel_confianza)$fixed[1,]
 ```{r}
 t(data.frame(trat_1_y_3 = intervals(ratas.lme.m4C, level = nivel_confianza)$fixed[1,],
              trat_2 = colSums(intervals(ratas.lme.m4C, level = nivel_confianza)$fixed[1:2,])))
+```
+
+# Modelo de las manos
+
+```{r}
+
+manos <-  read_csv("../restringir-aleatorizacion/manos.dat")
+
+
+manos.lme <- lme(fixed= Length ~ Hand - 1, 
+                    random=list(Individual = ~ 1),
+                    data=manos)
+summary(manos.lme)
+
 ```
