@@ -233,17 +233,15 @@ y_{ijkm} = \mu + Z_{i} + B_{j} + \delta_{k(j)} + \varepsilon_{m(ijk)}
 </ul>
 <p>El <em>error de restricción de bloques</em> representa las características particulares y aleatorias de cada conjunto de unidades que formen el bloque <em>j</em> (cosas como errores de medición, condiciones ambientales peculiares del bloque pero comunes en su interior, manipulación común al iinterior del bloque, etc.). Este nuevo término tiene estas características:</p>
 <ul>
-<li>Es aleatorio (se asume se distribuye como una normal e independientemente: ~normal(0, <span class="math inline">\(\sigma_{k}^2\)</span>)</li>
-<li>No es estimable y tampoco lo son sus combinaciones, porque no hay grados de libertad.</li>
-<li>Es útil en el modelo para facilitar identificar qué efectos se pueden poner a prueba mediante razones <em>F</em>. Esto se determina al examinar las <em>esperanzas de cuadrados medios</em> (<strong>ECM</strong>).</li>
-<li>Es un <em>efecto confundido</em> (no se puede separar) del efecto de bloque o grupo de unidades experimentales.</li>
+<li><p>Es aleatorio (se asume se distribuye como una normal e independientemente: ~normal(0, <span class="math inline">\(\sigma_{k}^2\)</span>)</p></li>
+<li><p>No es estimable y tampoco lo son sus combinaciones, porque no hay grados de libertad.</p></li>
+<li><p>Es útil en el modelo para facilitar identificar qué efectos se pueden poner a prueba mediante razones <em>F</em>. Esto se determina al examinar las <em>esperanzas de cuadrados medios</em> (<strong>ECM</strong>).</p></li>
+<li><p>Es un <em>efecto confundido</em> (no se puede separar) del efecto de bloque o grupo de unidades experimentales.</p></li>
 </ul>
-<p>Consideremos el caso de la ganancia de peso en un grupo de orugas que declina conforme se incrementa el contenido de taninos en su dieta, esta condición puede describirse en forma abreviada así:</p>
-<p>ganancia de peso de cada oruga = ganancia de peso base en general + efecto del contenido de taninos en la dieta + Efecto de otros factores que fluctúan aleatoriamente</p>
 <p>¿Cómo se ve el análisis del modelo en un cuadro de ANOVA?</p>
 <p><img src="images/Anova_caso_1.png" class="img-fluid"></p>
 <p><span style="color:GoldenRod">¿Qué tipo de efecto tienen los factores? ¿Qué se puede probar comparando cuadrados medios?</span></p>
-<p>Con la propuesta de Anderson de incluir términos para representar el efecto de no aplicar aleatorización en forma completa, el cuadro de ANOVA se vería como se muestra enseguida.</p>
+<p>Con la propuesta de Anderson de incluir términos para representar el efecto de no aplicar aleatorización en forma completa, el cuadro de ANOVA se vería como se muestra enseguida. Hay que notar que en esta argumentación de Anderson, se está considerando un modelo en el que el término de interacción no se incluye. Esto hace que su efecto quede confundido con el error de medición, pero más importante, en el análisis de la varianza, este termino que incluye la estimación confundida de la interacción más la del error de medición, se convierte en el denominador para las pruebas de <em>F</em> . Por esta misma razón, los grados de libertad corresponden a los de la interacción, es decir el producto de los grados de libertad de los factores involucrados en la interacción.</p>
 <p><span style="color:GoldenRod">¿Qué tipo de efecto tienen los factores? ¿Qué se puede probar</span></p>
 <p><img src="Images/Anova_Anderson.png" class="img-fluid"></p>
 <p>La idea de Anderson tiene validez general para experimentos <em>completos y balanceados</em>. Se puede utilizar para analizar con claridad el efecto de distintos arreglos experimentales que puedan interesar al investigador.</p>
@@ -259,14 +257,40 @@ Y_{ijk} =  \mu + T_{i} + \delta_{k(i)} + \varepsilon_{j(ik)}
 \]</span></p>
 <p>El cuadro de ANOVA se vería así:</p>
 <p><img src="Images/ANOVA_Modelo_vacas_1.png" class="img-fluid"></p>
+<p>Las reglas para el cálculo de los grados de libertad es la siguiente:</p>
+<ol type="1">
+<li>Para los términos entre paréntesis (componentes anidados en el diseño), multiplica los niveles que correspondan a los índices.</li>
+<li>Para los términos fuera de paréntesis (componentes cruzados), multiplica (niveles-1) que correspondan a cada índice</li>
+<li>Finalmente, multiplica los dos productos anteriores para obtener los grados de libertad correspondientes al componente de varianza.</li>
+<li>Los grados de libertad de la varianza total es simplemente el número de unidades experimentales (o de observación) menos uno o la suma de los grados de libertad de todas las fuentes de variación consideradas, lo que permite tener una validación sencilla.</li>
+</ol>
+<p>Así, en el caso que estamos viendo los números involucradas con este diseño son: raciones = 3 (índice <em>i</em>), Número de corrales por tratamiento = 1 (índice <em>k</em>) y finalmente vacas por corral= 4 (índice <em>j</em>). En estos términos:</p>
+<p><span class="math display">\[
+\begin{align}
+gl_{ración} &amp;= i - 1 = 2 \\
+gl_{corrales} &amp;= (k - 1) \times i = 0 \\
+gl_{ración} &amp;= (j - 1) \times i \times k = 9  \\
+gl_{total} &amp;= gl_{ración} + gl_{ración} + gl_{ración} = 11
+\end{align}
+\]</span></p>
 <p><span style="color:GoldenRod">¿Qué piensan de este otro arreglo experimental?</span></p>
 <p><img src="Images/Diseño_vacas_2.png" class="img-fluid"></p>
-<p>El modelo es el mismo que en la situación, pero ahora varían los términos estimables:</p>
+<p>La situación ahora es, cada <em>ración</em> la asigno a un corral en el que tengo dos animales, y repito todo el experimento considerando los corrales una vez. Esto implica que los corrales, representados por <span class="math inline">\(\delta\)</span>, influirán sobre las vacas que tienen dentro con dos cosas: 1) el efecto del tratamiento y 2) el efecto de las características peculiares del corral. Para controlar estas últimas lo que habría que hacer es <strong>aleatorizar</strong> los corrales entre las <em>raciones</em>. Para no introducir un error particular para los animales, habrá que <strong>aleatorizar</strong> las vacas entre los corrales. De esta manera, los efectos de sus peculiaridades se convierten en variaciones aleatorias, independientes que se traducen en el error de ´medición o <em>residual</em>.</p>
+<p>El modelo es el mismo que en la situación anterior, pero ahora varían los términos estimables:</p>
 <p><span class="math display">\[
 Y_{ijk} =  \mu + T_{i} + \delta_{k(i)} + \varepsilon_{j(ik)}
 \]</span></p>
 <p>El cuadro de ANOVA se vería así:</p>
 <p><img src="Images/ANOVA_Modelo_vacas_2.png" class="img-fluid"></p>
+<p>Los números de entidades involucradas con este diseño son: raciones = 3 (índice <em>i</em>), vacas por corral = 2 (índice <em>k</em>) y finalmente repeticiones del experimento completo = 2 (índice <em>j</em>):</p>
+<p><span class="math display">\[
+\begin{align}
+gl_{ración} &amp;= i - 1 = 2 \\
+gl_{corrales} &amp;= (k - 1) \times i = 3 \\
+gl_{ración} &amp;= (j - 1) \times i \times k = 6  \\
+gl_{total} &amp;= gl_{ración} + gl_{ración} + gl_{ración} = 11
+\end{align}
+\]</span></p>
 <p>Como <a href="http://www.scielo.org.co/pdf/rccp/v20n2/v20n2a11.pdf">referencia sugerida encontré este artículo</a> que describe como hacer el análisis necesario para determinar las <em>esperanzas de cuadrados medios</em> (<strong>EMC</strong>).</p>
 </section>
 </section>
@@ -424,65 +448,22 @@ Residuals  15   0.589  0.0392
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
+<p>Es cierto que el efecto de <em>individuo</em> queda raro en este modelo, pes nos lo reporta en estimadores que tienen sentido como si se tratara de un factor de efectos fijos, es decir que nos interesa decir algo específico sobre esos individuos y ningún otro. Esto obviamente nos es así. El factor individuo es de efectos aleatorios, simplemente que <code>lm</code>` no prevé esta situación. Los resultados apuntan en la dirección correcta y los valores del factor <em>Hand</em> son válidos. Lo podemos manejar razonablemente simplemente recordando que el individuo es de <strong>efectos aleatorios</strong> y que por tanto no tienen mucho sentido, generalmente, hacer referencia a los estimadores puntuales que produce la regresión. Lo que sí tiene interés es la estimación de las varianzas, que permite así corregir e idealmente lograr mayor precisión en la estimación en los tratamientos de interés. En este caso habría que notar que la varianza estimada en el residuo da cuenta tanto de la variación aleatoria que tenemos al medir las unidades experimentales como la del <em>error de restricción</em> asociado con las peculiaridades de, en este caso, cada persona que se midió: <span class="math inline">\(\sigma^{2} + t \sigma^{2}_{\delta}\)</span> . La medición de esta varianza combinada, persona + sus peculiaridades = 7.6453, sugiere que es buena idea controlar su efecto. En esto mismos términos la varianza del factor <strong><em>hand</em></strong> es <span class="math inline">\(\sigma + t\sigma\^{2}_{\delta} + r\sigma^{2}_{H}\)</span>, lo qe hace válido probar el efecto <em>fijo</em> de <strong>hand</strong>.</p>
+<p><span class="math display">\[
+F = \frac {Mean Sq Hand} {Mn Sq error} = \frac {0.4513}{0.0392} = 11.497
+\]</span> con 1 y 15 grados de libertad. En <strong>R</strong> tenemos acceso a la distribbución de <em>F</em> con la función <code>qf</code>que calcula la probabilidad acumulada entre el dato <em>q</em> que le doy, así como los grados de libertad asociados.</p>
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>manos_modelo_4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Length <span class="sc">~</span> Hand <span class="sc">+</span> Individual, <span class="at">data =</span> manos)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(manos_modelo_4)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>varianza <span class="ot">&lt;-</span> <span class="fu">anova</span>(manos_modelo_3)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pf</span>(<span class="at">q =</span> varianza<span class="sc">$</span><span class="st">`</span><span class="at">F value</span><span class="st">`</span>[<span class="dv">1</span>], <span class="at">df1 =</span> <span class="dv">1</span>, <span class="at">df2 =</span> <span class="dv">15</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = Length ~ Hand + Individual, data = manos)
-
-Residuals:
-     Min       1Q   Median       3Q      Max 
--0.26875 -0.09062  0.00000  0.09062  0.26875 
-
-Coefficients:
-            Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept) 17.43125    0.14440 120.714  &lt; 2e-16 ***
-HandRight    0.23750    0.07004   3.391 0.004034 ** 
-IndividualB  0.90000    0.19812   4.543 0.000389 ***
-IndividualC -1.50000    0.19812  -7.571 1.69e-06 ***
-IndividualD -2.85000    0.19812 -14.386 3.50e-10 ***
-IndividualE -3.95000    0.19812 -19.938 3.30e-12 ***
-IndividualF  1.35000    0.19812   6.814 5.85e-06 ***
-IndividualG  1.95000    0.19812   9.843 6.15e-08 ***
-IndividualH  3.75000    0.19812  18.928 7.00e-12 ***
-IndividualI  0.60000    0.19812   3.029 0.008466 ** 
-IndividualJ -0.60000    0.19812  -3.029 0.008466 ** 
-IndividualK  1.10000    0.19812   5.552 5.54e-05 ***
-IndividualL -0.15000    0.19812  -0.757 0.460699    
-IndividualM  1.65000    0.19812   8.328 5.23e-07 ***
-IndividualN -1.10000    0.19812  -5.552 5.54e-05 ***
-IndividualO -0.10000    0.19812  -0.505 0.621065    
-IndividualP -2.25000    0.19812 -11.357 9.14e-09 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 0.1981 on 15 degrees of freedom
-Multiple R-squared:  0.9949,    Adjusted R-squared:  0.9895 
-F-statistic: 183.3 on 16 and 15 DF,  p-value: 2.887e-14</code></pre>
+<pre><code>[1] 0.004034071</code></pre>
 </div>
 </div>
-<div class="cell">
-<details>
-<summary>Código</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(manos_modelo_3)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>Analysis of Variance Table
-
-Response: Length
-           Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
-Hand        1   0.451  0.4513  11.497  0.004034 ** 
-Individual 15 114.680  7.6453 194.786 2.089e-14 ***
-Residuals  15   0.589  0.0392                      
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
-</div>
-</div>
+<p>Aunque la forma como analizamos estos datos no es la ideal para el caso, podemos ver que produce resultados perfectamente adecuados para la variable de interés, siempre y cuando seamos cocientes de que la función usada aquí en <strong>R</strong>, no maneja apropiadamente los factores de efectos aleatorios y por lo tanto no debemos hacer mayores interpretaciones de los términos correspondientes a esos factores.</p>
 </section>
 </section>
 <section id="qué-tanto-tiempo-puede-correr-un-experimento" class="level2">
