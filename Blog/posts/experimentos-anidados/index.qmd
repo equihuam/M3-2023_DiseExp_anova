@@ -135,3 +135,4 @@ ratas.aov <- aov(glucogeno ~ tratamiento/rata/muestraH +
                  Error(rata + muestraH + rata/muestraH), data=ratas)
 summary(ratas.aov)
 ```
+
