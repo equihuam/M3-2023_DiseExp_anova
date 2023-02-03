@@ -356,10 +356,15 @@ $order.groups
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>rieles  <span class="ot">&lt;-</span> <span class="fu">update</span>(rieles, <span class="at">formula =</span> viaje <span class="sc">~</span> <span class="dv">1</span> <span class="sc">|</span> riel,</span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>rieles  <span class="ot">&lt;-</span> <span class="fu">update</span>(rieles, <span class="at">formula =</span> viaje <span class="sc">~</span> <span class="dv">1</span> <span class="sc">|</span> riel, <span class="at">FUN =</span> mean,</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">labels =</span> <span class="fu">list</span>(<span class="at">y =</span> <span class="st">"Tiempo de viaje con fuerza cero"</span>),</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">units =</span> <span class="fu">list</span>(<span class="at">y =</span> <span class="st">"(nano segundos)"</span>))</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">attributes</span>(rieles)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Encontré un detallito raro de atributos que se quedan con basura. </span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Aunque no parecen producir ning´nu problema, esta es una manera de limpiarla.</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">attributes</span>(<span class="fu">attributes</span>(rieles)<span class="sc">$</span>formula)<span class="sc">$</span><span class="st">".Environment"</span> <span class="ot">&lt;-</span> <span class="fu">environment</span>()</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">environment</span>(<span class="fu">attributes</span>(rieles)<span class="sc">$</span>FUN) <span class="ot">&lt;-</span> <span class="fu">environment</span>()</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">attributes</span>(rieles)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>$names
@@ -374,7 +379,6 @@ $class
 
 $formula
 viaje ~ 1 | riel
-&lt;environment: 0x0000018c9437de70&gt;
 
 $labels
 $labels$y
@@ -387,9 +391,8 @@ $units$y
 
 
 $FUN
-function (x) 
-max(x, na.rm = TRUE)
-&lt;environment: 0x0000018c943bcc18&gt;
+function (x, ...) 
+UseMethod("mean")
 
 $order.groups
 [1] TRUE</code></pre>
@@ -468,16 +471,35 @@ $order.groups
  $ viaje: num  55 53 54 26 37 32 78 91 85 92 ...</code></pre>
 </div>
 </div>
-<p>Estructura de la tabla <strong>con</strong> información de agrupamiento:</p>
+<p>Los atributos quue contiene este objeto son estos:</p>
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>rieles.g <span class="ot">&lt;-</span> <span class="fu">groupedData</span> (viaje <span class="sc">~</span> <span class="dv">1</span> <span class="sc">|</span> riel, <span class="at">data =</span> rieles.sg, </span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">FUN =</span> mean,</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">units =</span> <span class="fu">list</span>( <span class="at">x =</span> <span class="st">"(ns)"</span>),</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">labels =</span> <span class="fu">list</span>(<span class="at">x =</span> <span class="st">"riel"</span>, </span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">y =</span> <span class="st">"tiempo de tránsito de fuerza cero"</span>))</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(rieles.g)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attributes</span>(rieles.sg)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>$names
+[1] "riel"  "viaje"
+
+$row.names
+ [1] "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" "11" "12" "13" "14" "15"
+[16] "16" "17" "18"
+
+$class
+[1] "data.frame"</code></pre>
+</div>
+</div>
+<p>Tomo los datos sin agrupamiento y proporciono los <em>metadatos</em> que definen la <strong>estructura de agrupamiento</strong> que caracterizan a la tabla :</p>
+<div class="cell">
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>rieles.g <span class="ot">&lt;-</span> <span class="fu">groupedData</span> (viaje <span class="sc">~</span> <span class="dv">1</span> <span class="sc">|</span> riel, <span class="at">data =</span> rieles.sg, </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">FUN =</span> mean,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">units =</span> <span class="fu">list</span>( <span class="at">x =</span> <span class="st">"(ns)"</span>),</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">labels =</span> <span class="fu">list</span>(<span class="at">x =</span> <span class="st">"riel"</span>, </span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">y =</span> <span class="st">"tiempo de tránsito de fuerza cero"</span>),</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>                         )</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(rieles.g)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Classes 'nffGroupedData', 'nfGroupedData', 'groupedData' and 'data.frame':  18 obs. of  2 variables:
@@ -497,7 +519,7 @@ $order.groups
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">sg=</span>rieles.sg, <span class="at">g=</span>rieles.g)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">sg=</span>rieles.sg, <span class="at">g=</span>rieles.g)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>   sg.riel sg.viaje g.riel g.viaje
@@ -524,7 +546,7 @@ $order.groups
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gsummary</span>(rieles.sg)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gsummary</span>(rieles.sg)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>    riel viaje
@@ -550,7 +572,7 @@ $order.groups
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gsummary</span>(rieles.g)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gsummary</span>(rieles.g)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>  riel    viaje
@@ -565,16 +587,16 @@ $order.groups
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rieles.g, <span class="fu">aes</span>(<span class="at">x =</span> viaje, <span class="at">y =</span> riel, <span class="at">group =</span> riel)) <span class="sc">+</span> </span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">19</span>, <span class="at">size =</span> <span class="dv">4</span>, <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Análisis de integridad estructural de rieles (rieles.g)"</span>) <span class="sc">+</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">xlab</span>(<span class="at">label =</span> <span class="st">"tiempo de viaje (ns)"</span>) <span class="sc">+</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>       <span class="fu">ylab</span>(<span class="at">label =</span> <span class="st">"riel"</span>) <span class="sc">+</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>       <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">26</span>), </span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">1</span>)) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rieles.g, <span class="fu">aes</span>(<span class="at">x =</span> viaje, <span class="at">y =</span> riel, <span class="at">group =</span> riel)) <span class="sc">+</span> </span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">19</span>, <span class="at">size =</span> <span class="dv">4</span>, <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Análisis de integridad estructural de rieles (rieles.g)"</span>) <span class="sc">+</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">xlab</span>(<span class="at">label =</span> <span class="st">"tiempo de viaje (ns)"</span>) <span class="sc">+</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>       <span class="fu">ylab</span>(<span class="at">label =</span> <span class="st">"riel"</span>) <span class="sc">+</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>       <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">26</span>), </span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">1</span>)) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Como hemos visto, cambiar los metadatos de la tabla se hace con la función <code>update()</code>.</p>
@@ -582,11 +604,11 @@ $order.groups
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>rieles.g1 <span class="ot">&lt;-</span> <span class="fu">update</span>(rieles.g, <span class="at">labels =</span> <span class="fu">list</span>(<span class="at">y=</span><span class="st">"tiempo (ns)"</span>))</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rieles.g1)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>rieles.g1 <span class="ot">&lt;-</span> <span class="fu">update</span>(rieles.g, <span class="at">labels =</span> <span class="fu">list</span>(<span class="at">y=</span><span class="st">"tiempo (ns)"</span>))</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rieles.g1)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Primera posibilidad de análisis. Modelo lineal simple. Es una elección natural en este caso, pues estima la media general. Hay que recordar seleccionar contrastes de tipo “tratamiento” aun para factores ordenados.</p>
@@ -594,7 +616,7 @@ $order.groups
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span> ()<span class="sc">$</span>contrasts</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span> ()<span class="sc">$</span>contrasts</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>        unordered           ordered 
@@ -605,8 +627,8 @@ $order.groups
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>rieles.m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(viaje <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span>rieles.g)</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(rieles.m1)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>rieles.m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(viaje <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span>rieles.g)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(rieles.m1)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -633,26 +655,26 @@ Residual standard error: 23.65 on 17 degrees of freedom</code></pre>
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bwplot</span>(rieles.g<span class="sc">$</span>riel <span class="sc">~</span> <span class="fu">resid</span>(rieles.m1))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bwplot</span>(rieles.g<span class="sc">$</span>riel <span class="sc">~</span> <span class="fu">resid</span>(rieles.m1))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rieles.g, <span class="fu">aes</span>(<span class="at">x =</span> viaje, <span class="at">y =</span> riel, <span class="at">group =</span> riel)) <span class="sc">+</span> </span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">stat_boxplot</span>(<span class="at">geom=</span><span class="st">'errorbar'</span>, <span class="at">linetype=</span><span class="dv">2</span>, <span class="at">width=</span><span class="fl">0.5</span>) <span class="sc">+</span> </span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">geom_boxplot</span>(<span class="at">shape =</span> <span class="dv">19</span>, <span class="at">size =</span> <span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Análisis de integridad estructural de rieles (rieles.g)"</span>) <span class="sc">+</span></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>       <span class="fu">xlab</span>(<span class="at">label =</span> <span class="st">"tiempo de viaje (ns)"</span>) <span class="sc">+</span></span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>       <span class="fu">ylab</span>(<span class="at">label =</span> <span class="st">"riel"</span>) <span class="sc">+</span></span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>       <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">26</span>), </span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">1</span>)) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rieles.g, <span class="fu">aes</span>(<span class="at">x =</span> viaje, <span class="at">y =</span> riel, <span class="at">group =</span> riel)) <span class="sc">+</span> </span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">stat_boxplot</span>(<span class="at">geom=</span><span class="st">'errorbar'</span>, <span class="at">linetype=</span><span class="dv">2</span>, <span class="at">width=</span><span class="fl">0.5</span>) <span class="sc">+</span> </span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">geom_boxplot</span>(<span class="at">shape =</span> <span class="dv">19</span>, <span class="at">size =</span> <span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Análisis de integridad estructural de rieles (rieles.g)"</span>) <span class="sc">+</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>       <span class="fu">xlab</span>(<span class="at">label =</span> <span class="st">"tiempo de viaje (ns)"</span>) <span class="sc">+</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>       <span class="fu">ylab</span>(<span class="at">label =</span> <span class="st">"riel"</span>) <span class="sc">+</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>       <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">26</span>), </span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">1</span>)) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Al ignorar el efecto de los rieles, dentro de los que repito la prueba para obtener las medidas de interés se produce un defecto que se ve claramente en esta gráfica de residuos.</p>
@@ -663,8 +685,8 @@ Residual standard error: 23.65 on 17 degrees of freedom</code></pre>
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>rieles.m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(viaje <span class="sc">~</span> riel <span class="sc">-</span> <span class="dv">1</span>, <span class="at">data =</span>rieles.g)</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>rieles.m2</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>rieles.m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(viaje <span class="sc">~</span> riel <span class="sc">-</span> <span class="dv">1</span>, <span class="at">data =</span>rieles.g)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>rieles.m2</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -679,7 +701,7 @@ riel2  riel5  riel1  riel6  riel3  riel4
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(rieles.m2)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(rieles.m2)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Analysis of Variance Table
@@ -695,7 +717,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(rieles.m2)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(rieles.m2)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -727,22 +749,22 @@ F-statistic: 916.6 on 6 and 12 DF,  p-value: 2.971e-15</code></pre>
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bwplot</span>(rieles.g<span class="sc">$</span>riel <span class="sc">~</span> <span class="fu">resid</span>(rieles.m2))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bwplot</span>(rieles.g<span class="sc">$</span>riel <span class="sc">~</span> <span class="fu">resid</span>(rieles.m2))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>res.m2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">resid =</span> <span class="fu">resid</span>(rieles.m2), <span class="at">riel =</span> rieles.g<span class="sc">$</span>riel)</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(res.m2, <span class="fu">aes</span>(<span class="at">x =</span> resid, <span class="at">y =</span> riel, <span class="at">group =</span> riel)) <span class="sc">+</span> </span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">stat_boxplot</span>(<span class="at">geom=</span><span class="st">'errorbar'</span>, <span class="at">linetype=</span><span class="dv">2</span>, <span class="at">width=</span><span class="fl">0.5</span>) <span class="sc">+</span> </span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">geom_boxplot</span>(<span class="at">shape =</span> <span class="dv">19</span>, <span class="at">size =</span> <span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">"blue"</span>) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>res.m2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">resid =</span> <span class="fu">resid</span>(rieles.m2), <span class="at">riel =</span> rieles.g<span class="sc">$</span>riel)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(res.m2, <span class="fu">aes</span>(<span class="at">x =</span> resid, <span class="at">y =</span> riel, <span class="at">group =</span> riel)) <span class="sc">+</span> </span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">stat_boxplot</span>(<span class="at">geom=</span><span class="st">'errorbar'</span>, <span class="at">linetype=</span><span class="dv">2</span>, <span class="at">width=</span><span class="fl">0.5</span>) <span class="sc">+</span> </span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">geom_boxplot</span>(<span class="at">shape =</span> <span class="dv">19</span>, <span class="at">size =</span> <span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">"blue"</span>) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>A pesar de que el modelo remueve los efectos sistemáticos asociados a las características particulares de los distintos rieles, no proporciona una representación satisfactoria del problema.</p>
@@ -755,10 +777,10 @@ F-statistic: 916.6 on 6 and 12 DF,  p-value: 2.971e-15</code></pre>
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>rieles.m3 <span class="ot">&lt;-</span> <span class="fu">lme</span>(<span class="at">fixed =</span> viaje <span class="sc">~</span> <span class="dv">1</span>, </span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">random =</span> <span class="sc">~</span> <span class="dv">1</span> <span class="sc">|</span> riel, </span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> rieles.g)</span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>rieles.m3</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>rieles.m3 <span class="ot">&lt;-</span> <span class="fu">lme</span>(<span class="at">fixed =</span> viaje <span class="sc">~</span> <span class="dv">1</span>, </span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">random =</span> <span class="sc">~</span> <span class="dv">1</span> <span class="sc">|</span> riel, </span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> rieles.g)</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>rieles.m3</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Linear mixed-effects model fit by REML
@@ -781,7 +803,7 @@ Number of Groups: 6 </code></pre>
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span> (rieles.m3)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span> (rieles.m3)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Linear mixed-effects model fit by REML
@@ -821,10 +843,10 @@ Number of Groups: 6 </code></pre>
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bwplot</span>(rieles.g<span class="sc">$</span>riel <span class="sc">~</span> <span class="fu">resid</span>(rieles.m3))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bwplot</span>(rieles.g<span class="sc">$</span>riel <span class="sc">~</span> <span class="fu">resid</span>(rieles.m3))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Puedo obtener los estimadores de los coeficientes igual que en el caso <code>lm()</code> y <code>glm()</code> con <code>coef()</code>, pero además puedo obtener los coeficientes de los componentes aleatorios con <code>random.effects()</code> (forma breve: <code>ranef()</code>). ¿Que hay de los intervalos de confianza de los parámetros de efectos fijos estimados?.</p>
@@ -832,7 +854,7 @@ Number of Groups: 6 </code></pre>
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(rieles.m3)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(rieles.m3)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>  (Intercept)
@@ -847,7 +869,7 @@ Number of Groups: 6 </code></pre>
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ranef</span>(rieles.m3)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ranef</span>(rieles.m3)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>  (Intercept)
@@ -863,7 +885,7 @@ Number of Groups: 6 </code></pre>
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">intervals</span>(rieles.m3, <span class="fl">0.95</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">intervals</span>(rieles.m3, <span class="fl">0.95</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Approximate 95% confidence intervals
@@ -889,22 +911,22 @@ sd((Intercept)) 13.27434 24.80547 46.35341
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>ratas_g <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"../experimentos-anidados/GLEX38.DAT"</span>, <span class="at">col.names=</span><span class="st">"glucogeno"</span>)</span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>ratas_g<span class="sc">$</span>tratamiento <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"t1"</span>,<span class="st">"t2"</span>,<span class="st">"t3"</span>),<span class="at">each=</span><span class="dv">12</span>))</span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>ratas_g<span class="sc">$</span>rata <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="fu">paste</span>(<span class="st">"r"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">sep=</span><span class="st">""</span>), <span class="at">each=</span><span class="dv">6</span>))</span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>ratas_g<span class="sc">$</span>muestraH <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"m1"</span>, <span class="st">"m2"</span>, <span class="st">"m3"</span>), <span class="at">times=</span><span class="dv">6</span>, <span class="at">each=</span><span class="dv">2</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>ratas_g <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"../experimentos-anidados/GLEX38.DAT"</span>, <span class="at">col.names=</span><span class="st">"glucogeno"</span>)</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>ratas_g<span class="sc">$</span>tratamiento <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"t1"</span>,<span class="st">"t2"</span>,<span class="st">"t3"</span>),<span class="at">each=</span><span class="dv">12</span>))</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>ratas_g<span class="sc">$</span>rata <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="fu">paste</span>(<span class="st">"r"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">sep=</span><span class="st">""</span>), <span class="at">each=</span><span class="dv">6</span>))</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>ratas_g<span class="sc">$</span>muestraH <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"m1"</span>, <span class="st">"m2"</span>, <span class="st">"m3"</span>), <span class="at">times=</span><span class="dv">6</span>, <span class="at">each=</span><span class="dv">2</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>Le doy estructura de grupos a la tabla</p>
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>ratas_g <span class="ot">&lt;-</span> <span class="fu">groupedData</span>(glucogeno <span class="sc">~</span>  <span class="dv">1</span> <span class="sc">|</span> <span class="fu">ordered</span>(rata) <span class="sc">/</span> muestraH,</span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">data =</span> ratas_g,</span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">labels=</span> <span class="fu">list</span>(<span class="at">x =</span> <span class="st">"rata"</span>, <span class="at">y =</span> <span class="st">"contenido de glucógeno"</span> ),</span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">FUN =</span> mean)</span>
-<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(ratas_g)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>ratas_g <span class="ot">&lt;-</span> <span class="fu">groupedData</span>(glucogeno <span class="sc">~</span>  <span class="dv">1</span> <span class="sc">|</span> <span class="fu">ordered</span>(rata) <span class="sc">/</span> muestraH,</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">data =</span> ratas_g,</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">labels=</span> <span class="fu">list</span>(<span class="at">x =</span> <span class="st">"rata"</span>, <span class="at">y =</span> <span class="st">"contenido de glucógeno"</span> ),</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">FUN =</span> mean)</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(ratas_g)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Classes 'nmGroupedData', 'groupedData' and 'data.frame':    36 obs. of  4 variables:
@@ -934,7 +956,7 @@ sd((Intercept)) 13.27434 24.80547 46.35341
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">promedio =</span> <span class="fu">tapply</span> (ratas_g<span class="sc">$</span>glucogeno, ratas_g<span class="sc">$</span>rata, <span class="cf">function</span>(x) <span class="fu">round</span>(<span class="fu">mean</span>(x), <span class="dv">2</span>)))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">promedio =</span> <span class="fu">tapply</span> (ratas_g<span class="sc">$</span>glucogeno, ratas_g<span class="sc">$</span>rata, <span class="cf">function</span>(x) <span class="fu">round</span>(<span class="fu">mean</span>(x), <span class="dv">2</span>)))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>   promedio
@@ -950,20 +972,20 @@ r6   136.00</code></pre>
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ratas_g, <span class="at">inner =</span>  <span class="sc">~</span> tratamiento, <span class="at">displayLeve=</span><span class="dv">2</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ratas_g, <span class="at">inner =</span>  <span class="sc">~</span> tratamiento, <span class="at">displayLeve=</span><span class="dv">2</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bwplot</span>(glucogeno <span class="sc">~</span> tratamiento, <span class="at">boxmeans=</span>T, <span class="at">data=</span>ratas_g, </span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">boxcol=</span><span class="dv">14</span>, <span class="at">xlab =</span> <span class="st">"Tratamiento"</span>, <span class="at">ylab =</span> <span class="st">"Contenido de glucógeno"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bwplot</span>(glucogeno <span class="sc">~</span> tratamiento, <span class="at">boxmeans=</span>T, <span class="at">data=</span>ratas_g, </span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">boxcol=</span><span class="dv">14</span>, <span class="at">xlab =</span> <span class="st">"Tratamiento"</span>, <span class="at">ylab =</span> <span class="st">"Contenido de glucógeno"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -977,10 +999,10 @@ r6   136.00</code></pre>
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>ratas.lme.m1 <span class="ot">&lt;-</span> <span class="fu">lme</span>(<span class="at">fixed=</span>glucogeno <span class="sc">~</span> tratamiento <span class="sc">-</span> <span class="dv">1</span>, </span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">random=</span><span class="fu">list</span>(<span class="at">rata =</span> <span class="sc">~</span> <span class="dv">1</span>, <span class="at">muestraH=</span> <span class="sc">~</span> <span class="dv">1</span>),</span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data=</span>ratas_g)</span>
-<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ratas.lme.m1)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>ratas.lme.m1 <span class="ot">&lt;-</span> <span class="fu">lme</span>(<span class="at">fixed=</span>glucogeno <span class="sc">~</span> tratamiento <span class="sc">-</span> <span class="dv">1</span>, </span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">random=</span><span class="fu">list</span>(<span class="at">rata =</span> <span class="sc">~</span> <span class="dv">1</span>, <span class="at">muestraH=</span> <span class="sc">~</span> <span class="dv">1</span>),</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data=</span>ratas_g)</span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ratas.lme.m1)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Linear mixed-effects model fit by REML
@@ -1020,10 +1042,10 @@ Number of Groups:
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>ratas.lme.m2 <span class="ot">&lt;-</span> <span class="fu">lme</span>(<span class="at">fixed =</span> glucogeno <span class="sc">~</span> tratamiento <span class="sc">-</span> <span class="dv">1</span>, </span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">random =</span> <span class="sc">~</span> <span class="dv">1</span> <span class="sc">|</span> rata <span class="sc">/</span> muestraH,</span>
-<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data=</span>ratas_g) </span>
-<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ratas.lme.m2)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>ratas.lme.m2 <span class="ot">&lt;-</span> <span class="fu">lme</span>(<span class="at">fixed =</span> glucogeno <span class="sc">~</span> tratamiento <span class="sc">-</span> <span class="dv">1</span>, </span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">random =</span> <span class="sc">~</span> <span class="dv">1</span> <span class="sc">|</span> rata <span class="sc">/</span> muestraH,</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data=</span>ratas_g) </span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ratas.lme.m2)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Linear mixed-effects model fit by REML
@@ -1065,7 +1087,7 @@ Number of Groups:
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(ratas_g)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(ratas_g)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Classes 'nmGroupedData', 'groupedData' and 'data.frame':    36 obs. of  4 variables:
@@ -1092,9 +1114,9 @@ Number of Groups:
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>ratas.lme.m3 <span class="ot">&lt;-</span> <span class="fu">lme</span>(<span class="at">fixed=</span>glucogeno <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data=</span>ratas_g, </span>
-<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">random=</span><span class="sc">~</span><span class="dv">1</span><span class="sc">|</span>rata<span class="sc">/</span>muestraH, <span class="at">method=</span><span class="st">"ML"</span>) </span>
-<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>ratas.lme.m3</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>ratas.lme.m3 <span class="ot">&lt;-</span> <span class="fu">lme</span>(<span class="at">fixed=</span>glucogeno <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data=</span>ratas_g, </span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">random=</span><span class="sc">~</span><span class="dv">1</span><span class="sc">|</span>rata<span class="sc">/</span>muestraH, <span class="at">method=</span><span class="st">"ML"</span>) </span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>ratas.lme.m3</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Linear mixed-effects model fit by maximum likelihood
@@ -1123,9 +1145,9 @@ Number of Groups:
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>ratas.lme.m4 <span class="ot">&lt;-</span> <span class="fu">lme</span>(<span class="at">fixed=</span>glucogeno <span class="sc">~</span> tratamiento, <span class="at">data=</span>ratas_g, </span>
-<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">random=</span><span class="sc">~</span><span class="dv">1</span><span class="sc">|</span>rata<span class="sc">/</span>muestraH, <span class="at">method=</span><span class="st">"ML"</span>) </span>
-<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>ratas.lme.m4</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>ratas.lme.m4 <span class="ot">&lt;-</span> <span class="fu">lme</span>(<span class="at">fixed=</span>glucogeno <span class="sc">~</span> tratamiento, <span class="at">data=</span>ratas_g, </span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">random=</span><span class="sc">~</span><span class="dv">1</span><span class="sc">|</span>rata<span class="sc">/</span>muestraH, <span class="at">method=</span><span class="st">"ML"</span>) </span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>ratas.lme.m4</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Linear mixed-effects model fit by maximum likelihood
@@ -1154,7 +1176,7 @@ Number of Groups:
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(ratas.lme.m4, ratas.lme.m3)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(ratas.lme.m4, ratas.lme.m3)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>             Model df      AIC      BIC    logLik   Test  L.Ratio p-value
@@ -1165,8 +1187,8 @@ ratas.lme.m3     2  4 247.7667 254.1008 -119.8834 1 vs 2 6.496197  0.0388</code>
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>ratas.completo.lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(glucogeno<span class="sc">~</span>tratamiento<span class="sc">/</span>rata<span class="sc">/</span>muestraH, <span class="at">data=</span>ratas_g)</span>
-<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(ratas.completo.lm)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>ratas.completo.lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(glucogeno<span class="sc">~</span>tratamiento<span class="sc">/</span>rata<span class="sc">/</span>muestraH, <span class="at">data=</span>ratas_g)</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(ratas.completo.lm)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Analysis of Variance Table
@@ -1193,19 +1215,19 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>ratas.lme4.ic <span class="ot">&lt;-</span> <span class="fu">predict</span>(ratas.lme.m4, <span class="at">level =</span> <span class="dv">0</span>, <span class="at">type =</span> <span class="st">"predict"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>ratas.lme4.ic <span class="ot">&lt;-</span> <span class="fu">predict</span>(ratas.lme.m4, <span class="at">level =</span> <span class="dv">0</span>, <span class="at">type =</span> <span class="st">"predict"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>ratas.lme4.ic  <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">ajustado=</span><span class="fu">as.numeric</span>(ratas.lme4.ic), <span class="at">tratamiento=</span>ratas_g<span class="sc">$</span>tratamiento)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>ratas.lme4.ic  <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">ajustado=</span><span class="fu">as.numeric</span>(ratas.lme4.ic), <span class="at">tratamiento=</span>ratas_g<span class="sc">$</span>tratamiento)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">intervals</span>(ratas.lme.m4)<span class="sc">$</span>fixed</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">intervals</span>(ratas.lme.m4)<span class="sc">$</span>fixed</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>                   lower       est.      upper
@@ -1221,22 +1243,22 @@ attr(,"label")
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>ratas.lm.ic <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">predict</span>(ratas.completo.lm, <span class="at">interval =</span> <span class="st">'confidence'</span>,</span>
-<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">conf.level=</span><span class="fl">0.95</span>, <span class="at">ci.fit=</span><span class="cn">TRUE</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>ratas.lm.ic <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">predict</span>(ratas.completo.lm, <span class="at">interval =</span> <span class="st">'confidence'</span>,</span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">conf.level=</span><span class="fl">0.95</span>, <span class="at">ci.fit=</span><span class="cn">TRUE</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>ratas.lm.ic<span class="sc">$</span>tratamiento <span class="ot">&lt;-</span> ratas_g<span class="sc">$</span>tratamiento</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>ratas.lm.ic<span class="sc">$</span>tratamiento <span class="ot">&lt;-</span> ratas_g<span class="sc">$</span>tratamiento</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">min=</span><span class="fu">tapply</span>(ratas.lm.ic<span class="sc">$</span>lwr, ratas.lm.ic<span class="sc">$</span>tratamiento, mean),</span>
-<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">media=</span><span class="fu">tapply</span>(ratas.lm.ic<span class="sc">$</span>fit, ratas.lm.ic<span class="sc">$</span>tratamiento, mean),</span>
-<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">max=</span><span class="fu">tapply</span>(ratas.lm.ic<span class="sc">$</span>upr, ratas.lm.ic<span class="sc">$</span>tratamiento, mean))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">min=</span><span class="fu">tapply</span>(ratas.lm.ic<span class="sc">$</span>lwr, ratas.lm.ic<span class="sc">$</span>tratamiento, mean),</span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">media=</span><span class="fu">tapply</span>(ratas.lm.ic<span class="sc">$</span>fit, ratas.lm.ic<span class="sc">$</span>tratamiento, mean),</span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">max=</span><span class="fu">tapply</span>(ratas.lm.ic<span class="sc">$</span>upr, ratas.lm.ic<span class="sc">$</span>tratamiento, mean))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>        min    media      max
@@ -1249,19 +1271,19 @@ t3 128.3319 135.1667 142.0014</code></pre>
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ratas.lme.m4, rata <span class="sc">~</span> <span class="fu">resid</span>(.) <span class="sc">|</span> tratamiento, <span class="at">xlab=</span><span class="st">"residuos"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ratas.lme.m4, rata <span class="sc">~</span> <span class="fu">resid</span>(.) <span class="sc">|</span> tratamiento, <span class="at">xlab=</span><span class="st">"residuos"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-48-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-49-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ratas.lme.m4)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ratas.lme.m4)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-49-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-50-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -1272,7 +1294,7 @@ t3 128.3319 135.1667 142.0014</code></pre>
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
@@ -1287,18 +1309,18 @@ t3 128.3319 135.1667 142.0014</code></pre>
 </div>
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>ratas_g<span class="sc">$</span>trat_v1 <span class="ot">&lt;-</span><span class="fu">recode_factor</span>(ratas_g<span class="sc">$</span>tratamiento, <span class="st">"t2"</span><span class="ot">=</span><span class="st">"t1"</span>)</span>
-<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a>ratas.lme.m4A <span class="ot">&lt;-</span> <span class="fu">lme</span>(<span class="at">fixed=</span>glucogeno <span class="sc">~</span> trat_v1, <span class="at">data=</span>ratas_g, </span>
-<span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">random=</span><span class="sc">~</span><span class="dv">1</span><span class="sc">|</span>rata<span class="sc">/</span>muestraH, <span class="at">method=</span><span class="st">"ML"</span>) </span>
-<span id="cb82-4"><a href="#cb82-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb82-5"><a href="#cb82-5" aria-hidden="true" tabindex="-1"></a>ratas_g<span class="sc">$</span>trat_v2 <span class="ot">&lt;-</span><span class="fu">recode_factor</span>(ratas_g<span class="sc">$</span>tratamiento, <span class="st">"t3"</span><span class="ot">=</span><span class="st">"t2"</span>)</span>
-<span id="cb82-6"><a href="#cb82-6" aria-hidden="true" tabindex="-1"></a>ratas.lme.m4B <span class="ot">&lt;-</span> <span class="fu">lme</span>(<span class="at">fixed=</span>glucogeno <span class="sc">~</span> trat_v2, <span class="at">data=</span>ratas_g, </span>
-<span id="cb82-7"><a href="#cb82-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">random=</span><span class="sc">~</span><span class="dv">1</span><span class="sc">|</span>rata<span class="sc">/</span>muestraH, <span class="at">method=</span><span class="st">"ML"</span>) </span>
-<span id="cb82-8"><a href="#cb82-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb82-9"><a href="#cb82-9" aria-hidden="true" tabindex="-1"></a>ratas_g<span class="sc">$</span>trat_v3 <span class="ot">&lt;-</span><span class="fu">recode_factor</span>(ratas_g<span class="sc">$</span>tratamiento, <span class="st">"t3"</span><span class="ot">=</span><span class="st">"t1"</span>)</span>
-<span id="cb82-10"><a href="#cb82-10" aria-hidden="true" tabindex="-1"></a>ratas.lme.m4C <span class="ot">&lt;-</span> <span class="fu">lme</span>(<span class="at">fixed=</span>glucogeno <span class="sc">~</span> trat_v3, <span class="at">data=</span>ratas_g, </span>
-<span id="cb82-11"><a href="#cb82-11" aria-hidden="true" tabindex="-1"></a>                     <span class="at">random=</span><span class="sc">~</span><span class="dv">1</span><span class="sc">|</span>rata<span class="sc">/</span>muestraH, <span class="at">method=</span><span class="st">"ML"</span>) </span>
-<span id="cb82-12"><a href="#cb82-12" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ratas_g)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>ratas_g<span class="sc">$</span>trat_v1 <span class="ot">&lt;-</span><span class="fu">recode_factor</span>(ratas_g<span class="sc">$</span>tratamiento, <span class="st">"t2"</span><span class="ot">=</span><span class="st">"t1"</span>)</span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>ratas.lme.m4A <span class="ot">&lt;-</span> <span class="fu">lme</span>(<span class="at">fixed=</span>glucogeno <span class="sc">~</span> trat_v1, <span class="at">data=</span>ratas_g, </span>
+<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">random=</span><span class="sc">~</span><span class="dv">1</span><span class="sc">|</span>rata<span class="sc">/</span>muestraH, <span class="at">method=</span><span class="st">"ML"</span>) </span>
+<span id="cb84-4"><a href="#cb84-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-5"><a href="#cb84-5" aria-hidden="true" tabindex="-1"></a>ratas_g<span class="sc">$</span>trat_v2 <span class="ot">&lt;-</span><span class="fu">recode_factor</span>(ratas_g<span class="sc">$</span>tratamiento, <span class="st">"t3"</span><span class="ot">=</span><span class="st">"t2"</span>)</span>
+<span id="cb84-6"><a href="#cb84-6" aria-hidden="true" tabindex="-1"></a>ratas.lme.m4B <span class="ot">&lt;-</span> <span class="fu">lme</span>(<span class="at">fixed=</span>glucogeno <span class="sc">~</span> trat_v2, <span class="at">data=</span>ratas_g, </span>
+<span id="cb84-7"><a href="#cb84-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">random=</span><span class="sc">~</span><span class="dv">1</span><span class="sc">|</span>rata<span class="sc">/</span>muestraH, <span class="at">method=</span><span class="st">"ML"</span>) </span>
+<span id="cb84-8"><a href="#cb84-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-9"><a href="#cb84-9" aria-hidden="true" tabindex="-1"></a>ratas_g<span class="sc">$</span>trat_v3 <span class="ot">&lt;-</span><span class="fu">recode_factor</span>(ratas_g<span class="sc">$</span>tratamiento, <span class="st">"t3"</span><span class="ot">=</span><span class="st">"t1"</span>)</span>
+<span id="cb84-10"><a href="#cb84-10" aria-hidden="true" tabindex="-1"></a>ratas.lme.m4C <span class="ot">&lt;-</span> <span class="fu">lme</span>(<span class="at">fixed=</span>glucogeno <span class="sc">~</span> trat_v3, <span class="at">data=</span>ratas_g, </span>
+<span id="cb84-11"><a href="#cb84-11" aria-hidden="true" tabindex="-1"></a>                     <span class="at">random=</span><span class="sc">~</span><span class="dv">1</span><span class="sc">|</span>rata<span class="sc">/</span>muestraH, <span class="at">method=</span><span class="st">"ML"</span>) </span>
+<span id="cb84-12"><a href="#cb84-12" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ratas_g)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Grouped Data: glucogeno ~ 1 | ordered(rata)/muestraH
@@ -1315,7 +1337,7 @@ t3 128.3319 135.1667 142.0014</code></pre>
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(ratas.lme.m4A, ratas.lme.m4)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(ratas.lme.m4A, ratas.lme.m4)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>              Model df      AIC      BIC    logLik   Test L.Ratio p-value
@@ -1327,7 +1349,7 @@ ratas.lme.m4      2  6 245.2705 254.7716 -116.6353 1 vs 2 3.62358   0.057</code>
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(ratas.lme.m4B, ratas.lme.m4)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(ratas.lme.m4B, ratas.lme.m4)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>              Model df      AIC      BIC    logLik   Test  L.Ratio p-value
@@ -1339,7 +1361,7 @@ ratas.lme.m4      2  6 245.2705 254.7716 -116.6353 1 vs 2 6.358622  0.0117</code
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(ratas.lme.m4C, ratas.lme.m4)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(ratas.lme.m4C, ratas.lme.m4)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>              Model df      AIC      BIC    logLik   Test  L.Ratio p-value
@@ -1351,7 +1373,7 @@ ratas.lme.m4      2  6 245.2705 254.7716 -116.6353 1 vs 2 1.163313  0.2808</code
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(ratas.lme.m4C)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(ratas.lme.m4C)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>            numDF denDF  F-value p-value
@@ -1362,7 +1384,7 @@ trat_v3         1     4    8.116  0.0464</code></pre>
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">intervals</span>(ratas.lme.m4)<span class="sc">$</span>fixed</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">intervals</span>(ratas.lme.m4)<span class="sc">$</span>fixed</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>                   lower       est.      upper
@@ -1377,9 +1399,9 @@ attr(,"label")
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t</span>(<span class="fu">data.frame</span>(<span class="at">trat_1 =</span> <span class="fu">intervals</span>(ratas.lme.m4)<span class="sc">$</span>fixed[<span class="dv">1</span>,],</span>
-<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">trat_2 =</span> <span class="fu">colSums</span>(<span class="fu">intervals</span>(ratas.lme.m4)<span class="sc">$</span>fixed[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,]),</span>
-<span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">trat_3 =</span> <span class="fu">colSums</span>(<span class="fu">intervals</span>(ratas.lme.m4)<span class="sc">$</span>fixed[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,])))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t</span>(<span class="fu">data.frame</span>(<span class="at">trat_1 =</span> <span class="fu">intervals</span>(ratas.lme.m4)<span class="sc">$</span>fixed[<span class="dv">1</span>,],</span>
+<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">trat_2 =</span> <span class="fu">colSums</span>(<span class="fu">intervals</span>(ratas.lme.m4)<span class="sc">$</span>fixed[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,]),</span>
+<span id="cb96-3"><a href="#cb96-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">trat_3 =</span> <span class="fu">colSums</span>(<span class="fu">intervals</span>(ratas.lme.m4)<span class="sc">$</span>fixed[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,])))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>          lower     est.    upper
@@ -1392,7 +1414,7 @@ trat_3 108.7140 145.6667 182.6193</code></pre>
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(ratas.lme.m4C)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(ratas.lme.m4C)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>            numDF denDF  F-value p-value
@@ -1404,10 +1426,10 @@ trat_v3         1     4    8.116  0.0464</code></pre>
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>nivel_confianza <span class="ot">&lt;-</span> <span class="fl">0.90</span></span>
-<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t</span>(<span class="fu">data.frame</span>(<span class="at">trat_1 =</span> <span class="fu">intervals</span>(ratas.lme.m4, <span class="at">level =</span> nivel_confianza)<span class="sc">$</span>fixed[<span class="dv">1</span>,],</span>
-<span id="cb98-3"><a href="#cb98-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">trat_2 =</span> <span class="fu">colSums</span>(<span class="fu">intervals</span>(ratas.lme.m4, <span class="at">level =</span> nivel_confianza)<span class="sc">$</span>fixed[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,]),</span>
-<span id="cb98-4"><a href="#cb98-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">trat_3 =</span> <span class="fu">colSums</span>(<span class="fu">intervals</span>(ratas.lme.m4, <span class="at">level =</span> nivel_confianza)<span class="sc">$</span>fixed[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,])))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>nivel_confianza <span class="ot">&lt;-</span> <span class="fl">0.90</span></span>
+<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t</span>(<span class="fu">data.frame</span>(<span class="at">trat_1 =</span> <span class="fu">intervals</span>(ratas.lme.m4, <span class="at">level =</span> nivel_confianza)<span class="sc">$</span>fixed[<span class="dv">1</span>,],</span>
+<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">trat_2 =</span> <span class="fu">colSums</span>(<span class="fu">intervals</span>(ratas.lme.m4, <span class="at">level =</span> nivel_confianza)<span class="sc">$</span>fixed[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,]),</span>
+<span id="cb100-4"><a href="#cb100-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">trat_3 =</span> <span class="fu">colSums</span>(<span class="fu">intervals</span>(ratas.lme.m4, <span class="at">level =</span> nivel_confianza)<span class="sc">$</span>fixed[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,])))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>          lower     est.    upper
@@ -1419,8 +1441,8 @@ trat_3 117.7401 145.6667 173.5932</code></pre>
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t</span>(<span class="fu">data.frame</span>(<span class="at">trat_1_y_3 =</span> <span class="fu">intervals</span>(ratas.lme.m4C, <span class="at">level =</span> nivel_confianza)<span class="sc">$</span>fixed[<span class="dv">1</span>,],</span>
-<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">trat_2 =</span> <span class="fu">colSums</span>(<span class="fu">intervals</span>(ratas.lme.m4C, <span class="at">level =</span> nivel_confianza)<span class="sc">$</span>fixed[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,])))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t</span>(<span class="fu">data.frame</span>(<span class="at">trat_1_y_3 =</span> <span class="fu">intervals</span>(ratas.lme.m4C, <span class="at">level =</span> nivel_confianza)<span class="sc">$</span>fixed[<span class="dv">1</span>,],</span>
+<span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">trat_2 =</span> <span class="fu">colSums</span>(<span class="fu">intervals</span>(ratas.lme.m4C, <span class="at">level =</span> nivel_confianza)<span class="sc">$</span>fixed[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,])))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>              lower     est.    upper
@@ -1436,7 +1458,7 @@ trat_2     136.9281 151.0000 165.0719</code></pre>
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>manos <span class="ot">&lt;-</span>  <span class="fu">read_csv</span>(<span class="st">"../restringir-aleatorizacion/manos.dat"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a>manos <span class="ot">&lt;-</span>  <span class="fu">read_csv</span>(<span class="st">"../restringir-aleatorizacion/manos.dat"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 32 Columns: 3
@@ -1450,10 +1472,10 @@ dbl (1): Length
 </div>
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a>manos.lme <span class="ot">&lt;-</span> <span class="fu">lme</span>(<span class="at">fixed=</span> Length <span class="sc">~</span> Hand <span class="sc">-</span> <span class="dv">1</span>, </span>
-<span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">random=</span><span class="fu">list</span>(<span class="at">Individual =</span> <span class="sc">~</span> <span class="dv">1</span>),</span>
-<span id="cb104-3"><a href="#cb104-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data=</span>manos)</span>
-<span id="cb104-4"><a href="#cb104-4" aria-hidden="true" tabindex="-1"></a>manos.lme</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a>manos.lme <span class="ot">&lt;-</span> <span class="fu">lme</span>(<span class="at">fixed=</span> Length <span class="sc">~</span> Hand <span class="sc">-</span> <span class="dv">1</span>, </span>
+<span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">random=</span><span class="fu">list</span>(<span class="at">Individual =</span> <span class="sc">~</span> <span class="dv">1</span>),</span>
+<span id="cb106-3"><a href="#cb106-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data=</span>manos)</span>
+<span id="cb106-4"><a href="#cb106-4" aria-hidden="true" tabindex="-1"></a>manos.lme</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Linear mixed-effects model fit by REML
@@ -1473,7 +1495,7 @@ Number of Groups: 16 </code></pre>
 </div>
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(manos.lme)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(manos.lme)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>     numDF denDF  F-value p-value

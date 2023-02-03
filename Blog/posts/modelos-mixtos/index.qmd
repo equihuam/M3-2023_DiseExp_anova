@@ -66,10 +66,16 @@ attributes(rieles)
 Ahora cambiemos estos atributos para que todo esté expresado en español y de paso corregir la fórmula, que tal como está, pierde la referencia adecuada a las variables que contiene la tabla, pues cambiamos los nombres de las variables.
 
 ```{r}
-rieles  <- update(rieles, formula = viaje ~ 1 | riel,
+rieles  <- update(rieles, formula = viaje ~ 1 | riel, FUN = mean,
                   labels = list(y = "Tiempo de viaje con fuerza cero"),
                   units = list(y = "(nano segundos)"))
+
+# Encontré un detallito raro de atributos que se quedan con basura. 
+# Aunque no parecen producir ning´nu problema, esta es una manera de limpiarla.
+attributes(attributes(rieles)$formula)$".Environment" <- environment()
+environment(attributes(rieles)$FUN) <- environment()
 attributes(rieles)
+
 ```
 
 A esta tabla se le ha aplicado la función `groupedData` con la fórmula:
@@ -121,14 +127,21 @@ Estructura de la tabla **sin** información de agrupamiento:
 str(rieles.sg) 
 ```
 
-Estructura de la tabla **con** información de agrupamiento:
+Los atributos quue contiene este objeto son estos:
+
+```{r}
+attributes(rieles.sg)
+```
+
+Tomo los datos sin agrupamiento y proporciono los *metadatos* que definen la **estructura de agrupamiento** que caracterizan a la tabla :
 
 ```{r}
 rieles.g <- groupedData (viaje ~ 1 | riel, data = rieles.sg, 
                          FUN = mean,
                          units = list( x = "(ns)"),
                          labels = list(x = "riel", 
-                                       y = "tiempo de tránsito de fuerza cero"))
+                                       y = "tiempo de tránsito de fuerza cero"),
+                         )
 str(rieles.g)
 ```
 
