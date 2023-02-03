@@ -344,41 +344,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ratas.completo <span class="ot">&lt;-</span> <span class="fu">lm</span>(glucogeno <span class="sc">~</span> trat_txt <span class="sc">+</span> rata <span class="sc">+</span> muestraH <span class="sc">+</span> muestraH <span class="sc">%in%</span> rata <span class="sc">+</span> muestraH <span class="sc">%in%</span> rata <span class="sc">%in%</span> tratamiento, <span class="at">data=</span>ratas)</span>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ratas.completo <span class="ot">&lt;-</span> <span class="fu">lm</span>(glucogeno <span class="sc">~</span> trat_txt <span class="sc">+</span> rata <span class="sc">%in%</span> trat_txt <span class="sc">+</span> muestraH <span class="sc">%in%</span> rata <span class="sc">%in%</span> trat_txt, <span class="at">data=</span>ratas)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ratas.completo)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
-lm(formula = glucogeno ~ trat_txt + rata + muestraH + muestraH %in% 
-    rata + muestraH %in% rata %in% tratamiento, data = ratas)
+lm(formula = glucogeno ~ trat_txt + rata %in% trat_txt + muestraH %in% 
+    rata %in% trat_txt, data = ratas)
 
 Residuals:
    Min     1Q Median     3Q    Max 
  -6.00  -2.25   0.00   2.25   6.00 
 
-Coefficients: (2 not defined because of singularities)
-                             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)                   130.500      3.253  40.114  &lt; 2e-16 ***
-trat_txttrat_2                  2.000      4.601   0.435 0.668937    
-trat_txttrat_3                -24.500      4.601  -5.325 4.62e-05 ***
-rata2                          18.500      4.601   4.021 0.000801 ***
-muestraH2                      -2.500      4.601  -0.543 0.593526    
-muestraH3                       8.500      4.601   1.848 0.081172 .  
-rata2:muestraH2                -5.000      6.506  -0.768 0.452171    
-rata2:muestraH3                -2.500      6.506  -0.384 0.705305    
-rata1:muestraH1:tratamiento2   18.500      6.506   2.843 0.010785 *  
-rata2:muestraH1:tratamiento2    2.000      6.506   0.307 0.762075    
-rata1:muestraH2:tratamiento2   18.000      6.506   2.767 0.012716 *  
-rata2:muestraH2:tratamiento2    3.500      6.506   0.538 0.597214    
-rata1:muestraH3:tratamiento2    9.000      6.506   1.383 0.183506    
-rata2:muestraH3:tratamiento2       NA         NA      NA       NA    
-rata1:muestraH1:tratamiento3   23.500      6.506   3.612 0.001994 ** 
-rata2:muestraH1:tratamiento3   14.500      6.506   2.229 0.038828 *  
-rata1:muestraH2:tratamiento3   34.500      6.506   5.302 4.85e-05 ***
-rata2:muestraH2:tratamiento3   21.500      6.506   3.304 0.003943 ** 
-rata1:muestraH3:tratamiento3   21.000      6.506   3.228 0.004670 ** 
-rata2:muestraH3:tratamiento3       NA         NA      NA       NA    
+Coefficients:
+                               Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)                     130.500      3.253  40.114  &lt; 2e-16 ***
+trat_txttrat_2                   20.500      4.601   4.456 0.000305 ***
+trat_txttrat_3                   -1.000      4.601  -0.217 0.830375    
+trat_txttrat_1:rata2             18.500      4.601   4.021 0.000801 ***
+trat_txttrat_2:rata2              2.000      4.601   0.435 0.668937    
+trat_txttrat_3:rata2              9.500      4.601   2.065 0.053645 .  
+trat_txttrat_1:rata1:muestraH2   -2.500      4.601  -0.543 0.593526    
+trat_txttrat_2:rata1:muestraH2   -3.000      4.601  -0.652 0.522595    
+trat_txttrat_3:rata1:muestraH2    8.500      4.601   1.848 0.081172 .  
+trat_txttrat_1:rata2:muestraH2   -7.500      4.601  -1.630 0.120438    
+trat_txttrat_2:rata2:muestraH2   -6.000      4.601  -1.304 0.208616    
+trat_txttrat_3:rata2:muestraH2   -0.500      4.601  -0.109 0.914660    
+trat_txttrat_1:rata1:muestraH3    8.500      4.601   1.848 0.081172 .  
+trat_txttrat_2:rata1:muestraH3   -1.000      4.601  -0.217 0.830375    
+trat_txttrat_3:rata1:muestraH3    6.000      4.601   1.304 0.208616    
+trat_txttrat_1:rata2:muestraH3    6.000      4.601   1.304 0.208616    
+trat_txttrat_2:rata2:muestraH3    4.000      4.601   0.869 0.396059    
+trat_txttrat_3:rata2:muestraH3   -8.500      4.601  -1.848 0.081172 .  
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
@@ -409,13 +407,11 @@ F-statistic: 8.196 on 17 and 18 DF,  p-value: 2.508e-05</code></pre>
 <pre><code>Analysis of Variance Table
 
 Response: glucogeno
-                          Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
-trat_txt                   2 1557.56  778.78 36.7927 4.375e-07 ***
-rata                       1  413.44  413.44 19.5328 0.0003308 ***
-muestraH                   2  113.56   56.78  2.6824 0.0955848 .  
-rata:muestraH              2   50.89   25.44  1.2021 0.3235761    
-rata:muestraH:tratamiento 10  813.78   81.38  3.8446 0.0063654 ** 
-Residuals                 18  381.00   21.17                      
+                       Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
+trat_txt                2 1557.56  778.78 36.7927 4.375e-07 ***
+trat_txt:rata           3  797.67  265.89 12.5617 0.0001143 ***
+trat_txt:rata:muestraH 12  594.00   49.50  2.3386 0.0502907 .  
+Residuals              18  381.00   21.17                      
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>

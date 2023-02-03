@@ -96,7 +96,7 @@ head(ratas)
 En este caso tengo una estructura anidada, así que hay podemos usar el operador de anidación `%in%`. Sin embargo, hay que tener cuidado, pues esto sólo añade el efecto de anidamiento especificado, no los términos principales u otros niveles de anidamiento que pudieran estar presentes. También hay que notar que un anidamiento equivale en el *modelo estadístico lineal* a la presencia de términos de interacción sin su contraparte de términos en la jerarquía. En este caso, no aparece ninguna interacción tratamiento:rata o tratamiento:muestraHígado, etc., pero sí aparecen las interacciones más complejas: rata:muestraHígado:tratamieno por ejemplo.
 
 ```{r}
-ratas.completo <- lm(glucogeno ~ trat_txt + rata + muestraH + muestraH %in% rata + muestraH %in% rata %in% tratamiento, data=ratas)
+ratas.completo <- lm(glucogeno ~ trat_txt + rata %in% trat_txt + muestraH %in% rata %in% trat_txt, data=ratas)
 summary(ratas.completo)
 ```
 
@@ -135,4 +135,3 @@ ratas.aov <- aov(glucogeno ~ tratamiento/rata/muestraH +
                  Error(rata + muestraH + rata/muestraH), data=ratas)
 summary(ratas.aov)
 ```
-
