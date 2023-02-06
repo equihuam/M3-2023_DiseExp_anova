@@ -3,7 +3,6 @@ title: "Analízame"
 author: ["Miguel Equihua", "Alan Aguirre"]
 date: "2023-02-6"
 lang: es
-draft: FALSE
 categories: [taller]
 format:
   html:
