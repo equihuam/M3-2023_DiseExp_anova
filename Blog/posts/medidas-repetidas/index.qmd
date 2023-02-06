@@ -9,7 +9,8 @@ format:
     code-fold: true
 ---
 
-![](Picea%20sitchensis%20%E2%80%93%20Sitka%20Spruce%2008.jpg){width="500"}
+![](Picea-sitchensis-Sitka-Spruce-08.jpg)
+){width="500"}
 
 El tiempo es una variable problemática en el análisis estadístico, sobre todo por la necesidad de postular el supuesto de independencia entre las observaciones, lo que solemos asegurar aleatorizando las unidades experimentales. Las observaciones arregladas a lo largo del tiempo comúnmente no pueden aleatorizarse, por ejemplo cuando estamos dando seguimiento al crecimiento de un organismo. Por otro lado, también puede ocurrir esta falta de independencia por cercanía geográfica, así que el espacio comparte desafíos estadísticos con el tiempo.
 

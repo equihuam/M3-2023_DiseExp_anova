@@ -1,0 +1,70 @@
+---
+title: "Masa para Pizza"
+author: "Miguel Equihua"
+date: "2023-02-06"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(ggplot2)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Exploración tabular de los datos
+
+```{r}
+library(tidyverse)
+masa <- read_csv("masa-para-pizza.txt", col_names = TRUE)
+
+masa %>% mutate(receta = factor(receta)) -> masa
+
+masa %>% group_by(receta) %>% 
+         summarise(media = median(tiempo, na.rm = TRUE), 
+                   mediana = median(tiempo, na.rm = TRUE),
+                   var = var(tiempo))
+
+masa <- masa[order(masa$receta),]
+```
+
+## Exploración gráfica
+
+```{r}
+plot(masa$tiempo, type = "n", ylab = "tiempo")
+text(masa$tiempo, labels = masa$receta)
+
+```
+
+```{r}
+masa_lm <- lm(tiempo ~ receta, data = masa)
+summary(masa_lm)
+```
+```{r}
+plot(masa_lm)
+```
+```{r}
+confint(masa_lm, level = 0.95)
+```
+```{r}
+masa$receta_ABD <- recode(masa$receta, A = "ABD", B ="ABD", D = "ABD")
+```
+
+
+```{r}
+masa_lm_ABD <- lm(tiempo ~ receta_ABD, data = masa)
+summary(masa_lm_ABD)
+```
+```{r}
+plot(masa_lm_ABD)
+```
+
+```{r}
+# Modelo asumiendo heterocedasticidad
+# Defino los ponderadores a usar
+wt <- 1 / lm(abs(masa_lm$residuals) ~ masa_lm$fitted.values)$fitted.values^2
+masa_lm_ABD_pond <- lm(log(tiempo) ~ receta_ABD, data = masa, weights = wt)
+summary(masa_lm_ABD_pond)
+plot((masa_lm_ABD_pond))
+
+```
+
