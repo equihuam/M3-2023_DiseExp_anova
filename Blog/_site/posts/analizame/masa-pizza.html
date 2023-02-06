@@ -335,32 +335,42 @@ F-statistic: 19.43 on 1 and 14 DF,  p-value: 0.0005951</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Modelo asumiendo heterocedasticidad</span></span>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Modelo ponderado para enfrentarnos a la heterocedasticidad</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Defino los ponderadores a usar</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>wt <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">/</span> <span class="fu">lm</span>(<span class="fu">abs</span>(masa_lm<span class="sc">$</span>residuals) <span class="sc">~</span> masa_lm<span class="sc">$</span>fitted.values)<span class="sc">$</span>fitted.values<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>masa_lm_ABD_pond <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(tiempo) <span class="sc">~</span> receta_ABD, <span class="at">data =</span> masa, <span class="at">weights =</span> wt)</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(masa_lm_ABD_pond)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>wt <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">/</span> <span class="fu">lm</span>(<span class="fu">abs</span>(masa_lm_ABD<span class="sc">$</span>residuals) <span class="sc">~</span> masa_lm_ABD<span class="sc">$</span>fitted.values)<span class="sc">$</span>fitted.values<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>wt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           1            2            3            4            5            6 
+5.768306e-05 5.768306e-05 5.768306e-05 5.768306e-05 5.768306e-05 5.768306e-05 
+           7            8            9           10           11           12 
+5.768306e-05 5.768306e-05 3.429355e-04 3.429355e-04 3.429355e-04 3.429355e-04 
+          13           14           15           16 
+5.768306e-05 5.768306e-05 5.768306e-05 5.768306e-05 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajusto un modelo ponderado con mayor peso los tratamientos con menor varianza</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>masa_lm_ABD_pond <span class="ot">&lt;-</span> <span class="fu">lm</span>(tiempo <span class="sc">~</span> receta_ABD, <span class="at">data =</span> masa, <span class="at">weights =</span> wt)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(masa_lm_ABD_pond)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
-lm(formula = log(tiempo) ~ receta_ABD, data = masa, weights = wt)
+lm(formula = tiempo ~ receta_ABD, data = masa, weights = wt)
 
 Weighted Residuals:
-       Min         1Q     Median         3Q        Max 
--0.0144840 -0.0042887  0.0005512  0.0050758  0.0162045 
+    Min      1Q  Median      3Q     Max 
+-1.8889 -0.9114 -0.2027  0.9074  2.1740 
 
 Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)   5.4644     0.1327  41.170 5.21e-16 ***
-receta_ABDC   1.0167     0.3105   3.275  0.00553 ** 
+(Intercept)   288.75      47.12   6.129 2.61e-05 ***
+receta_ABDC   367.25      57.79   6.355 1.78e-05 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.009401 on 14 degrees of freedom
-Multiple R-squared:  0.4337,    Adjusted R-squared:  0.3933 
-F-statistic: 10.72 on 1 and 14 DF,  p-value: 0.005534</code></pre>
+Residual standard error: 1.24 on 14 degrees of freedom
+Multiple R-squared:  0.7426,    Adjusted R-squared:  0.7242 
+F-statistic: 40.38 on 1 and 14 DF,  p-value: 1.785e-05</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>((masa_lm_ABD_pond))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>((masa_lm_ABD_pond))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="masa-pizza_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
 </div>
