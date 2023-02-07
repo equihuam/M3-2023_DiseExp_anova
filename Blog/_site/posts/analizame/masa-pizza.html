@@ -200,14 +200,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<p>En esta libreta <em>RMarkdown</em> les comparto mis notas de lo quue hice en relación con los datos de masa para pizza.</p>
+<p>En esta libreta <em>RMarkdown</em> les comparto mis notas de lo que hice en relación con los datos de masa para pizza.</p>
 <p>El Estudio de Marcelo es un experimento <em>completamente aleatorizado</em>, no hubo restricciones a la aleatorización como para producir <strong>bloques</strong> o división en parcelas (<strong>parcela dividida</strong>). Los tratamientos los ideó Marcelo como tratamientos factoriales, resultado de la combinación de cantidades variables de azúcar y leche, pero finalmente optó por tratarlas como una serie de recetas (sin decirnos que cantidad de leche o azúcar empleo, típico de los cocineros, guardar secretos), así que no nos queda otra que tratar al arreglo de tratamientos como una clasificación simple en <em>recetas</em> (ANOVA de una sola vía dirían otros). El modelo que describe esto es algo así:</p>
 <p><span class="math display">\[
 y_{ij} = \mu + R_i + \varepsilon_{j(i)}
-\]</span> En donde <em>i</em> tiene 4 niveles, uno por cada receta, <em>j</em> tiene 4 niveles, por el número de repeticiones de cada receta. Por lo tanto, los grados de libertad en el cuadro de análisis de la varianza deben ser 3 para las recetas y 12 para el error.</p>
+\]</span></p>
+<p>En donde <em>i</em> tiene 4 niveles, uno por cada receta, <em>j</em> tiene 4 niveles, por el número de repeticiones de cada receta. Por lo tanto, los grados de libertad en el cuadro de análisis de la varianza deben ser 3 para las recetas y 12 para el error.</p>
 <section id="exploración-tabular-de-los-datos" class="level2">
 <h2 class="anchored" data-anchor-id="exploración-tabular-de-los-datos">Exploración tabular de los datos</h2>
-<p>Una vez leidos los datos del archivo plano <em>texto separado por comas</em>, con acrónimo csv), definí la columna <em>recetas</em> como <em>factor</em>, lo hice con la función <code>mutate</code> para interactuar con la tabla completa. Me asomé a los datos calculando los promedios por tratamiento. Seguí la metáfora de <em>tubos</em> con ayuda de la biblioteca <code>tidyverse</code></p>
+<p>Una vez leídos los datos del archivo plano <em>texto separado por comas</em>, con acrónimo csv), definí la columna <em>recetas</em> como <em>factor</em>, lo hice con la función <code>mutate</code> para interactuar con la tabla completa. Me asomé a los datos calculando los promedios por tratamiento. Seguí la metáfora de <em>tubos</em> con ayuda de la biblioteca <code>tidyverse</code></p>
 <div class="cell">
 <details>
 <summary>Code</summary>
