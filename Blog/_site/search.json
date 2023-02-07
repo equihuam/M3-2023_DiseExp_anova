@@ -243,5 +243,12 @@
     "title": "Analízame",
     "section": "Venenos",
     "text": "Venenos\n\nEl cuadro que sigue muestra el tiempo de sobrevivencia, en unidades de 10 horas, de animales a los que se administró uno de tres tipos de veneno (I II, III), seguido de uno de cuatro antídotos (A, B, C y D). Se usaron cuatro animales asignados al azar a las combinación de veneno y antídoto ¿Alguno de los antídotos es más eficaz que los otros?\n\n¿Diseño experimental?\n¿Arreglo de tratamientos?\n¿Modelo que corresponde a este experimento?\n¿Supuestos qe harás para apoyar tu análisis estadístico?\n¿Define tu criterio o nivel de significancia?\nRealiza una exploración de los datos, numérica y gráfica, comenta\nConstruye los modelos necesarios y selecciona el mínimo adecuado\nValora la calidad del modelo, incluyendo el análisis de los residuos\nResuelve que tratamientos difieren de los demás\nArgumenta tus conclusiones\n\nDescargar datos en libro Excel"
+  },
+  {
+    "objectID": "posts/experimentar/index.html#ciencia-abierta",
+    "href": "posts/experimentar/index.html#ciencia-abierta",
+    "title": "Experimentación Ecológica",
+    "section": "Ciencia Abierta",
+    "text": "Ciencia Abierta\nCentro de Ciencia Abierta\nCiecia abierta - UNESCO\nCiencia Abierta - CEPAL"
   }
 ]
