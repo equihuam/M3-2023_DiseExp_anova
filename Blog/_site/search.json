@@ -214,7 +214,7 @@
     "href": "posts/medidas-repetidas/index.html",
     "title": "Modelos de medidas repetidas",
     "section": "",
-    "text": "){width=“500”}\nEl tiempo es una variable problemática en el análisis estadístico, sobre todo por la necesidad de postular el supuesto de independencia entre las observaciones, lo que solemos asegurar aleatorizando las unidades experimentales. Las observaciones arregladas a lo largo del tiempo comúnmente no pueden aleatorizarse, por ejemplo cuando estamos dando seguimiento al crecimiento de un organismo. Por otro lado, también puede ocurrir esta falta de independencia por cercanía geográfica, así que el espacio comparte desafíos estadísticos con el tiempo."
+    "text": "El tiempo es una variable problemática en el análisis estadístico, sobre todo por la necesidad de postular el supuesto de independencia entre las observaciones, lo que solemos asegurar aleatorizando las unidades experimentales. Las observaciones arregladas a lo largo del tiempo comúnmente no pueden aleatorizarse, por ejemplo cuando estamos dando seguimiento al crecimiento de un organismo. Por otro lado, también puede ocurrir esta falta de independencia por cercanía geográfica, así que el espacio comparte desafíos estadísticos con el tiempo."
   },
   {
     "objectID": "posts/experimentar/index.html",
